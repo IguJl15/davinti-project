@@ -1,41 +1,21 @@
-import { useState, useEffect } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
 
 function App() {
-  const [message, setMessage] = useState("Carregando....")
+  const [state, setState] = useState(0);
 
-  useEffect(() => {
-    fetch("http://localhost:8080")
-        .then(r => r.json())
-        .then(data => setMessage(data.toString()))
-
-
-  }, []);
-
+  const handleButtonClick = () => {
+    setState(state + 1);
+  };
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
+        <button onClick={handleButtonClick} style={{ width: "300px" }}>
+          {state}
+        </button>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <p>
-          {message}
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
