@@ -7,3 +7,11 @@ services:
       - 'POSTGRES_USER=myuser'
     ports:
       - 5432:5432
+  app:
+    build: .
+    environment:
+      - 'SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/mydatabase'
+    ports:
+      - 8080:8080
+    depends_on:
+      - postgres
