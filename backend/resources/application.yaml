@@ -1,12 +1,14 @@
 
-
 spring:
   jpa:
     show-sql: true
     hibernate:
       ddl-auto: update
+    database: postgresql
   flyway:
-    user: myuser
-    password: secret
     schemas: public
+    driver-class-name: org.postgresql.Driver
+  datasource:
     url: jdbc:postgresql://localhost:5432/mydatabase
+    username: myuser
+    password: secret
