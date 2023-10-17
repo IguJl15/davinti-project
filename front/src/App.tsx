@@ -1,21 +1,16 @@
-import { useState } from "react";
+import { Outlet } from 'react-router-dom';
+import { AuthProvider } from './core/providers/AuthProvider';
 
-function App() {
-  const [state, setState] = useState(0);
-
-  const handleButtonClick = () => {
-    setState(state + 1);
-  };
-
+function Root() {
   return (
     <>
-      <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
-        <button onClick={handleButtonClick} style={{ width: "300px" }}>
-          {state}
-        </button>
-      </div>
+      <AuthProvider>
+        <header></header>
+        <Outlet />
+        <footer></footer>
+      </AuthProvider>
     </>
   );
 }
 
-export default App;
+export default Root;
