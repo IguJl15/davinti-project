@@ -2,7 +2,7 @@ import { PropsWithChildren } from "react";
 import { useAuth } from "../../core/hooks/useAuth";
 import { Navigate } from "react-router-dom";
 
-function ProtectedRoutes({children}: PropsWithChildren) {
+function ProtectedRoute({children}: PropsWithChildren) {
     const { isSignedIn } = useAuth();
 
     if(!isSignedIn){
@@ -12,4 +12,4 @@ function ProtectedRoutes({children}: PropsWithChildren) {
     return children 
 }
 
-export { ProtectedRoutes }
+export { ProtectedRoute }
