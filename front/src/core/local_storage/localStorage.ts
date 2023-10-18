@@ -13,8 +13,8 @@ class LocalStorage {
           return JSON.parse(storedData) as T
      }
 
-     save(key: string, data: any) {
-          window.localStorage.setItem(key, data);
+     save(key: string, data: object) {
+          window.localStorage.setItem(key, JSON.stringify(data));
      }
 
      delete(key: string): void {

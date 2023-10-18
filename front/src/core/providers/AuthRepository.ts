@@ -5,7 +5,7 @@ export class AuthRepository {
   constructor(
     private httpClient: HttpClient,
     private localStorage: LocalStorage
-  ) {}
+  ) { }
 
   static localStorageKey = 'auth_data';
 
@@ -25,33 +25,42 @@ export class AuthRepository {
     this.localStorage.save(AuthRepository.localStorageKey, authData);
   }
 
-  async refreshTokens(): Promise<AuthData> {
-    const refreshToken = this.getLocalAuthData().refreshToken;
+  // async refreshTokens(): Promise<AuthData> {
+  //   const refreshToken = this.getLocalAuthData().refreshToken;
 
-    const response = await this.httpClient.post<AuthData>('/auth/refresh', {
-      refreshToken: refreshToken,
-    });
+  //   const response = await this.httpClient.post<AuthData>('/auth/refresh', {
+  //     refreshToken: refreshToken,
+  //   });
 
-    this.saveLocalAuthData(response);
+  //   this.saveLocalAuthData(response);
 
-    return response;
-  }
+  //   return response;
+  // }
 
   async register(data: RegisterParams): Promise<AuthData> {
-    const response = await this.httpClient.post<AuthData>(
-      '/auth/register',
+    const response = await this.httpClient.post<{ acessToken: string }>(
+      '/session/new',
       data
     );
 
-    this.saveLocalAuthData(response);
+    // const userData: User = JWT.decode(response.acessToken)
+    // const authData = { user: userData, accessToken: response.acessToken }
+    // this.saveLocalAuthData(authData);
 
-    return response;
+    // return authData;
+
+    throw Error("Not implemented")
   }
 
   async login(data: LoginParams): Promise<AuthData> {
-    const response = await this.httpClient.post<AuthData>('/auth/login', data);
-    this.saveLocalAuthData(response);
+    const response = await this.httpClient.post<{ acessToken: string }>('/session', data);
 
-    return response;
+    // const userData: User = JWT.decode(response.acessToken)
+    // const authData = { user: userData, accessToken: response.acessToken }
+    // this.saveLocalAuthData(authData);
+
+    // return authData;
+
+    throw Error("Not implemented")
   }
 }

@@ -3,7 +3,6 @@ import { User } from '../interfaces/User';
 
 export interface AuthData {
   accessToken: string;
-  refreshToken: string;
   user?: User;
 }
 
@@ -26,6 +25,4 @@ export interface AuthContextData {
   logOut: () => Promise<void> | void;
 }
 
-export const AuthContext = createContext<AuthContextData>(
-  {} as AuthContextData
-);
+export const AuthContext = createContext({} as AuthContextData);
