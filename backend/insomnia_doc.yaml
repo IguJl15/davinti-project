@@ -1,0 +1,287 @@
+_type: export
+__export_format: 4
+__export_date: 2023-10-19T02:23:41.897Z
+__export_source: insomnia.desktop.app:v2023.5.8
+resources:
+  - _id: req_490dd080733049f2b88e7e17b559626d
+    parentId: fld_21cea54ed3b44c1983ca0ca26ae1a21b
+    modified: 1697673702286
+    created: 1697672506793
+    url: "{{ _.url }}/users/813264e8-a7b8-46d1-85c9-0d9bcc540859"
+    name: Get by id
+    description: ""
+    method: GET
+    body: { }
+    parameters: [ ]
+    headers:
+      - name: User-Agent
+        value: insomnia/2023.5.8
+    authentication:
+      type: bearer
+      token: "{{ _.accessToken }}"
+    metaSortKey: -1697672506793
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_21cea54ed3b44c1983ca0ca26ae1a21b
+    parentId: wrk_10687e40199e486a81aea99f95473feb
+    modified: 1697672321225
+    created: 1697672321225
+    name: Users
+    description: ""
+    environment: { }
+    environmentPropertyOrder: null
+    metaSortKey: -1697672321225
+    _type: request_group
+  - _id: wrk_10687e40199e486a81aea99f95473feb
+    parentId: null
+    modified: 1697520153708
+    created: 1697520153708
+    name: Integrador
+    description: ""
+    scope: collection
+    _type: workspace
+  - _id: req_650efd2b21dd456ea5f1c4a85b3b3819
+    parentId: fld_21cea54ed3b44c1983ca0ca26ae1a21b
+    modified: 1697672710761
+    created: 1697672323654
+    url: "{{ _.url }}/users"
+    name: Get all
+    description: ""
+    method: GET
+    body: { }
+    parameters: [ ]
+    headers:
+      - name: User-Agent
+        value: insomnia/2023.5.8
+    authentication:
+      type: bearer
+      token: "{{ _.accessToken }}"
+    metaSortKey: -1697672323654
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_5817ca34838b4efc920353bb3cc46596
+    parentId: fld_08867c8f504f418c9f8c91803c6d151e
+    modified: 1697673393567
+    created: 1697520230149
+    url: "{{ _.url }}/session"
+    name: Login
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"email": "{{ _.email }}",
+        	"password": "{{ _.userPassword }}"
+        }
+    parameters: [ ]
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/2023.5.8
+    authentication: { }
+    metaSortKey: -1697520230149
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_08867c8f504f418c9f8c91803c6d151e
+    parentId: wrk_10687e40199e486a81aea99f95473feb
+    modified: 1697520227216
+    created: 1697520227216
+    name: Auth
+    description: ""
+    environment: { }
+    environmentPropertyOrder: null
+    metaSortKey: -1697520227217
+    _type: request_group
+  - _id: req_48c80d8989954eda8b7fcf98e529e932
+    parentId: fld_08867c8f504f418c9f8c91803c6d151e
+    modified: 1697672495493
+    created: 1697520348094
+    url: "{{ _.url }}/users"
+    name: Sing Up
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"name": "Usuário 2",
+        	"email": "user2@email.com",
+        	"password": "123456",
+        	"isAdmin": false
+        }
+    parameters: [ ]
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/2023.5.8
+    authentication: { }
+    metaSortKey: -1697520225394
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_9081804742184894b66841fe19af449e
+    parentId: fld_3baa90581c454a24ae90c32f22ecdc91
+    modified: 1697520197235
+    created: 1697520167716
+    url: "{{ _.url }}/public"
+    name: public
+    description: ""
+    method: GET
+    body: { }
+    parameters: [ ]
+    headers:
+      - name: User-Agent
+        value: insomnia/2023.5.8
+    authentication: { }
+    metaSortKey: -1697520167716
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_3baa90581c454a24ae90c32f22ecdc91
+    parentId: wrk_10687e40199e486a81aea99f95473feb
+    modified: 1697520162597
+    created: 1697520162597
+    name: Session
+    description: ""
+    environment: { }
+    environmentPropertyOrder: null
+    metaSortKey: -1697520162597
+    _type: request_group
+  - _id: req_922b23ff396d46469dd89c8124324c67
+    parentId: fld_3baa90581c454a24ae90c32f22ecdc91
+    modified: 1697673482512
+    created: 1697520203467
+    url: "{{ _.url }}/user"
+    name: user
+    description: ""
+    method: GET
+    body: { }
+    parameters: [ ]
+    headers:
+      - name: User-Agent
+        value: insomnia/2023.5.8
+    authentication:
+      type: bearer
+      token: "{{ _.accessToken }}"
+    metaSortKey: -1697520167666
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_f5f02c9fa347449388847afd44e7a6ab
+    parentId: fld_3baa90581c454a24ae90c32f22ecdc91
+    modified: 1697520215268
+    created: 1697520212907
+    url: "{{ _.url }}/admin"
+    name: admin
+    description: ""
+    method: GET
+    body: { }
+    parameters: [ ]
+    headers:
+      - name: User-Agent
+        value: insomnia/2023.5.8
+    authentication: { }
+    metaSortKey: -1697520167616
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: env_f7752e0badb3a3e329edb84f014a4f76df9eed83
+    parentId: wrk_10687e40199e486a81aea99f95473feb
+    modified: 1697672762617
+    created: 1697520153716
+    name: Base Environment
+    data:
+      url: localhost:8080
+      accessToken: "{% response 'body', 'req_5817ca34838b4efc920353bb3cc46596',
+        'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'when-expired', 5500 %}"
+      accessToken2: "{% response 'body', 'req_5817ca34838b4efc920353bb3cc46596',
+        'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'when-expired', 5500 %}"
+    dataPropertyOrder:
+      "&":
+        - url
+        - accessToken
+        - accessToken2
+    color: null
+    isPrivate: false
+    metaSortKey: 1697520153716
+    _type: environment
+  - _id: jar_f7752e0badb3a3e329edb84f014a4f76df9eed83
+    parentId: wrk_10687e40199e486a81aea99f95473feb
+    modified: 1697520153718
+    created: 1697520153718
+    name: Default Jar
+    cookies: [ ]
+    _type: cookie_jar
+  - _id: env_965aba76c0ea4631b648c39520854d87
+    parentId: env_f7752e0badb3a3e329edb84f014a4f76df9eed83
+    modified: 1697673417225
+    created: 1697672765428
+    name: Admin
+    data:
+      email: igor@email.com
+      userPassword: "123456"
+    dataPropertyOrder:
+      "&":
+        - email
+        - userPassword
+    color: "#d31d1d"
+    isPrivate: false
+    metaSortKey: 1697672765428
+    _type: environment
+  - _id: env_356dced902ac4c27a832aee2edda9433
+    parentId: env_f7752e0badb3a3e329edb84f014a4f76df9eed83
+    modified: 1697673442609
+    created: 1697673406645
+    name: User
+    data:
+      email: user2@email.com
+      userPassword: "123456"
+    dataPropertyOrder:
+      "&":
+        - email
+        - userPassword
+    color: "#2b7fee"
+    isPrivate: false
+    metaSortKey: 1697673406645
+    _type: environment
