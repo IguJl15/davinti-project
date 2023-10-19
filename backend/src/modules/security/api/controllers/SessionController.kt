@@ -1,14 +1,11 @@
-package com.davintiproject.backend.api.controllers
+package com.davintiproject.backend.modules.security.api.controllers
 
 import com.davintiproject.backend.data.entities.User
-import com.davintiproject.backend.data.entities.UserRole
-import com.davintiproject.backend.data.repositories.UserRepository
 import com.davintiproject.backend.modules.security.services.TokenService
 import org.springframework.http.ResponseEntity
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -32,11 +29,10 @@ data class TokenDto(val accessToken: String)
 @RequestMapping("/session")
 class SessionController(
     private val authManager: AuthenticationManager,
-    private val userRepository: UserRepository,
     private val tokenService: TokenService
 ) {
 
-    @PostMapping("")
+    @PostMapping
     @PreAuthorize("permitAll()")
     fun login(@RequestBody params: LoginParams): ResponseEntity<TokenDto> {
         val userPassword = UsernamePasswordAuthenticationToken(params.email, params.password)
@@ -46,25 +42,5 @@ class SessionController(
         val token = tokenService.generateToken(auth.principal as User)
 
         return ResponseEntity.ok(TokenDto(token))
-    }
-
-    @PostMapping("/new")
-    @PreAuthorize("permitAll()")
-    fun register(@RequestBody params: RegisterParams): ResponseEntity<String> {
-        if(userRepository.findByEmail(params.email) != null) return ResponseEntity.badRequest().build()
-
-        val encryptedPassword = BCryptPasswordEncoder().encode(params.password)
-
-        val newUser = User(
-            "",
-            params.name,
-            params.email,
-            encryptedPassword,
-            if (params.isAdmin) UserRole.admin else UserRole.user
-        )
-
-        userRepository.save(newUser)
-
-        return ResponseEntity.ok().build()
     }
 }
