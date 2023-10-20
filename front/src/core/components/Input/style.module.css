@@ -1,0 +1,13 @@
+.input_text_wrapper {
+    display: flex;
+    flex-direction: column;
+
+    height: 50px;
+
+    & input {
+        height: 100%;
+        width: 100%;
+
+        padding: 12px 12px;
+    }
+}
