@@ -4,20 +4,37 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import style from "./style.module.css";
 import { Input } from "../../core/components/Input";
+import { Button } from "../../core/components/Button";
+import { ErrorMessage } from "../../core/components/ErrorText";
+import { useAuth } from "../../core/hooks/useAuth";
+import { useEffect } from "react";
+import { Navigate } from "react-router-dom";
 
-type createUserFormData = z.infer<typeof LoginSchema>;
+type createLoginFormData = z.infer<typeof LoginSchema>;
 
 function LoginPage() {
+  const { logIn, isSignedIn } = useAuth();
+
+  useEffect(() => {
+    if (isSignedIn) {
+      <Navigate to="/" />;
+    }
+  });
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<createUserFormData>({ resolver: zodResolver(LoginSchema) });
+  } = useForm<createLoginFormData>({ resolver: zodResolver(LoginSchema) });
 
-  const onSubmit: SubmitHandler<createUserFormData> = (
-    data: createUserFormData
+  const onSubmit: SubmitHandler<createLoginFormData> = async (
+    data: createLoginFormData
   ) => {
-    alert(data.email);
+    try {
+      await logIn(data);
+    } catch (error: any) {
+      console.log(error);
+    }
   };
 
   return (
@@ -45,16 +62,14 @@ function LoginPage() {
             <p>Welcome back to the future of education...</p>
           </div>
           <Input inputType="email" label="Email" {...register("email")} />
-          {errors.email && <span>O campo de email é obrigatório</span>}
+          <ErrorMessage>{errors.email?.message}</ErrorMessage>
           <Input
             inputType="password"
             label="Password"
             {...register("password")}
           />
-          {errors.password && <span>O campo de senha é obrigatório</span>}
-          <div className={style.button_wrapper}>
-            <input type="button" value="Logar" />
-          </div>
+          <ErrorMessage>{errors.password?.message}</ErrorMessage>
+          <Button label="Logar" />
         </form>
       </div>
     </div>

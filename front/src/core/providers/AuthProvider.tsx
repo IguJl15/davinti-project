@@ -29,7 +29,7 @@ function AuthProvider({ children }: PropsWithChildren) {
     setAuthData(loginResponse);
   }
 
-  async function register(params: RegisterParams) {
+  async function signIn(params: RegisterParams) {
     const registerResponse = await authRepository.register(params);
 
     data.authData = registerResponse;
@@ -45,7 +45,7 @@ function AuthProvider({ children }: PropsWithChildren) {
   }
 
   const data: AuthContextData = {
-    register: register,
+    signIn: signIn,
     authData: authData,
     isSignedIn: authData !== null,
     logIn: logIn,
