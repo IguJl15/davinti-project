@@ -19,6 +19,6 @@ class GetAllAvailableCourses(
     override fun execute(params: Unit): List<Course> {
         val list = courseRepository.findAll()
 
-        return list.filter(courseAuthorization::userCanViewCouse)
+        return list.filter(courseAuthorization::userCanViewCourse)
     }
 }

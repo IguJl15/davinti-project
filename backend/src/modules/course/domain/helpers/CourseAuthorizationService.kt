@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service
 
 @Service
 class CourseAuthorizationService {
-    fun userCanViewCouse(course: Course): Boolean {
-        // TODO: if (couse.isPublic) return true
+    fun userCanViewCourse(course: Course): Boolean {
+        // TODO: if (course.isPublic) return true
 
         val user = SecurityContextHolder.getContext().authentication.principal as User
 
