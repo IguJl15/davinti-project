@@ -35,12 +35,16 @@ class SessionController(
     @PostMapping
     @PreAuthorize("permitAll()")
     fun login(@RequestBody params: LoginParams): ResponseEntity<TokenDto> {
-        val userPassword = UsernamePasswordAuthenticationToken(params.email, params.password)
+      try {
+          val userPassword = UsernamePasswordAuthenticationToken(params.email, params.password)
 
-        val auth = authManager.authenticate(userPassword)
+          val auth = authManager.authenticate(userPassword)
 
-        val token = tokenService.generateToken(auth.principal as User)
+          val token = tokenService.generateToken(auth.principal as User)
 
-        return ResponseEntity.ok(TokenDto(token))
+          return ResponseEntity.ok(TokenDto(token))
+      } catch (erro: Throwable) {
+          return ResponseEntity.notFound().build()
+      }
     }
 }
