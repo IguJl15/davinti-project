@@ -1,5 +1,6 @@
 services:
   postgres:
+    # container_name: database
     image: 'postgres:latest'
     environment:
       - 'POSTGRES_DB=mydatabase'
@@ -8,10 +9,15 @@ services:
     ports:
       - 5432:5432
   app:
-    build: .
+    container_name: backend
+    build:
+      context: .
+      target: development
     environment:
       - 'SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/mydatabase'
     ports:
       - 8080:8080
     depends_on:
       - postgres
+    volumes:
+      - .:/app:rw
