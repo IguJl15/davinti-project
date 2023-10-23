@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:experimental
 
-FROM gradle:7.4.2-jdk17-alpine AS deps
+FROM gradle:7.4.2-jdk17 AS deps
 
 WORKDIR /app
 
@@ -9,25 +9,33 @@ COPY build.gradle settings.gradle gradlew ./
 COPY backend backend
 
 RUN --mount=type=cache,target=/root/.gradle ./gradlew build -x test
-RUN mkdir -p build/libs/dependency && (cd build/libs/dependency; jar -xf ../*.jar)
+RUN mkdir -p ./build/libs/dependency
+WORKDIR /app/backend/build/libs/dependency
+RUN jar -xf ../*.jar
 
 
-FROM gradle:7.4.2-jdk17-alpine AS development
+FROM gradle:7.4.2-jdk17 AS development
 
 WORKDIR /app
 COPY ./live.sh ./
 
-RUN apk add inotify-tools
+# RUN apk add inotify-tools
+RUN apt update
+RUN apt -y install inotify-tools
 RUN chmod +x ./live.sh
 
 ENTRYPOINT [ "./live.sh" ]
 
 
-FROM openjdk:8-jdk-alpine as release
+FROM openjdk:8-jdk as release
 
 VOLUME /tmp
-ARG DEPENDENCY=/workspace/app/build/libs/dependency
-COPY --from=build ${DEPENDENCY}/BOOT-INF/lib /app/lib
-COPY --from=build ${DEPENDENCY}/META-INF /app/META-INF
-COPY --from=build ${DEPENDENCY}/BOOT-INF/classes /app
-ENTRYPOINT ["java","-cp","app:app/lib/*","com.example.Application"]
+
+
+
+ARG DEPENDENCY=/workspace/app/backend/build/libs/dependency
+COPY --from=deps ${DEPENDENCY}/BOOT-INF/lib /app/lib
+COPY --from=deps ${DEPENDENCY}/META-INF /app/META-INF
+COPY --from=deps ${DEPENDENCY}/BOOT-INF/classes /app
+
+ENTRYPOINT ["java","-cp","app:app/lib/*","com.davintiproject.backend.DaVintiBackendApplication"]

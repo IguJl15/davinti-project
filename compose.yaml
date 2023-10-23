@@ -13,6 +13,7 @@ services:
     build:
       context: .
       target: development
+    restart: on-failure
     environment:
       - 'SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/mydatabase'
     ports:
