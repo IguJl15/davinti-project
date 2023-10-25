@@ -1,6 +1,6 @@
 package com.davintiproject.backend.modules.security.api.controllers
 
-import com.davintiproject.backend.data.entities.User
+import com.davintiproject.backend.modules.security.data.entities.User
 import org.springframework.http.ResponseEntity
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.security.core.context.SecurityContextHolder
@@ -22,7 +22,7 @@ class IndexController {
     fun admin(): ResponseEntity<Map<String, Any>> {
         val user = SecurityContextHolder.getContext().authentication.principal as User
 
-        return ResponseEntity.ok(mapOf("Hello admin ${user.userName}" to user))
+        return ResponseEntity.ok(mapOf("Hello admin ${user.completeName}" to user))
     }
 
     @GetMapping("/user")
@@ -30,6 +30,6 @@ class IndexController {
     fun user(): ResponseEntity<Map<String, Any>> {
         val user = SecurityContextHolder.getContext().authentication.principal as User
 
-        return ResponseEntity.ok(mapOf("Hello user ${user.userName}" to user))
+        return ResponseEntity.ok(mapOf("Hello user ${user.completeName}" to user))
     }
 }

@@ -1,6 +1,6 @@
 package com.davintiproject.backend.modules.course.domain.entities
 
-import com.davintiproject.backend.data.entities.User
+import com.davintiproject.backend.modules.Student.domain.entities.Student
 import jakarta.persistence.*
 
 @Entity
@@ -11,6 +11,6 @@ data class Course(
     val name: String = "",
     val isPublic: Boolean = false,
 
-    @ManyToMany
-    val studentsEnrolled: List<User> = emptyList(),
+    @ManyToMany(mappedBy = "enrolledCourses")
+    val studentsEnrolled: List<Student> = emptyList(),
 )

@@ -1,8 +1,8 @@
 ALTER TABLE users
-    ADD user_name VARCHAR(255);
+    ADD complete_name VARCHAR(255);
 
 ALTER TABLE users
-    ALTER COLUMN user_name SET NOT NULL;
+    ALTER COLUMN complete_name SET NOT NULL;
 
 ALTER TABLE users
     ADD CONSTRAINT uc_users_email UNIQUE (email);

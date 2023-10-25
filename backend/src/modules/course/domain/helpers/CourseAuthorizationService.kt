@@ -1,8 +1,8 @@
 package com.davintiproject.backend.modules.course.domain.helpers
 
-import com.davintiproject.backend.data.entities.User
-import com.davintiproject.backend.data.entities.UserRole
 import com.davintiproject.backend.modules.course.domain.entities.Course
+import com.davintiproject.backend.modules.security.data.entities.User
+import com.davintiproject.backend.modules.security.data.entities.UserRole
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Service
 

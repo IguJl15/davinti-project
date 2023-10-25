@@ -1,11 +1,6 @@
-package com.davintiproject.backend.data.entities
+package com.davintiproject.backend.modules.security.data.entities
 
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
-import jakarta.persistence.Table
+import jakarta.persistence.*
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
@@ -15,18 +10,23 @@ enum class UserRole {
 }
 
 @Entity(name = "users")
-class User(
+open class User(
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     val id: String = "",
+
     @Column(nullable = false)
-    val userName: String = "",
+    open val completeName: String = "",
+
     @Column(nullable = false, unique = true)
-    val email: String = "",
+    open val email: String = "",
+
     @Column(nullable = false)
     val pass: String = "",
+
     @Column(nullable = false)
     val role: UserRole = UserRole.user
+
 ) : UserDetails {
 
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
@@ -36,12 +36,14 @@ class User(
         }
     }
 
+    @Transient
     override fun getPassword(): String {
         return pass
     }
 
+    @Transient
     override fun getUsername(): String {
-        return userName
+        return completeName
     }
 
     override fun isAccountNonExpired(): Boolean = true
