@@ -27,13 +27,13 @@ data class TokenDto(val accessToken: String)
 
 @RestController
 @RequestMapping("/session")
+@PreAuthorize("isAnonymous()")
 class SessionController(
     private val authManager: AuthenticationManager,
     private val tokenService: TokenService
 ) {
 
     @PostMapping
-    @PreAuthorize("permitAll()")
     fun login(@RequestBody params: LoginParams): ResponseEntity<TokenDto> {
       try {
           val userPassword = UsernamePasswordAuthenticationToken(params.email, params.password)
