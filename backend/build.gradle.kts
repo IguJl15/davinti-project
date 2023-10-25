@@ -39,7 +39,7 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 
 	// Dev needs
-	developmentOnly("org.springframework.boot:spring-boot-devtools:3.0.4")
+	runtimeOnly("org.springframework.boot:spring-boot-devtools:3.0.4")
 //	developmentOnly("org.springframework.boot:spring-boot-docker-compose")
 
 	// Testing
