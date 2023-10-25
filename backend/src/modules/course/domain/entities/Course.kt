@@ -9,6 +9,7 @@ data class Course(
     @GeneratedValue(strategy = GenerationType.UUID)
     val id: String = "",
     val name: String = "",
+    val isPublic: Boolean = false,
 
     @ManyToMany
     val studentsEnrolled: List<User> = emptyList(),
