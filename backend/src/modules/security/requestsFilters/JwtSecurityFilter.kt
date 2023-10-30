@@ -1,8 +1,8 @@
 package com.davintiproject.backend.modules.security.requestsFilters
 
 import com.auth0.jwt.interfaces.DecodedJWT
-import com.davintiproject.backend.data.entities.User
-import com.davintiproject.backend.data.entities.UserRole
+import com.davintiproject.backend.modules.security.data.entities.User
+import com.davintiproject.backend.modules.security.data.entities.UserRole
 import com.davintiproject.backend.modules.security.services.TokenService
 import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest

@@ -4,6 +4,7 @@ import com.davintiproject.backend.modules.security.requestsFilters.JwtSecurityFi
 import com.davintiproject.backend.modules.security.services.AuthorizationService
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.http.HttpMethod
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity
@@ -27,7 +28,7 @@ class SecurityConfig(
 
     @Bean
     fun userDetailsService(passwordEncoder: PasswordEncoder): UserDetailsService {
-        return authorizationService;
+        return authorizationService
     }
 
 
@@ -49,6 +50,13 @@ class SecurityConfig(
             .csrf { it.disable() }
             .sessionManagement {
                 it.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            }
+            .authorizeHttpRequests { authorize ->
+                authorize.requestMatchers("/public").permitAll()
+                authorize.requestMatchers(HttpMethod.POST, "/session").anonymous()
+                authorize.requestMatchers(HttpMethod.POST, "/users").anonymous()
+
+                authorize.anyRequest().authenticated()
             }
             .addFilterBefore(jwtSecurityFilter, UsernamePasswordAuthenticationFilter::class.java)
             .build()

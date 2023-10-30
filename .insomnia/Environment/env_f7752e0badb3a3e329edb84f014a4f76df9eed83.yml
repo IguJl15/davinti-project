@@ -1,0 +1,20 @@
+_id: env_f7752e0badb3a3e329edb84f014a4f76df9eed83
+type: Environment
+parentId: wrk_10687e40199e486a81aea99f95473feb
+modified: 1697682926837
+created: 1697520153716
+name: Base Environment
+data:
+  url: localhost:8080
+  accessToken: "{% response 'body', 'req_5817ca34838b4efc920353bb3cc46596',
+    'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'when-expired', 5500 %}"
+  accessToken2: "{% response 'body', 'req_5817ca34838b4efc920353bb3cc46596',
+    'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'when-expired', 5500 %}"
+dataPropertyOrder:
+  "&":
+    - url
+    - accessToken
+    - accessToken2
+color: null
+isPrivate: false
+metaSortKey: 1697520153716

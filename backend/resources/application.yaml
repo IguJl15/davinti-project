@@ -9,6 +9,6 @@ spring:
     schemas: public
     driver-class-name: org.postgresql.Driver
   datasource:
-    url: jdbc:postgresql://localhost:5432/mydatabase
-    username: myuser
-    password: secret
+    url: jdbc:postgresql://0.0.0.0:5432/mydatabase
+    username: postgres
+    password: postgres
