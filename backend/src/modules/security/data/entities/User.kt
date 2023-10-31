@@ -6,7 +6,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 
 enum class UserRole {
-    user, admin
+    user, admin, instructor
 }
 
 @Entity(name = "users")
@@ -33,6 +33,7 @@ open class User(
         return when (role) {
             UserRole.user -> mutableListOf(SimpleGrantedAuthority("ROLE_USER"))
             UserRole.admin -> mutableListOf(SimpleGrantedAuthority("ROLE_ADMIN"), SimpleGrantedAuthority("ROLE_USER"))
+            UserRole.instructor -> mutableListOf(SimpleGrantedAuthority("ROLE_INSTRUCTOR"))
         }
     }
 
