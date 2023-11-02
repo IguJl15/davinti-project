@@ -1,4 +1,4 @@
-import { PropsWithChildren, useState } from 'react';
+import { PropsWithChildren, useEffect, useState } from 'react';
 import {
   AuthContext,
   AuthContextData,
@@ -9,12 +9,13 @@ import {
 import { API_URL } from '../../config/api_key';
 import HttpClient, { AxiosClient } from '../http/http_client';
 import { AuthRepository } from './AuthRepository';
+import { LocalStorage } from '../local_storage/localStorage';
 
 export const httpClient: HttpClient = new AxiosClient(API_URL);
 
 export const authRepository = new AuthRepository(
   httpClient,
-  localStorage.instance
+  LocalStorage.instance
 );
 
 function AuthProvider({ children }: PropsWithChildren) {
@@ -23,34 +24,40 @@ function AuthProvider({ children }: PropsWithChildren) {
   async function logIn(params: LoginParams) {
     const loginResponse = await authRepository.login(params);
 
-    data.authData = loginResponse;
-    data.isSignedIn = true;
-
     setAuthData(loginResponse);
   }
 
-  async function signIn(params: RegisterParams) {
-    const registerResponse = await authRepository.register(params);
+  async function signUp(params: RegisterParams) {
+    await authRepository.register(params);
 
-    data.authData = registerResponse;
-    data.isSignedIn = true;
-
-    setAuthData(registerResponse);
+    logIn({ ...params })
   }
 
-  function logOut() {
+  async function logOut() {
     authRepository.deleteLocalAuthData();
+
 
     setAuthData(null);
   }
 
   const data: AuthContextData = {
-    signIn: signIn,
     authData: authData,
-    isSignedIn: authData !== null,
+    isSignedIn: authData != null,
+    signUp: signUp,
     logIn: logIn,
     logOut: logOut,
   };
+
+  console.table(data)
+
+  useEffect(() => {
+    const exisitingAuthData = authRepository.getLocalAuthData();
+
+    if (exisitingAuthData != null) {
+      setAuthData(exisitingAuthData)
+    }
+  }, [])
+
 
   return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>;
 }

@@ -26,7 +26,7 @@ export class AxiosClient implements HttpClient {
   }
 
   async post<T>(path: string, data: unknown): Promise<T> {
-    const axiosResponse = await this.axios.post(path, { data: data });
+    const axiosResponse = await this.axios.post(path, data);
 
     return axiosResponse.data;
   }

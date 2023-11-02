@@ -1,7 +1,7 @@
-class LocalStorage {
+export class LocalStorage {
      private constructor() { }
 
-     static instanceof: LocalStorage = new LocalStorage();
+     static instance: LocalStorage = new LocalStorage();
 
      read<T>(key: string): T | null {
           const storedData = window.localStorage.getItem(key)

@@ -20,7 +20,7 @@ export interface LoginParams {
 export interface AuthContextData {
   isSignedIn: boolean;
   authData: AuthData | null;
-  signIn: (params: RegisterParams) => Promise<void> | void;
+  signUp: (params: RegisterParams) => Promise<void> | void;
   logIn: (params: LoginParams) => Promise<void> | void;
   logOut: () => Promise<void> | void;
 }

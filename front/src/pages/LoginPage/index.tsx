@@ -10,7 +10,7 @@ import { useAuth } from "../../core/hooks/useAuth";
 import { useEffect } from "react";
 import { Navigate } from "react-router-dom";
 
-type createLoginFormData = z.infer<typeof LoginSchema>;
+type CreateLoginFormData = z.infer<typeof LoginSchema>;
 
 function LoginPage() {
   const { logIn, isSignedIn } = useAuth();
@@ -25,14 +25,14 @@ function LoginPage() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<createLoginFormData>({ resolver: zodResolver(LoginSchema) });
+  } = useForm<CreateLoginFormData>({ resolver: zodResolver(LoginSchema) });
 
-  const onSubmit: SubmitHandler<createLoginFormData> = async (
-    data: createLoginFormData
+  const onSubmit: SubmitHandler<CreateLoginFormData> = async (
+    data
   ) => {
     try {
       await logIn(data);
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.log(error);
     }
   };
@@ -58,18 +58,19 @@ function LoginPage() {
             <span>COMPANY LOGO</span>
           </div>
           <div className="form_text">
-            <h1>Login</h1>
+            <h1>Entrar</h1>
             <p>Welcome back to the future of education...</p>
           </div>
-          <Input inputType="email" label="Email" {...register("email")} />
+          <Input inputType="email" label="Email" {...register("email")} autoComplete="email" />
           <ErrorMessage>{errors.email?.message}</ErrorMessage>
           <Input
+            label="Senha"
+            autoComplete="current-password"
             inputType="password"
-            label="Password"
             {...register("password")}
           />
           <ErrorMessage>{errors.password?.message}</ErrorMessage>
-          <Button label="Logar" />
+          <Button label="Entrar" />
         </form>
       </div>
     </div>

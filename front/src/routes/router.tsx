@@ -1,8 +1,9 @@
-import { createBrowserRouter } from "react-router-dom";
+import { Navigate, createBrowserRouter } from "react-router-dom";
+import Root from "../App";
 import { HomePage } from "../pages/HomePage";
 import { LoginPage } from "../pages/LoginPage";
 import { RegisterPage } from "../pages/RegisterPage";
-import Root from "../App";
+import { AnonymusRoute } from "./AnonymusRoute";
 
 export const router = createBrowserRouter([
   {
@@ -10,16 +11,20 @@ export const router = createBrowserRouter([
     element: <Root />,
     children: [
       {
+        index: true,
+        element: <Navigate to="/home" />,
+      },
+      {
         path: "home",
         element: <HomePage />,
       },
       {
         path: "register",
-        element: <RegisterPage />,
+        element: <AnonymusRoute ><RegisterPage /></AnonymusRoute>,
       },
       {
         path: "login",
-        element: <LoginPage />,
+        element: <AnonymusRoute ><LoginPage /></AnonymusRoute>,
       },
     ],
   },

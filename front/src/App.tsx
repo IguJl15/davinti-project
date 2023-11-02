@@ -1,14 +1,27 @@
-import { Outlet } from 'react-router-dom';
-import { AuthProvider } from './core/providers/AuthProvider';
+import { NavLink, Outlet } from 'react-router-dom';
+import { useAuth } from './core/hooks/useAuth';
 
 function Root() {
+  const { isSignedIn, logOut } = useAuth()
+
   return (
     <>
-      <AuthProvider>
-        <header></header>
-        <Outlet />
-        <footer></footer>
-      </AuthProvider>
+      <header>
+        <NavLink to={'/home'}>Home</NavLink>
+        {!isSignedIn && <>
+          <NavLink to={'/login'}>Login</NavLink>
+          <NavLink to={'/register'}>Registro</NavLink>
+
+        </>}
+        {isSignedIn
+          && <button
+            onClick={logOut}
+            type="button"
+          >Sair </button>}
+      </header>
+
+      <Outlet />
+      <footer></footer>
     </>
   );
 }

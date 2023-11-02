@@ -8,26 +8,25 @@ import { Button } from "../../core/components/Button";
 import { ErrorMessage } from "../../core/components/ErrorText";
 import { useAuth } from "../../core/hooks/useAuth";
 
-type createRegisterFormData = z.infer<typeof RegisterSchema>;
+type CreateRegisterFormData = z.infer<typeof RegisterSchema>;
 
 export function RegisterPage() {
-
-  const { signIn } = useAuth()
+  const { signUp: signIn } = useAuth();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<createRegisterFormData>({
+  } = useForm<CreateRegisterFormData>({
     resolver: zodResolver(RegisterSchema),
   });
 
-  const onSubmit: SubmitHandler<createRegisterFormData> = (
-    data: createRegisterFormData
+  const onSubmit: SubmitHandler<CreateRegisterFormData> = (
+    data: CreateRegisterFormData
   ) => {
     try {
-      signIn(data)
-    } catch (error: any) {
+      signIn(data);
+    } catch (error: unknown) {
       console.log(error);
     }
   };
@@ -53,7 +52,7 @@ export function RegisterPage() {
             <span>COMPANY LOGO</span>
           </div>
           <div className="form_text">
-            <h1>Register</h1>
+            <h1>Criar conta</h1>
             <p>
               Welcome to our plataform, please register yourself and explore our
               new world
@@ -61,23 +60,28 @@ export function RegisterPage() {
           </div>
           <Input
             inputType="text"
-            label="Username"
+            autoComplete="name"
+            label="Nome"
             {...register("name", { required: true })}
           />
           <ErrorMessage>{errors.name?.message}</ErrorMessage>
+
           <Input
             inputType="email"
             label="Email"
             {...register("email", { required: true })}
           />
           <ErrorMessage>{errors.email?.message}</ErrorMessage>
+
           <Input
+            autoComplete="new-password"
             inputType="password"
-            label="Password"
+            label="Senha"
             {...register("password", { required: true })}
           />
           <ErrorMessage>{errors.password?.message}</ErrorMessage>
-          <Button label="Logar" />
+
+          <Button label="Registrar" />
         </form>
       </div>
     </div>

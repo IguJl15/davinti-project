@@ -1,5 +1,9 @@
 import { AuthData, RegisterParams, LoginParams } from '../contexts/AuthContext';
+import { JwtPayload, jwtDecode } from "jwt-decode";
 import HttpClient from '../http/http_client';
+import { User } from '../interfaces/User';
+import { parseRole } from '../interfaces/Role';
+import { LocalStorage } from '../local_storage/localStorage';
 
 export class AuthRepository {
   constructor(
@@ -9,12 +13,10 @@ export class AuthRepository {
 
   static localStorageKey = 'auth_data';
 
-  getLocalAuthData(): AuthData {
-    const localResponse = this.localStorage.read<AuthData>(
-      AuthRepository.localStorageKey
-    );
+  getLocalAuthData(): AuthData | null {
+    const localResponse = this.localStorage.read<AuthData>(AuthRepository.localStorageKey);
 
-    return localResponse as AuthData;
+    return localResponse;
   }
 
   deleteLocalAuthData() {
@@ -37,30 +39,32 @@ export class AuthRepository {
   //   return response;
   // }
 
-  async register(data: RegisterParams): Promise<AuthData> {
-    const response = await this.httpClient.post<{ acessToken: string }>(
-      '/session/new',
-      data
-    );
-
-    // const userData: User = JWT.decode(response.acessToken)
-    // const authData = { user: userData, accessToken: response.acessToken }
-    // this.saveLocalAuthData(authData);
-
-    // return authData;
-
-    throw Error("Not implemented")
+  async register(data: RegisterParams): Promise<void> {
+    await this.httpClient.post('/users', data);
   }
 
   async login(data: LoginParams): Promise<AuthData> {
-    const response = await this.httpClient.post<{ acessToken: string }>('/session', data);
+    console.table(data)
+    const response = await this.httpClient.post<{ accessToken: string }>('/session', data);
 
-    // const userData: User = JWT.decode(response.acessToken)
-    // const authData = { user: userData, accessToken: response.acessToken }
-    // this.saveLocalAuthData(authData);
+    const payload = jwtDecode<FullJwtPayload>(response.accessToken);
+    const userData: User = {
+      id: payload.sub!,
+      email: payload.email,
+      name: payload.name,
+      role: parseRole(payload.roles),
+      password: ''
+    }
+    const authData = { user: userData, accessToken: response.accessToken }
+    this.saveLocalAuthData(authData);
 
-    // return authData;
-
-    throw Error("Not implemented")
+    return authData;
   }
+}
+
+interface FullJwtPayload extends JwtPayload {
+  name: string,
+  email: string,
+  roles: string,
+
 }
