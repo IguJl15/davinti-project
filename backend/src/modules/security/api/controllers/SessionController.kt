@@ -20,7 +20,7 @@ data class RegisterParams (
     val name: String,
     val email: String,
     val password: String,
-    val isAdmin: Boolean
+    val isAdmin: Boolean = false
 )
 
 data class TokenDto(val accessToken: String)

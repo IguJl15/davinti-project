@@ -28,7 +28,7 @@ class JwtSecurityFilter(
 
         val user = userFromDecodedJwt(decodedToken)
 
-        val authentication = UsernamePasswordAuthenticationToken(user, null, user.authorities)
+        val authentication = UsernamePasswordAuthenticationToken.authenticated(user, null, user.authorities)
 
         SecurityContextHolder.getContext().authentication = authentication
 

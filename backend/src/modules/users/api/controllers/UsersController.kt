@@ -20,7 +20,8 @@ class UsersController(
     @PreAuthorize("isAnonymous()")
     @ResponseStatus(HttpStatus.CREATED)
     fun createUser(@RequestBody params: RegisterParams): ResponseEntity<String> {
-        if (userRepository.findByEmail(params.email) != null) return ResponseEntity.badRequest().build()
+        if (userRepository.findByEmail(params.email) != null) return ResponseEntity.badRequest()
+            .body("Email already in use")
 
         val encryptedPassword = BCryptPasswordEncoder().encode(params.password)
 

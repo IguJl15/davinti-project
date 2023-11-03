@@ -2,9 +2,9 @@
 spring:
   jpa:
     show-sql: true
+    database: postgresql
     hibernate:
       ddl-auto: update
-    database: postgresql
   flyway:
     schemas: public
     driver-class-name: org.postgresql.Driver
@@ -12,3 +12,4 @@ spring:
     url: jdbc:postgresql://0.0.0.0:5432/mydatabase
     username: postgres
     password: postgres
+

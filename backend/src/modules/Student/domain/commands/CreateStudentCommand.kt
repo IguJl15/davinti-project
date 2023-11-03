@@ -3,7 +3,6 @@ package com.davintiproject.backend.modules.Student.domain.commands
 import com.davintiproject.backend.common.domain.Command
 import com.davintiproject.backend.modules.Student.domain.entities.Student
 import com.davintiproject.backend.modules.Student.domain.interfaces.StudentRepository
-import com.davintiproject.backend.modules.course.domain.commands.CreateCourseDto
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.stereotype.Component
 import java.time.LocalDate
@@ -23,7 +22,7 @@ class CreateStudentCommand(
     @PreAuthorize("hasRole('ADMIN')") // TODO: Add permissions to instructor
     override fun execute(params: CreateStudentDto): String {
         return studentRepository.save(Student(
-            name = params.name,
+            completeName = params.name,
             dateOfBirth = params.dateOfBirth,
             registrationNumber = params.registrationNumber,
             email = params.email,
