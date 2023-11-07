@@ -1,20 +1,17 @@
-_id: req_48c80d8989954eda8b7fcf98e529e932
+_id: req_e611644254744f57aea5bd2168537f9e
 type: Request
-parentId: fld_08867c8f504f418c9f8c91803c6d151e
-modified: 1698966990230
-created: 1697520348094
-url: "{{ _.url }}/users"
-name: Sing Up
+parentId: fld_c8875e1bd8154cbd9d522141d13cf4a6
+modified: 1698206728823
+created: 1697898298450
+url: "{{ _.url }}/courses"
+name: Create course
 description: ""
 method: POST
 body:
   mimeType: application/json
   text: |-
     {
-    	"name": "Adimilson",
-    	"email": "{{ _.email }}",
-    	"password": "{{ _.userPassword }}",
-    	"isAdmin": true
+    	"name": "Segundo Curso"
     }
 parameters: []
 headers:
@@ -22,8 +19,11 @@ headers:
     value: application/json
   - name: User-Agent
     value: insomnia/2023.5.8
-authentication: {}
-metaSortKey: -1697520225394
+authentication:
+  type: bearer
+  token: "{{ _.accessToken }}"
+  disabled: false
+metaSortKey: -1697898298450
 isPrivate: false
 settingStoreCookies: true
 settingSendCookies: true

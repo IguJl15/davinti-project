@@ -1,10 +1,10 @@
-_id: req_f5f02c9fa347449388847afd44e7a6ab
+_id: req_531ec5c4a8c2464eacfa3f568fd94653
 type: Request
-parentId: fld_3baa90581c454a24ae90c32f22ecdc91
-modified: 1698206710266
-created: 1697520212907
-url: "{{ _.url }}/admin"
-name: admin
+parentId: fld_c8875e1bd8154cbd9d522141d13cf4a6
+modified: 1697898596131
+created: 1697898576471
+url: "{{ _.url }}/courses"
+name: Get all
 description: ""
 method: GET
 body: {}
@@ -15,7 +15,7 @@ headers:
 authentication:
   type: bearer
   token: "{{ _.accessToken }}"
-metaSortKey: -1697520167616
+metaSortKey: -1697898576471
 isPrivate: false
 settingStoreCookies: true
 settingSendCookies: true
