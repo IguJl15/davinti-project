@@ -6,7 +6,8 @@ function Root() {
 
   return (
     <>
-      <header>
+      <header
+        style={{ display: "flex", justifyContent: "center", gap: "10px" }}>
         <NavLink to={"/home"}>Home</NavLink>
         {!isSignedIn && (
           <>

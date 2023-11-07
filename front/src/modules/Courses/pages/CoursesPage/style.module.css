@@ -1,0 +1,30 @@
+.page_wrapper {
+  width: 100%;
+  height: calc(100% - 20px);
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.greeting {
+  padding-left: 5px;
+  padding-bottom: 2px;
+  width: 1086px;
+}
+
+.main_wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  width: 1086px;
+  height: 794px;
+  padding: 18px 20px;
+  gap: 24px;
+
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  background: #F2F0F4;
+}

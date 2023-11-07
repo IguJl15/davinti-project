@@ -4,6 +4,7 @@ import { HomePage } from "../modules/Home/pages/HomePage";
 import { LoginPage } from "../modules/Auth/pages/LoginPage";
 import { RegisterPage } from "../modules/Auth/pages/RegisterPage";
 import { AnonymusRoute } from "./AnonymusRoute";
+import { CoursesPage } from "../modules/Courses/pages/CoursesPage";
 
 export const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ export const router = createBrowserRouter([
             <LoginPage />
           </AnonymusRoute>
         ),
+      },
+      {
+        path: "courses",
+        element: <CoursesPage />,
       },
     ],
   },
