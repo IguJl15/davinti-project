@@ -2,6 +2,8 @@ package com.davintiproject.backend.modules.Student.api
 
 import com.davintiproject.backend.modules.Student.domain.commands.CreateStudentCommand
 import com.davintiproject.backend.modules.Student.domain.commands.CreateStudentDto
+import com.davintiproject.backend.modules.Student.domain.commands.EnrollStudentInCourseCommand
+import com.davintiproject.backend.modules.Student.domain.commands.EnrollStudentInCourseDto
 import com.davintiproject.backend.modules.Student.domain.entities.Student
 import com.davintiproject.backend.modules.Student.domain.queries.GetAllStudents
 import org.springframework.http.HttpStatus
@@ -13,14 +15,15 @@ import java.net.URI
 @RestController
 class StudentController(
     val createCommand: CreateStudentCommand,
-    val getAllQuery: GetAllStudents
+    val getAllQuery: GetAllStudents,
+    val enrollStudentInCourse: EnrollStudentInCourseCommand
 ) {
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
     fun createStudent(@RequestBody dto: CreateStudentDto): ResponseEntity<String> {
         val id = createCommand.execute(dto)
 
-        return ResponseEntity.created(URI("/Students/$id")).build()
+        return ResponseEntity.created(URI("/students/$id")).build()
     }
 
     @GetMapping("")
@@ -30,4 +33,11 @@ class StudentController(
         return ResponseEntity.ok(students)
     }
 
+    @PostMapping("/{studentId}/courses/{courseId}")
+    fun enrolls(@PathVariable studentId: String,@PathVariable courseId: String): ResponseEntity<Student> {
+        val enrollStudentInCourseDto = EnrollStudentInCourseDto(studentId, courseId)
+        val result = enrollStudentInCourse.execute(enrollStudentInCourseDto)
+
+        return ResponseEntity.created(URI("/students/$studentId")).body(result)
+    }
 }
