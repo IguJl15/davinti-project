@@ -1,5 +1,5 @@
-import axios, { Axios } from 'axios';
-import { API_URL } from '../../config/api_key';
+import axios, { Axios } from "axios";
+import { API_URL } from "../../../config/api_key";
 
 type Params = { [key: string]: unknown };
 
@@ -40,6 +40,6 @@ export class AxiosClient implements HttpClient {
   async patch<T>(path: string, data: unknown): Promise<T> {
     const axiosResponse = await this.axios.patch(path, { data: data });
 
-    return axiosResponse.data
+    return axiosResponse.data;
   }
 }

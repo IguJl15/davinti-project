@@ -1,15 +1,15 @@
-import { PropsWithChildren, useEffect, useState } from 'react';
+import { PropsWithChildren, useEffect, useState } from "react";
 import {
   AuthContext,
   AuthContextData,
   AuthData,
   LoginParams,
   RegisterParams,
-} from '../contexts/AuthContext';
-import { API_URL } from '../../config/api_key';
-import HttpClient, { AxiosClient } from '../http/http_client';
-import { AuthRepository } from './AuthRepository';
-import { LocalStorage } from '../local_storage/localStorage';
+} from "../../contexts/AuthContext/AuthContext";
+import { API_URL } from "../../../config/api_key";
+import HttpClient, { AxiosClient } from "../../helpers/http/http_client";
+import { AuthRepository } from "./AuthRepository";
+import { LocalStorage } from "../../helpers/local_storage/localStorage";
 
 export const httpClient: HttpClient = new AxiosClient(API_URL);
 
@@ -30,12 +30,11 @@ function AuthProvider({ children }: PropsWithChildren) {
   async function signUp(params: RegisterParams) {
     await authRepository.register(params);
 
-    logIn({ ...params })
+    logIn({ ...params });
   }
 
   async function logOut() {
     authRepository.deleteLocalAuthData();
-
 
     setAuthData(null);
   }
@@ -48,16 +47,15 @@ function AuthProvider({ children }: PropsWithChildren) {
     logOut: logOut,
   };
 
-  console.table(data)
+  console.table(data);
 
   useEffect(() => {
     const exisitingAuthData = authRepository.getLocalAuthData();
 
     if (exisitingAuthData != null) {
-      setAuthData(exisitingAuthData)
+      setAuthData(exisitingAuthData);
     }
-  }, [])
-
+  }, []);
 
   return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>;
 }

@@ -1,5 +1,5 @@
-import { createContext } from 'react';
-import { User } from '../interfaces/User';
+import { createContext } from "react";
+import { User } from "../../interfaces/User";
 
 export interface AuthData {
   accessToken: string;

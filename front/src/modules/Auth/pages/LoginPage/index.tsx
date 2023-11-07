@@ -1,12 +1,12 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import { LoginSchema } from "../../core/schemas/LoginSchema";
+import { LoginSchema } from "../../../../core/schemas/LoginSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import style from "./style.module.css";
-import { Input } from "../../core/components/Input";
-import { Button } from "../../core/components/Button";
-import { ErrorMessage } from "../../core/components/ErrorText";
-import { useAuth } from "../../core/hooks/useAuth";
+import { Input } from "../../../../core/components/Input";
+import { Button } from "../../../../core/components/Button";
+import { ErrorMessage } from "../../../../core/components/ErrorText";
+import { useAuth } from "../../../../core/hooks/useAuth";
 import { useEffect } from "react";
 import { Navigate } from "react-router-dom";
 
@@ -27,9 +27,7 @@ function LoginPage() {
     formState: { errors },
   } = useForm<CreateLoginFormData>({ resolver: zodResolver(LoginSchema) });
 
-  const onSubmit: SubmitHandler<CreateLoginFormData> = async (
-    data
-  ) => {
+  const onSubmit: SubmitHandler<CreateLoginFormData> = async (data) => {
     try {
       await logIn(data);
     } catch (error: unknown) {
@@ -61,7 +59,12 @@ function LoginPage() {
             <h1>Entrar</h1>
             <p>Welcome back to the future of education...</p>
           </div>
-          <Input inputType="email" label="Email" {...register("email")} autoComplete="email" />
+          <Input
+            inputType="email"
+            label="Email"
+            {...register("email")}
+            autoComplete="email"
+          />
           <ErrorMessage>{errors.email?.message}</ErrorMessage>
           <Input
             label="Senha"

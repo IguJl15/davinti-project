@@ -1,12 +1,12 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import { RegisterSchema } from "../../core/schemas/RegisterSchema";
+import { RegisterSchema } from "../../../../core/schemas/RegisterSchema";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import style from "./style.module.css";
-import { Input } from "../../core/components/Input";
-import { Button } from "../../core/components/Button";
-import { ErrorMessage } from "../../core/components/ErrorText";
-import { useAuth } from "../../core/hooks/useAuth";
+import { Input } from "../../../../core/components/Input";
+import { Button } from "../../../../core/components/Button";
+import { ErrorMessage } from "../../../../core/components/ErrorText";
+import { useAuth } from "../../../../core/hooks/useAuth";
 
 type CreateRegisterFormData = z.infer<typeof RegisterSchema>;
 

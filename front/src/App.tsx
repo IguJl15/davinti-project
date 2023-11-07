@@ -1,23 +1,24 @@
-import { NavLink, Outlet } from 'react-router-dom';
-import { useAuth } from './core/hooks/useAuth';
+import { NavLink, Outlet } from "react-router-dom";
+import { useAuth } from "./core/hooks/useAuth";
 
 function Root() {
-  const { isSignedIn, logOut } = useAuth()
+  const { isSignedIn, logOut } = useAuth();
 
   return (
     <>
       <header>
-        <NavLink to={'/home'}>Home</NavLink>
-        {!isSignedIn && <>
-          <NavLink to={'/login'}>Login</NavLink>
-          <NavLink to={'/register'}>Registro</NavLink>
-
-        </>}
-        {isSignedIn
-          && <button
-            onClick={logOut}
-            type="button"
-          >Sair </button>}
+        <NavLink to={"/home"}>Home</NavLink>
+        {!isSignedIn && (
+          <>
+            <NavLink to={"/login"}>Login</NavLink>
+            <NavLink to={"/register"}>Registro</NavLink>
+          </>
+        )}
+        {isSignedIn && (
+          <button onClick={logOut} type="button">
+            Sair{" "}
+          </button>
+        )}
       </header>
 
       <Outlet />
