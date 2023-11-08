@@ -4,7 +4,7 @@ import com.davintiproject.backend.common.domain.Query
 import com.davintiproject.backend.modules.Student.domain.entities.Student
 import com.davintiproject.backend.modules.course.domain.entities.Course
 import com.davintiproject.backend.modules.course.domain.helpers.CourseAuthorizationService
-import com.davintiproject.backend.modules.security.data.entities.User
+import com.davintiproject.backend.modules.security.domain.entities.User
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Component

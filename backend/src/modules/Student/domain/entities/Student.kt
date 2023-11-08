@@ -1,7 +1,7 @@
 package com.davintiproject.backend.modules.Student.domain.entities
 
 import com.davintiproject.backend.modules.course.domain.entities.Course
-import com.davintiproject.backend.modules.security.data.entities.User
+import com.davintiproject.backend.modules.security.domain.entities.User
 import jakarta.persistence.Entity
 import jakarta.persistence.JoinTable
 import jakarta.persistence.ManyToMany

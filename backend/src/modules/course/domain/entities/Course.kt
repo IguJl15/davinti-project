@@ -6,8 +6,8 @@ import jakarta.persistence.*
 @Entity
 data class Course(
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    val id: String = "",
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    val id: Int = 0,
     val name: String = "",
     val isPublic: Boolean = false,
 
