@@ -30,7 +30,7 @@ class RefreshTokenCommand(
 
         val refreshToken: String = authHeader.get()
 
-        val userId = tokenService.extractUserEmail(refreshToken).toInt()
+        val userId = tokenService.extractUserId(refreshToken).toInt()
 
         // TODO: Find by email
         val user: User = userRepository.findAll().find { it.id == userId }
@@ -38,15 +38,15 @@ class RefreshTokenCommand(
 
 
         if (!tokenService.isTokenValid(refreshToken, user)) {
-            throw ResponseStatusException(HttpStatus.BAD_REQUEST)
+            throw ResponseStatusException(HttpStatus.BAD_REQUEST, "Token invalid")
         }
 
-        val accessToken = tokenService.generateToken(user)
+        val newAccessToken = tokenService.generateToken(user)
+        val newRefreshToken = tokenService.generateRefreshToken(user)
 
         revokeTokens.execute(user.id)
-        saveToken.execute(SaveTokenDto(user, accessToken))
+        saveToken.execute(SaveTokenDto(user, newRefreshToken))
 
-
-        return TokenPair(accessToken, refreshToken)
+        return TokenPair(newAccessToken, newRefreshToken)
     }
 }

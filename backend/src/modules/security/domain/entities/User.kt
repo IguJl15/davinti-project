@@ -27,6 +27,8 @@ open class User(
     @Column(nullable = false)
     val role: UserRole = UserRole.user,
 
+    @OneToMany(mappedBy = "user")
+    val tokens: List<Token> = emptyList()
 ) : UserDetails {
 
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
@@ -44,7 +46,7 @@ open class User(
 
     @Transient
     override fun getUsername(): String {
-        return email
+        return id.toString()
     }
 
     override fun isAccountNonExpired(): Boolean = true
