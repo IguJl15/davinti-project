@@ -37,7 +37,7 @@ class RefreshTokenCommand(
             ?: throw ResponseStatusException(HttpStatus.BAD_REQUEST)
 
 
-        if (!tokenService.isTokenValid(refreshToken, user)) {
+        if (!tokenService.isTokenValid(refreshToken)) {
             throw ResponseStatusException(HttpStatus.BAD_REQUEST, "Token invalid")
         }
 

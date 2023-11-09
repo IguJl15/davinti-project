@@ -11,10 +11,10 @@ data class CreateCourseDto(val name: String)
 @Component
 class CreateCourseCommand(
     val courseRepository: CourseRepository
-) : Command<CreateCourseDto, String> {
+) : Command<CreateCourseDto, Int> {
 
     @PreAuthorize("hasRole('ADMIN')") // TODO: Add permissions to instructor
-    override fun execute(params: CreateCourseDto): String {
+    override fun execute(params: CreateCourseDto): Int {
         return courseRepository.save(Course(name = params.name)).id
     }
 }
