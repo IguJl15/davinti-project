@@ -1,8 +1,8 @@
 package com.davintiproject.backend.modules.security.requestsFilters
 
 import com.auth0.jwt.interfaces.DecodedJWT
-import com.davintiproject.backend.modules.security.data.entities.User
-import com.davintiproject.backend.modules.security.data.entities.UserRole
+import com.davintiproject.backend.modules.security.domain.entities.User
+import com.davintiproject.backend.modules.security.domain.entities.UserRole
 import com.davintiproject.backend.modules.security.services.TokenService
 import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest
@@ -37,7 +37,7 @@ class JwtSecurityFilter(
 
     fun userFromDecodedJwt(token: DecodedJWT): User {
         return User(
-            token.subject, // id
+            token.subject.toInt(),
             token.getClaim("name").asString(),
             token.getClaim("email").asString(),
             "",

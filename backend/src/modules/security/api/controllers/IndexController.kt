@@ -1,6 +1,6 @@
 package com.davintiproject.backend.modules.security.api.controllers
 
-import com.davintiproject.backend.modules.security.data.entities.User
+import com.davintiproject.backend.modules.security.domain.entities.User
 import org.springframework.http.ResponseEntity
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.security.core.context.SecurityContextHolder

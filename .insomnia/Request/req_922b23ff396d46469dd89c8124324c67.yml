@@ -1,7 +1,7 @@
 _id: req_922b23ff396d46469dd89c8124324c67
 type: Request
 parentId: fld_3baa90581c454a24ae90c32f22ecdc91
-modified: 1697673482512
+modified: 1698206650628
 created: 1697520203467
 url: "{{ _.url }}/user"
 name: user
@@ -15,6 +15,7 @@ headers:
 authentication:
   type: bearer
   token: "{{ _.accessToken }}"
+  disabled: false
 metaSortKey: -1697520167666
 isPrivate: false
 settingStoreCookies: true

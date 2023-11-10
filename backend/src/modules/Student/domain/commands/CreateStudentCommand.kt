@@ -18,9 +18,9 @@ data class CreateStudentDto(
 @Component
 class CreateStudentCommand(
     val studentRepository: StudentRepository
-) : Command<CreateStudentDto, String> {
+) : Command<CreateStudentDto, Int> {
     @PreAuthorize("hasRole('ADMIN')") // TODO: Add permissions to instructor
-    override fun execute(params: CreateStudentDto): String {
+    override fun execute(params: CreateStudentDto): Int {
         return studentRepository.save(Student(
             completeName = params.name,
             dateOfBirth = params.dateOfBirth,

@@ -1,9 +1,9 @@
 package com.davintiproject.backend.modules.users.api.controllers
 
-import com.davintiproject.backend.data.repositories.UserRepository
 import com.davintiproject.backend.modules.security.api.controllers.RegisterParams
-import com.davintiproject.backend.modules.security.data.entities.User
-import com.davintiproject.backend.modules.security.data.entities.UserRole
+import com.davintiproject.backend.modules.security.data.repositories.UserRepository
+import com.davintiproject.backend.modules.security.domain.entities.User
+import com.davintiproject.backend.modules.security.domain.entities.UserRole
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.security.access.prepost.PreAuthorize
@@ -26,7 +26,7 @@ class UsersController(
         val encryptedPassword = BCryptPasswordEncoder().encode(params.password)
 
         val newUser = User(
-            "",
+            0,
             params.name,
             params.email,
             encryptedPassword,
@@ -49,7 +49,7 @@ class UsersController(
 
     @GetMapping("users/{id}")
     @PreAuthorize("hasRole('ADMIN') or authentication.principal.id == #id")
-    fun findUserById(@PathVariable id: String): ResponseEntity<User> {
+    fun findUserById(@PathVariable id: Int): ResponseEntity<User> {
         val user = userRepository.findById(id)
 
         if (user.isEmpty) return ResponseEntity.notFound().build()

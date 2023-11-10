@@ -1,6 +1,6 @@
 package com.davintiproject.backend.modules.security.services
 
-import com.davintiproject.backend.data.repositories.UserRepository
+import com.davintiproject.backend.modules.security.data.repositories.UserRepository
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.stereotype.Service

@@ -1,4 +1,4 @@
-package com.davintiproject.backend.modules.security.data.entities
+package com.davintiproject.backend.modules.security.domain.entities
 
 import jakarta.persistence.*
 import org.springframework.security.core.GrantedAuthority
@@ -12,8 +12,8 @@ enum class UserRole {
 @Entity(name = "users")
 open class User(
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    val id: String = "",
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    val id: Int = 0,
 
     @Column(nullable = false)
     open val completeName: String = "",
@@ -22,18 +22,20 @@ open class User(
     open val email: String = "",
 
     @Column(nullable = false)
-    val pass: String = "",
+    var pass: String = "",
 
     @Column(nullable = false)
-    val role: UserRole = UserRole.user
+    val role: UserRole = UserRole.user,
 
+    @OneToMany(mappedBy = "user")
+    val tokens: List<Token> = emptyList()
 ) : UserDetails {
 
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
         return when (role) {
-            UserRole.user -> mutableListOf(SimpleGrantedAuthority("ROLE_USER"))
-            UserRole.admin -> mutableListOf(SimpleGrantedAuthority("ROLE_ADMIN"), SimpleGrantedAuthority("ROLE_USER"))
+            UserRole.user -> mutableListOf(SimpleGrantedAuthority("ROLE_STUDENT"))
             UserRole.instructor -> mutableListOf(SimpleGrantedAuthority("ROLE_INSTRUCTOR"))
+            UserRole.admin -> mutableListOf(SimpleGrantedAuthority("ROLE_ADMIN"))
         }
     }
 
@@ -44,7 +46,7 @@ open class User(
 
     @Transient
     override fun getUsername(): String {
-        return completeName
+        return id.toString()
     }
 
     override fun isAccountNonExpired(): Boolean = true
