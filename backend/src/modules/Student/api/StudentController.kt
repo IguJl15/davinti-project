@@ -20,7 +20,7 @@ class StudentController(
     fun createStudent(@RequestBody dto: CreateStudentDto): ResponseEntity<String> {
         val id = createCommand.execute(dto)
 
-        return ResponseEntity.created(URI("/Students/$id")).build()
+        return ResponseEntity.created(URI("/students/$id")).build()
     }
 
     @GetMapping("")

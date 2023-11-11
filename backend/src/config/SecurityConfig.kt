@@ -30,18 +30,19 @@ class SecurityConfig(
 ) {
 
     @Bean
-    fun userDetailsService(passwordEncoder: PasswordEncoder): UserDetailsService {
+    fun userDetailsService(): UserDetailsService {
         return authorizationService
     }
 
 
     @Bean
     @Throws(Exception::class)
-    fun authenticationManager(http: HttpSecurity, userDetailsService: UserDetailsService): AuthenticationManager {
+    fun authenticationManager(http: HttpSecurity): AuthenticationManager {
         val authenticationManagerBuilder = http.getSharedObject(
             AuthenticationManagerBuilder::class.java
         )
-        authenticationManagerBuilder.userDetailsService(userDetailsService)
+        authenticationManagerBuilder
+            .userDetailsService(authorizationService)
             .passwordEncoder(passwordEncoder())
         return authenticationManagerBuilder.build()
     }
@@ -58,8 +59,14 @@ class SecurityConfig(
             }
             .authorizeHttpRequests { authorize ->
                 authorize.requestMatchers("/public").permitAll()
-                authorize.requestMatchers(HttpMethod.POST, "/session", "/session/refresh").anonymous()
-                authorize.requestMatchers(HttpMethod.POST, "/users").anonymous()
+                authorize.requestMatchers(
+                    HttpMethod.POST,
+                    "/session",
+                    "/session/refresh",
+                    "/students",
+                    "/users"
+                )
+                    .anonymous()
 
                 authorize.anyRequest().authenticated()
             }

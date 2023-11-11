@@ -3,30 +3,48 @@ package com.davintiproject.backend.modules.Student.domain.commands
 import com.davintiproject.backend.common.domain.Command
 import com.davintiproject.backend.modules.Student.domain.entities.Student
 import com.davintiproject.backend.modules.Student.domain.interfaces.StudentRepository
+import com.davintiproject.backend.modules.security.data.repositories.UserRepository
+import org.springframework.http.HttpStatus
 import org.springframework.security.access.prepost.PreAuthorize
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Component
+import org.springframework.web.server.ResponseStatusException
 import java.time.LocalDate
+import kotlin.jvm.optionals.getOrNull
 
 data class CreateStudentDto(
     val name: String,
-    val dateOfBirth: LocalDate,
+    val birthDate: LocalDate,
     val registrationNumber: String,
     val email: String,
     val phoneNumber: String,
+    val password: String,
     )
 
 @Component
 class CreateStudentCommand(
-    val studentRepository: StudentRepository
+    val userRepository: UserRepository,
+    val studentRepository: StudentRepository,
 ) : Command<CreateStudentDto, Int> {
-    @PreAuthorize("hasRole('ADMIN')") // TODO: Add permissions to instructor
+    @PreAuthorize("isAnonymous()")
     override fun execute(params: CreateStudentDto): Int {
-        return studentRepository.save(Student(
+        if (studentRepository.findByEmail(params.email).getOrNull() != null) {
+            throw ResponseStatusException(HttpStatus.BAD_REQUEST, "Email already in use")
+        }
+
+        val encryptedPassword = BCryptPasswordEncoder().encode(params.password)
+
+        val savedStudent = studentRepository.save(
+            Student(
             completeName = params.name,
-            dateOfBirth = params.dateOfBirth,
+                birthDate = params.birthDate,
             registrationNumber = params.registrationNumber,
             email = params.email,
-            phoneNumber = params.phoneNumber
-        )).id
+                phoneNumber = params.phoneNumber,
+                pass = encryptedPassword
+            )
+        )
+
+        return savedStudent.id
     }
 }

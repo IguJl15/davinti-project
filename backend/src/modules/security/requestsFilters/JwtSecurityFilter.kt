@@ -29,8 +29,9 @@ class JwtSecurityFilter(
         val isAuthenticated = SecurityContextHolder.getContext().authentication?.isAuthenticated ?: false
 
         if (!isTokenValid || isAuthenticated) {
-            filterChain.doFilter(request, response)
+            return filterChain.doFilter(request, response)
         }
+
         val userEmail = jwtService.extractUserEmail(token)
         val userDetails = authorizationService.loadUserByUsername(userEmail)
 
@@ -43,7 +44,7 @@ class JwtSecurityFilter(
             SecurityContextHolder.getContext().authentication = authToken
         }
 
-        filterChain.doFilter(request, response)
+        return filterChain.doFilter(request, response)
     }
 
     private fun recoverToken(request: HttpServletRequest): String? {

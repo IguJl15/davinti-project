@@ -26,8 +26,8 @@ class UsersController(
     val userRepository: UserRepository
 ) {
     @PostMapping("users")
-    @PreAuthorize("isAnonymous()")
     @ResponseStatus(HttpStatus.CREATED)
+    @PreAuthorize("hasRole('ADMIN')")
     fun createUser(@RequestBody params: RegisterParams): ResponseEntity<String> {
         if (userRepository.findByEmail(params.email) != null) return ResponseEntity.badRequest()
             .body("Email already in use")
