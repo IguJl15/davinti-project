@@ -26,7 +26,7 @@ class IndexController {
     }
 
     @GetMapping("/user")
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasRole('STUDENT')")
     fun user(): ResponseEntity<String> {
         val user = SecurityContextHolder.getContext().authentication.principal as User
 

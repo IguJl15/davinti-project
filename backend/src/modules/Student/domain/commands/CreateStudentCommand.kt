@@ -3,7 +3,6 @@ package com.davintiproject.backend.modules.Student.domain.commands
 import com.davintiproject.backend.common.domain.Command
 import com.davintiproject.backend.modules.Student.domain.entities.Student
 import com.davintiproject.backend.modules.Student.domain.interfaces.StudentRepository
-import com.davintiproject.backend.modules.security.data.repositories.UserRepository
 import org.springframework.http.HttpStatus
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
@@ -23,7 +22,6 @@ data class CreateStudentDto(
 
 @Component
 class CreateStudentCommand(
-    val userRepository: UserRepository,
     val studentRepository: StudentRepository,
 ) : Command<CreateStudentDto, Int> {
     @PreAuthorize("isAnonymous()")

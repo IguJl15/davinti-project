@@ -11,6 +11,7 @@ enum class UserRole {
 }
 
 @Entity(name = "users")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 open class User(
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

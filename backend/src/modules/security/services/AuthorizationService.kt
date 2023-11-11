@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service
 class AuthorizationService(
     private val userRepository: UserRepository
 ) : UserDetailsService {
-    override fun loadUserByUsername(username: String?): UserDetails? {
-        return userRepository.findByEmail(username ?: "")
+    override fun loadUserByUsername(username: String): UserDetails? {
+        return userRepository.findByEmail(username)
     }
 }
