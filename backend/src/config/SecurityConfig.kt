@@ -58,7 +58,7 @@ class SecurityConfig(
             }
             .authorizeHttpRequests { authorize ->
                 authorize.requestMatchers("/public").permitAll()
-                authorize.requestMatchers(HttpMethod.POST, "/session").anonymous()
+                authorize.requestMatchers(HttpMethod.POST, "/session", "/session/refresh").anonymous()
                 authorize.requestMatchers(HttpMethod.POST, "/users").anonymous()
 
                 authorize.anyRequest().authenticated()

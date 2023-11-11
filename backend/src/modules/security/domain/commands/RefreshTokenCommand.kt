@@ -1,44 +1,42 @@
 package com.davintiproject.backend.modules.security.domain.commands
 
 import com.davintiproject.backend.common.domain.Command
+import com.davintiproject.backend.modules.security.data.repositories.TokenRepository
 import com.davintiproject.backend.modules.security.data.repositories.UserRepository
 import com.davintiproject.backend.modules.security.domain.entities.User
-import com.davintiproject.backend.modules.security.domain.helpers.AuthorizationHeaderHelper
-import jakarta.servlet.http.HttpServletRequest
-import modules.security.services.JwtService
+import com.davintiproject.backend.modules.security.services.JwtService
 import org.springframework.http.HttpStatus
+import org.springframework.stereotype.Component
 import org.springframework.web.server.ResponseStatusException
+import kotlin.jvm.optionals.getOrNull
 
 
 data class RefreshTokenDto(
-    val request: HttpServletRequest,
+    val refreshToken: String,
 )
 
+@Component
 class RefreshTokenCommand(
     val userRepository: UserRepository,
     val tokenService: JwtService,
     val revokeTokens: RevokeAllUserTokens,
-    val saveToken: SaveTokenCommand
+    val saveToken: SaveTokenCommand,
+    val tokenRepository: TokenRepository
 ) : Command<RefreshTokenDto, TokenPair> {
     override fun execute(params: RefreshTokenDto): TokenPair {
-        val authHeader = AuthorizationHeaderHelper.getAuthorizationToken(request = params.request)
+        val userEmail = tokenService.extractUserEmail(params.refreshToken)
 
-        if (authHeader.isEmpty) {
-            // TODO: Check status and add message
-            throw ResponseStatusException(HttpStatus.BAD_REQUEST)
+        if (!tokenService.isTokenValid(params.refreshToken)) {
+            throw ResponseStatusException(HttpStatus.UNAUTHORIZED, "JWT Token invalid")
         }
 
-        val refreshToken: String = authHeader.get()
+        val user: User = userRepository.findByEmail(userEmail)
+            ?: throw ResponseStatusException(HttpStatus.UNAUTHORIZED, "User not found")
 
-        val userId = tokenService.extractUserId(refreshToken).toInt()
+        val storedToken = tokenRepository.findByToken(params.refreshToken).getOrNull()
 
-        // TODO: Find by email
-        val user: User = userRepository.findAll().find { it.id == userId }
-            ?: throw ResponseStatusException(HttpStatus.BAD_REQUEST)
-
-
-        if (!tokenService.isTokenValid(refreshToken)) {
-            throw ResponseStatusException(HttpStatus.BAD_REQUEST, "Token invalid")
+        if (storedToken == null || storedToken.expired || storedToken.revoked) {
+            throw ResponseStatusException(HttpStatus.UNAUTHORIZED, "JWT Token invalid")
         }
 
         val newAccessToken = tokenService.generateToken(user)

@@ -19,17 +19,17 @@ class IndexController {
 
     @GetMapping("/admin")
     @PreAuthorize("hasRole('ADMIN')")
-    fun admin(): ResponseEntity<Map<String, Any>> {
+    fun admin(): ResponseEntity<String> {
         val user = SecurityContextHolder.getContext().authentication.principal as User
 
-        return ResponseEntity.ok(mapOf("Hello admin ${user.completeName}" to user))
+        return ResponseEntity.ok("Hello admin ${user.completeName}")
     }
 
     @GetMapping("/user")
     @PreAuthorize("hasRole('USER')")
-    fun user(): ResponseEntity<Map<String, Any>> {
+    fun user(): ResponseEntity<String> {
         val user = SecurityContextHolder.getContext().authentication.principal as User
 
-        return ResponseEntity.ok(mapOf("Hello user ${user.completeName}" to user))
+        return ResponseEntity.ok("Hello user ${user.completeName}")
     }
 }

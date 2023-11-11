@@ -46,7 +46,7 @@ open class User(
 
     @Transient
     override fun getUsername(): String {
-        return id.toString()
+        return email
     }
 
     override fun isAccountNonExpired(): Boolean = true

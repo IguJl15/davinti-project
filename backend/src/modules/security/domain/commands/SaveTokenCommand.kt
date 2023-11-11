@@ -1,10 +1,10 @@
 package com.davintiproject.backend.modules.security.domain.commands
 
 import com.davintiproject.backend.common.domain.Command
+import com.davintiproject.backend.modules.security.data.repositories.TokenRepository
 import com.davintiproject.backend.modules.security.domain.entities.Token
 import com.davintiproject.backend.modules.security.domain.entities.TokenType
 import com.davintiproject.backend.modules.security.domain.entities.User
-import modules.security.data.repositories.TokenRepository
 import org.springframework.stereotype.Component
 
 data class SaveTokenDto(
