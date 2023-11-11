@@ -5,17 +5,19 @@ import com.davintiproject.backend.modules.security.domain.entities.Token
 import com.davintiproject.backend.modules.security.domain.entities.TokenType
 import com.davintiproject.backend.modules.security.domain.entities.User
 import modules.security.data.repositories.TokenRepository
+import org.springframework.stereotype.Component
 
 data class SaveTokenDto(
     val user: User,
     val token: String
 )
 
+@Component
 class SaveTokenCommand(
     val tokenRepository: TokenRepository
 ) : Command<SaveTokenDto, Int> {
     override fun execute(params: SaveTokenDto): Int {
-        var token = Token(
+        val token = Token(
             user = params.user,
             token = params.token,
             tokenType = TokenType.BEARER,
@@ -25,6 +27,6 @@ class SaveTokenCommand(
 
         val savedToken = tokenRepository.save(token)
 
-        return savedToken.id;
+        return savedToken.id
     }
 }

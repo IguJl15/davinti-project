@@ -22,7 +22,7 @@ open class User(
     open val email: String = "",
 
     @Column(nullable = false)
-    var pass: String = "",
+    open var pass: String = "",
 
     @Column(nullable = false)
     val role: UserRole = UserRole.user,

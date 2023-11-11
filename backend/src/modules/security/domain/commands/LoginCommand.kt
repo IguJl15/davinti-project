@@ -6,6 +6,7 @@ import modules.security.services.JwtService
 import org.springframework.http.HttpStatus
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
+import org.springframework.stereotype.Component
 import org.springframework.web.server.ResponseStatusException
 
 
@@ -14,6 +15,7 @@ data class LoginDto(
     val password: String
 )
 
+@Component
 class LoginCommand(
     private val saveToken: SaveTokenCommand,
     private val tokenService: JwtService,

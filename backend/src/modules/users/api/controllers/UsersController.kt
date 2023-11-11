@@ -1,6 +1,6 @@
 package com.davintiproject.backend.modules.users.api.controllers
 
-import com.davintiproject.backend.modules.security.api.controllers.RegisterParams
+
 import com.davintiproject.backend.modules.security.data.repositories.UserRepository
 import com.davintiproject.backend.modules.security.domain.entities.User
 import com.davintiproject.backend.modules.security.domain.entities.UserRole
@@ -10,6 +10,15 @@ import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.web.bind.annotation.*
 import java.net.URI
+
+
+data class RegisterParams (
+    val name: String,
+    val email: String,
+    val password: String,
+    val isAdmin: Boolean = false
+)
+
 
 @RestController
 @RequestMapping("/")
