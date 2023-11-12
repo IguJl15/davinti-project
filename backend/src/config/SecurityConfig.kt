@@ -2,6 +2,7 @@ package com.davintiproject.backend.config
 
 import com.davintiproject.backend.modules.security.requestsFilters.JwtSecurityFilter
 import com.davintiproject.backend.modules.security.services.AuthorizationService
+import jakarta.servlet.DispatcherType
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.HttpMethod
@@ -58,6 +59,7 @@ class SecurityConfig(
                 it.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             }
             .authorizeHttpRequests { authorize ->
+                authorize.dispatcherTypeMatchers(DispatcherType.ERROR).permitAll()
                 authorize.requestMatchers("/public").permitAll()
                 authorize.requestMatchers(
                     HttpMethod.POST,

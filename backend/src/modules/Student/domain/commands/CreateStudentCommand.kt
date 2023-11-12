@@ -18,7 +18,7 @@ data class CreateStudentDto(
     val email: String,
     val phoneNumber: String,
     val password: String,
-    )
+)
 
 @Component
 class CreateStudentCommand(
@@ -34,10 +34,10 @@ class CreateStudentCommand(
 
         val savedStudent = studentRepository.save(
             Student(
-            completeName = params.name,
+                completeName = params.name,
                 birthDate = params.birthDate,
-            registrationNumber = params.registrationNumber,
-            email = params.email,
+                registrationNumber = params.registrationNumber,
+                email = params.email,
                 phoneNumber = params.phoneNumber,
                 pass = encryptedPassword
             )

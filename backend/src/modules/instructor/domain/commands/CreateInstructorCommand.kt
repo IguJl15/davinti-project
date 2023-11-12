@@ -13,7 +13,7 @@ import kotlin.jvm.optionals.getOrNull
 data class CreateInstructorDto(
     val name: String,
     val email: String,
-    val pass: String,
+    val password: String,
     val siape: String
 )
 
@@ -28,7 +28,7 @@ class CreateInstructorCommand(
             throw ResponseStatusException(HttpStatus.BAD_REQUEST, "Email already in use")
         }
 
-        val encryptedPassword = BCryptPasswordEncoder().encode(params.pass)
+        val encryptedPassword = BCryptPasswordEncoder().encode(params.password)
 
         val instructor = instructorRepository.save(Instructor(
             completeName = params.name,
