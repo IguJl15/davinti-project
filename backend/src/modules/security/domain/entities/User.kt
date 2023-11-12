@@ -15,7 +15,7 @@ enum class UserRole {
 open class User(
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    val id: Int = 0,
+    open val id: Int = 0,
 
     @Column(nullable = false)
     open val completeName: String = "",
