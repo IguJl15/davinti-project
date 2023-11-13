@@ -13,9 +13,9 @@ import org.springframework.stereotype.Component
 class GetCourseById(
     val courseRepository: CourseRepository,
     val courseAuthorization: CourseAuthorizationService
-) : Query<String,Course> {
+) : Query<Int, Course> {
 
-    override fun execute(params: String): Course {
+    override fun execute(params: Int): Course {
         val course = courseRepository.findById(params)
             .orElseThrow { EntityNotFoundException() }
 

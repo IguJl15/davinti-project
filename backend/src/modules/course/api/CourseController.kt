@@ -9,7 +9,6 @@ import jakarta.persistence.EntityNotFoundException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
-import java.lang.Exception
 import java.net.URI
 
 
@@ -36,7 +35,7 @@ class CourseController(
     }
 
     @GetMapping("{id}")
-    fun getById(@PathVariable id: String): ResponseEntity<Any> {
+    fun getById(@PathVariable id: Int): ResponseEntity<Any> {
         return try {
             val course = getByIdQuery.execute(id)
 

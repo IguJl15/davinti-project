@@ -34,7 +34,7 @@ class StudentController(
     }
 
     @PostMapping("/{studentId}/courses/{courseId}")
-    fun enrolls(@PathVariable studentId: String,@PathVariable courseId: String): ResponseEntity<Student> {
+    fun enrolls(@PathVariable studentId: Int, @PathVariable courseId: Int): ResponseEntity<Student> {
         val enrollStudentInCourseDto = EnrollStudentInCourseDto(studentId, courseId)
         val result = enrollStudentInCourse.execute(enrollStudentInCourseDto)
 

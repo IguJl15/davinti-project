@@ -13,8 +13,8 @@ import org.springframework.stereotype.Component
 import org.springframework.web.server.ResponseStatusException
 
 data class EnrollStudentInCourseDto(
-    val studentId: String,
-    val courseId: String
+    val studentId: Int,
+    val courseId: Int
 )
 
 @Component

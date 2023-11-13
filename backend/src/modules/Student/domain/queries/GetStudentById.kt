@@ -13,10 +13,10 @@ import org.springframework.stereotype.Component
 class GetStudentById(
     val studentRepository: StudentRepository,
     val studentAuthorization: StudentAuthorizationService
-) : Query<String, Student> {
+) : Query<Int, Student> {
 
     @PreAuthorize("hasRole('ADMIN') or authentication.principal.id == #params")
-    override fun execute(params: String): Student {
+    override fun execute(params: Int): Student {
         val student = studentRepository.findById(params)
             .orElseThrow { EntityNotFoundException() }
 
