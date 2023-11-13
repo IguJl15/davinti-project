@@ -1,7 +1,7 @@
 _id: req_f5f02c9fa347449388847afd44e7a6ab
 type: Request
 parentId: fld_3baa90581c454a24ae90c32f22ecdc91
-modified: 1697520215268
+modified: 1698206710266
 created: 1697520212907
 url: "{{ _.url }}/admin"
 name: admin
@@ -12,7 +12,9 @@ parameters: []
 headers:
   - name: User-Agent
     value: insomnia/2023.5.8
-authentication: {}
+authentication:
+  type: bearer
+  token: "{{ _.accessToken }}"
 metaSortKey: -1697520167616
 isPrivate: false
 settingStoreCookies: true

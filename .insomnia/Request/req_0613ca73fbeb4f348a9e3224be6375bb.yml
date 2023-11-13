@@ -1,0 +1,26 @@
+_id: req_0613ca73fbeb4f348a9e3224be6375bb
+type: Request
+parentId: fld_c8875e1bd8154cbd9d522141d13cf4a6
+modified: 1698206752648
+created: 1697898522810
+url: "{{ _.url }}/courses/352442a5-07a1-41f0-96d5-f8a6398789ac"
+name: Get by id
+description: ""
+method: GET
+body: {}
+parameters: []
+headers:
+  - name: User-Agent
+    value: insomnia/2023.5.8
+authentication:
+  type: bearer
+  token: "{{ _.accessToken }}"
+  disabled: false
+metaSortKey: -1697898522810
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

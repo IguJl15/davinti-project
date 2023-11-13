@@ -1,11 +1,11 @@
 _id: env_965aba76c0ea4631b648c39520854d87
 type: Environment
 parentId: env_f7752e0badb3a3e329edb84f014a4f76df9eed83
-modified: 1697682934164
+modified: 1698967996163
 created: 1697672765428
 name: Admin
 data:
-  email: igor@email.com
+  email: admir@email.com
   userPassword: "123456"
 dataPropertyOrder:
   "&":
