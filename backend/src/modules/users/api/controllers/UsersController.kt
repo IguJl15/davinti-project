@@ -28,7 +28,7 @@ class UsersController(
 ) {
     @PostMapping("users")
     @ResponseStatus(HttpStatus.CREATED)
-    @PreAuthorize("hasRole('ADMIN')")
+    // @PreAuthorize("hasRole('ADMIN')")
     fun createUser(@RequestBody params: RegisterParams): ResponseEntity<String> {
         if (userRepository.findByEmail(params.email) != null) return ResponseEntity.badRequest()
             .body("Email already in use")
