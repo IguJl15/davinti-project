@@ -4,9 +4,9 @@ import com.davintiproject.backend.common.domain.Query
 import com.davintiproject.backend.modules.course.domain.entities.Course
 import com.davintiproject.backend.modules.course.domain.helpers.CourseAuthorizationService
 import com.davintiproject.backend.modules.course.domain.interfaces.CourseRepository
-import jakarta.persistence.EntityNotFoundException
-import org.springframework.security.access.AccessDeniedException
+import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Component
+import org.springframework.web.server.ResponseStatusException
 
 
 @Component
@@ -17,12 +17,14 @@ class GetCourseById(
 
     override fun execute(params: Int): Course {
         val course = courseRepository.findById(params)
-            .orElseThrow { EntityNotFoundException() }
+            .orElseThrow(this::notFoundException)
 
         if (courseAuthorization.userCanViewCourse(course)) {
             return course
         } else {
-            throw AccessDeniedException("Você não tem permissão para acessar este recurso")
+            throw notFoundException()
         }
     }
+
+    fun notFoundException(): Exception = ResponseStatusException(HttpStatus.NOT_FOUND, "Course not found")
 }

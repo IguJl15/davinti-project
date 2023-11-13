@@ -15,7 +15,7 @@ class CourseAuthorizationService {
 
         if (user.role == UserRole.admin) return true
 
-        // TODO: if ( user.role == UserRole.instructor)  if (user.id == course.instructor.id) return true else continue
+        if (user.role == UserRole.instructor) return user.id == course.instructorId
 
         if (user.role == UserRole.user) {
             return course.studentsEnrolled.any { it.id == user.id }
