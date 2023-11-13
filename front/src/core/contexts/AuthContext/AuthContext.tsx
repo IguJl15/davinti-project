@@ -3,6 +3,7 @@ import { User } from "../../interfaces/User";
 
 export interface AuthData {
   accessToken: string;
+  refreshToken: string;
   user?: User;
 }
 

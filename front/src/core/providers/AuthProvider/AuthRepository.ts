@@ -3,17 +3,10 @@ import {
   RegisterParams,
   LoginParams,
 } from "../../contexts/AuthContext/AuthContext";
-import { JwtPayload, jwtDecode } from "jwt-decode";
 import HttpClient from "../../helpers/http/http_client";
 import { User } from "../../interfaces/User";
-import { parseRole } from "../../interfaces/Role";
 import { LocalStorage } from "../../helpers/local_storage/localStorage";
 
-interface FullJwtPayload extends JwtPayload {
-  name: string;
-  email: string;
-  roles: string;
-}
 
 export class AuthRepository {
   constructor(
@@ -52,25 +45,22 @@ export class AuthRepository {
   // }
 
   async register(data: RegisterParams): Promise<void> {
-    await this.httpClient.post("/users", data);
+    await this.httpClient.post("/students", data);
   }
 
   async login(data: LoginParams): Promise<AuthData> {
-    console.table(data);
-    const response = await this.httpClient.post<{ accessToken: string }>(
-      "/session",
-      data
+    const response = await this.httpClient.post<{
+      accessToken: string;
+      refreshToken: string;
+    }>("/session", data);
+
+    const user: User = await this.httpClient.get<User>(
+      "/me",  
+      {},
+      { Authorization: response.accessToken }
     );
 
-    const payload = jwtDecode<FullJwtPayload>(response.accessToken);
-    const userData: User = {
-      id: payload.sub!,
-      email: payload.email,
-      name: payload.name,
-      role: parseRole(payload.roles),
-      password: "",
-    };
-    const authData = { user: userData, accessToken: response.accessToken };
+    const authData = { user, ...response };
     this.saveLocalAuthData(authData);
 
     return authData;
