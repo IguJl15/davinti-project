@@ -1,7 +1,7 @@
 _id: req_48c80d8989954eda8b7fcf98e529e932
 type: Request
 parentId: fld_08867c8f504f418c9f8c91803c6d151e
-modified: 1697897554359
+modified: 1698966990230
 created: 1697520348094
 url: "{{ _.url }}/users"
 name: Sing Up
@@ -11,10 +11,10 @@ body:
   mimeType: application/json
   text: |-
     {
-    	"name": "Usuário 2",
-    	"email": "user2@email.com",
-    	"password": "123456",
-    	"isAdmin": false
+    	"name": "Adimilson",
+    	"email": "{{ _.email }}",
+    	"password": "{{ _.userPassword }}",
+    	"isAdmin": true
     }
 parameters: []
 headers:

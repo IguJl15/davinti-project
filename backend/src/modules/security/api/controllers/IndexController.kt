@@ -1,6 +1,6 @@
 package com.davintiproject.backend.modules.security.api.controllers
 
-import com.davintiproject.backend.modules.security.data.entities.User
+import com.davintiproject.backend.modules.security.domain.entities.User
 import org.springframework.http.ResponseEntity
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.security.core.context.SecurityContextHolder
@@ -19,17 +19,17 @@ class IndexController {
 
     @GetMapping("/admin")
     @PreAuthorize("hasRole('ADMIN')")
-    fun admin(): ResponseEntity<Map<String, Any>> {
+    fun admin(): ResponseEntity<String> {
         val user = SecurityContextHolder.getContext().authentication.principal as User
 
-        return ResponseEntity.ok(mapOf("Hello admin ${user.completeName}" to user))
+        return ResponseEntity.ok("Hello admin ${user.completeName}")
     }
 
     @GetMapping("/user")
-    @PreAuthorize("hasRole('USER')")
-    fun user(): ResponseEntity<Map<String, Any>> {
+    @PreAuthorize("hasRole('STUDENT')")
+    fun user(): ResponseEntity<String> {
         val user = SecurityContextHolder.getContext().authentication.principal as User
 
-        return ResponseEntity.ok(mapOf("Hello user ${user.completeName}" to user))
+        return ResponseEntity.ok("Hello user ${user.completeName}")
     }
 }
