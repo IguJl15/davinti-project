@@ -26,7 +26,7 @@ class Student(
 
     @ManyToMany
     @JoinTable(name = "enrollment")
-    val enrolledCourses: List<Course> = emptyList(),
+    val enrolledCourses: MutableList<Course> = mutableListOf(),
 
     pass: String,
 ) : User(0, completeName, email, pass, UserRole.user, emptyList())
