@@ -1,6 +1,8 @@
 .button_wrapper {
     display: flex;
     justify-content: center;
+    background: aliceblue;
+    color: black;
 
     height: 40px;
     width: 100%;

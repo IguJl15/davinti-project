@@ -1,5 +1,6 @@
 import { NavLink, Outlet } from "react-router-dom";
 import { useAuth } from "./core/hooks/useAuth";
+import "./index.css"
 
 function Root() {
   const { isSignedIn, logOut } = useAuth();
@@ -8,11 +9,12 @@ function Root() {
     <>
       <header
         style={{ display: "flex", justifyContent: "center", gap: "10px" }}>
-        <NavLink to={"/home"}>Home</NavLink>
+        <NavLink to={"/home"} style={{color: "#F2F0F4"}}>Home</NavLink>
         {!isSignedIn && (
           <>
-            <NavLink to={"/login"}>Login</NavLink>
-            <NavLink to={"/register"}>Registro</NavLink>
+            <NavLink to={"/login"} style={{color: "#F2F0F4"}}>Login</NavLink>
+            <NavLink to={"/register"} style={{color: "#F2F0F4"}}>Registro</NavLink>
+            <NavLink to={"/courses"} style={{color: "#F2F0F4"}}>Cursos</NavLink>
           </>
         )}
         {isSignedIn && (

@@ -2,5 +2,12 @@
 
 :root {
   font-family: 'Roboto', sans-serif;
+  background: #1B1B1F;
+  color: aliceblue;
 }
 
+header {
+  width: 100%;
+
+  list-style: none;
+}

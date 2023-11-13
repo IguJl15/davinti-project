@@ -1,0 +1,9 @@
+.main {
+  height: calc(100% - 21px);
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
