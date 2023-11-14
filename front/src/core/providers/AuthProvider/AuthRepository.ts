@@ -1,12 +1,11 @@
 import {
   AuthData,
-  RegisterParams,
   LoginParams,
+  RegisterParams,
 } from "../../contexts/AuthContext/AuthContext";
 import HttpClient from "../../helpers/http/http_client";
-import { User } from "../../interfaces/User";
 import { LocalStorage } from "../../helpers/local_storage/localStorage";
-
+import { User } from "../../interfaces/User";
 
 export class AuthRepository {
   constructor(
@@ -55,7 +54,7 @@ export class AuthRepository {
     }>("/session", data);
 
     const user: User = await this.httpClient.get<User>(
-      "/me",  
+      "/me",
       {},
       { Authorization: response.accessToken }
     );

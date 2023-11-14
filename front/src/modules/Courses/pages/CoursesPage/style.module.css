@@ -24,3 +24,25 @@
   background: #343538;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
+
+.courses_content {
+  display: flex;
+
+  flex-direction: column;
+  gap: 16px;
+
+  & .courses_list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    align-content: start;
+    gap: 16px;
+    flex: 1 0 0;
+    align-self: stretch;
+
+    row-gap: 16px;
+    -moz-column-gap: 16px;
+    column-gap: 16px;
+  }
+}
