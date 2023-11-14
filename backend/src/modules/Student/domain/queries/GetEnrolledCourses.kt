@@ -2,27 +2,27 @@ package com.davintiproject.backend.modules.Student.domain.queries
 
 import com.davintiproject.backend.common.domain.Query
 import com.davintiproject.backend.modules.Student.domain.entities.Student
+import com.davintiproject.backend.modules.Student.domain.interfaces.StudentRepository
 import com.davintiproject.backend.modules.course.domain.entities.Course
 import com.davintiproject.backend.modules.course.domain.helpers.CourseAuthorizationService
 import com.davintiproject.backend.modules.security.domain.entities.User
-import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Component
 
 @Component
 class GetEnrolledCourses(
-    val courseAuthorizationService: CourseAuthorizationService
-) : Query<String, List<Course>> {
-    @PreAuthorize("hasRole('ADMIN') or authentication.principal.id == #params")
-    override fun execute(params: String): List<Course> {
+    private val courseAuthorizationService: CourseAuthorizationService,
+    private val studentRepository: StudentRepository,
+) : Query<Int, List<Course>> {
+    override fun execute(params: Int): List<Course> {
         val user = SecurityContextHolder.getContext().authentication.principal as User
 
         if (user !is Student) {
             return emptyList()
         }
 
-        return user.enrolledCourses.filter(courseAuthorizationService::userCanViewCourse)
+        val savedUser = studentRepository.findById(user.id).get()
 
-
+        return savedUser.enrolledCourses.filter(courseAuthorizationService::userCanViewCourse)
     }
 }

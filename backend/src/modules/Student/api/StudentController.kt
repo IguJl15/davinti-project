@@ -6,6 +6,8 @@ import com.davintiproject.backend.modules.Student.domain.commands.EnrollStudentI
 import com.davintiproject.backend.modules.Student.domain.commands.EnrollStudentInCourseDto
 import com.davintiproject.backend.modules.Student.domain.entities.Student
 import com.davintiproject.backend.modules.Student.domain.queries.GetAllStudents
+import com.davintiproject.backend.modules.Student.domain.queries.GetEnrolledCourses
+import com.davintiproject.backend.modules.course.domain.entities.Course
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -16,6 +18,7 @@ import java.net.URI
 class StudentController(
     val createCommand: CreateStudentCommand,
     val getAllQuery: GetAllStudents,
+    val getEnrolledCourses: GetEnrolledCourses,
     val enrollStudentInCourse: EnrollStudentInCourseCommand
 ) {
     @PostMapping("")
@@ -34,10 +37,17 @@ class StudentController(
     }
 
     @PostMapping("/{studentId}/courses/{courseId}")
-    fun enrolls(@PathVariable studentId: Int, @PathVariable courseId: Int): ResponseEntity<Student> {
+    fun enrollStudent(@PathVariable studentId: Int, @PathVariable courseId: Int): ResponseEntity<Student> {
         val enrollStudentInCourseDto = EnrollStudentInCourseDto(studentId, courseId)
         val result = enrollStudentInCourse.execute(enrollStudentInCourseDto)
 
         return ResponseEntity.created(URI("/students/$studentId")).body(result)
+    }
+
+    @GetMapping("/{id}/courses")
+    fun enrolls(@PathVariable id: Int): ResponseEntity<Collection<Course>> {
+        val enrolledCourses = getEnrolledCourses.execute(id);
+
+        return ResponseEntity.ok(enrolledCourses);
     }
 }

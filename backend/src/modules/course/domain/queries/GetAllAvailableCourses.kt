@@ -15,7 +15,6 @@ class GetAllAvailableCourses(
     val courseRepository: CourseRepository,
     val courseAuthorization: CourseAuthorizationService
 ) : Query<Unit, Collection<Course>> {
-
     override fun execute(params: Unit): List<Course> {
         val list = courseRepository.findAll()
 

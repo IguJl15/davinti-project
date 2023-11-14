@@ -35,7 +35,6 @@ class SecurityConfig(
         return authorizationService
     }
 
-
     @Bean
     @Throws(Exception::class)
     fun authenticationManager(http: HttpSecurity): AuthenticationManager {
@@ -60,7 +59,7 @@ class SecurityConfig(
             }
             .authorizeHttpRequests { authorize ->
                 authorize.dispatcherTypeMatchers(DispatcherType.ERROR).permitAll()
-                authorize.requestMatchers("/public").permitAll()
+                authorize.requestMatchers( HttpMethod.GET ,"/public", "/courses").permitAll()
                 authorize.requestMatchers(
                     HttpMethod.POST,
                     "/session",

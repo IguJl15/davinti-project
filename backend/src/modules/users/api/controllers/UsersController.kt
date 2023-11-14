@@ -7,6 +7,7 @@ import com.davintiproject.backend.modules.security.domain.entities.UserRole
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.security.access.prepost.PreAuthorize
+import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.web.bind.annotation.*
 import java.net.URI
@@ -27,7 +28,7 @@ class UsersController(
 ) {
     @PostMapping("users")
     @ResponseStatus(HttpStatus.CREATED)
-    @PreAuthorize("hasRole('ADMIN')")
+    // @PreAuthorize("hasRole('ADMIN')")
     fun createUser(@RequestBody params: RegisterParams): ResponseEntity<String> {
         if (userRepository.findByEmail(params.email) != null) return ResponseEntity.badRequest()
             .body("Email already in use")
@@ -64,5 +65,16 @@ class UsersController(
         if (user.isEmpty) return ResponseEntity.notFound().build()
 
         return ResponseEntity.ok(user.get())
+    }
+
+    @GetMapping("me")
+    fun me(): ResponseEntity<User> {
+        val user = SecurityContextHolder.getContext().authentication.principal as User
+
+        val userSaved = userRepository.findById(user.id)
+
+        if (userSaved.isEmpty) return ResponseEntity.notFound().build()
+
+        return ResponseEntity.ok(userSaved.get())
     }
 }
