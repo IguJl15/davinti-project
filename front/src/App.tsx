@@ -6,10 +6,8 @@ import {
   httpClient,
 } from "./core/providers/AuthProvider/AuthProvider";
 
-  const handleButtonClick = () => {
-    setState(state + 1);
-  };
-
+const Root = () => {
+  const { isSignedIn, logOut } = useAuth();
   return (
     <>
       <header
@@ -18,6 +16,9 @@ import {
         <NavLink to={"/home"} style={{ color: "#F2F0F4" }}>
           Home
         </NavLink>
+        <NavLink to={"/courses"} style={{ color: "#F2F0F4" }}>
+          Cursos
+        </NavLink>
         {!isSignedIn && (
           <>
             <NavLink to={"/login"} style={{ color: "#F2F0F4" }}>
@@ -25,9 +26,6 @@ import {
             </NavLink>
             <NavLink to={"/register"} style={{ color: "#F2F0F4" }}>
               Registro
-            </NavLink>
-            <NavLink to={"/courses"} style={{ color: "#F2F0F4" }}>
-              Cursos
             </NavLink>
           </>
         )}
@@ -53,6 +51,6 @@ import {
       <footer></footer>
     </>
   );
-}
+};
 
 export default Root;

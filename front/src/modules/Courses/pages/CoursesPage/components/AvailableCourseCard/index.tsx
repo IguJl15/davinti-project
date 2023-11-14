@@ -19,7 +19,7 @@ export default function AvailableCourseCard(course: Course) {
               className="text_button"
               onClick={() => enrollCurrentUserOnCourse(course)}
             >
-              Começar <span>-</span>
+              Começar <span>-&gt;</span>
             </button>
           )}
         </div>
