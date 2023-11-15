@@ -14,7 +14,6 @@ class Student(
     completeName: String,
     email: String,
 
-
     @Column()
     val birthDate: LocalDate? = null,
 
