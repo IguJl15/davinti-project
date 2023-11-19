@@ -41,4 +41,11 @@ class LessonController(
 
         return ResponseEntity.ok(lesson)
     }
+
+    @DeleteMapping("/{lessonId}")
+    fun deleteLesson(@PathVariable lessonId: Int, @PathVariable courseId: Int): ResponseEntity<Unit> {
+        deleteLesson.execute(GetLessonByIdDto(courseId, lessonId))
+
+        return ResponseEntity.noContent().build()
+    }
 }
