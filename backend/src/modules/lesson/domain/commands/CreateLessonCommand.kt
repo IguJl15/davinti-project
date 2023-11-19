@@ -9,6 +9,7 @@ import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.stereotype.Component
 
 data class CreateLessonDto(
+    val title: String,
     val mainContent: CreateContentDto,
     val supportContent: List<CreateContentDto> = emptyList(),
     val courseId: Int = 0
@@ -37,6 +38,7 @@ class CreateLessonCommand(
         }.toMutableList()
 
         val lesson = Lesson(
+            title = params.title,
             mainContent = mainContent,
             supportContent = supportContent,
             course = course

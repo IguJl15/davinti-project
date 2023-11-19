@@ -2,6 +2,7 @@ package com.davintiproject.backend.modules.lesson.domain.entities
 
 import com.davintiproject.backend.modules.course.domain.entities.Course
 import jakarta.persistence.*
+import jakarta.validation.constraints.NotBlank
 
 @Entity
 class Lesson(
