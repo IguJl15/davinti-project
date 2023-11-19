@@ -1,10 +1,7 @@
 package com.davintiproject.backend.modules.lesson.domain.commands
 
 import com.davintiproject.backend.common.domain.Command
-import com.davintiproject.backend.main
-import com.davintiproject.backend.modules.course.domain.interfaces.CourseRepository
 import com.davintiproject.backend.modules.course.domain.queries.GetCourseById
-import com.davintiproject.backend.modules.lesson.domain.entities.Content
 import com.davintiproject.backend.modules.lesson.domain.entities.Lesson
 import com.davintiproject.backend.modules.lesson.domain.interfaces.LessonRepository
 import com.davintiproject.backend.modules.lesson.domain.queries.GetContentById
@@ -13,8 +10,8 @@ import org.springframework.stereotype.Component
 
 data class CreateLessonDto(
     val mainContent: CreateContentDto,
-    val supportContent: List<CreateContentDto>?,
-    val courseId: Int
+    val supportContent: List<CreateContentDto> = emptyList(),
+    val courseId: Int = 0
 )
 
 @Component
@@ -23,7 +20,7 @@ class CreateLessonCommand(
     val getCourseById: GetCourseById,
     val createContentCommand: CreateContentCommand,
     val getContentById: GetContentById
-) : Command<CreateLessonDto, Int>{
+) : Command<CreateLessonDto, Int> {
 
     @PreAuthorize("hasRole('INSTRUCTOR')")
     override fun execute(params: CreateLessonDto): Int {
@@ -31,13 +28,13 @@ class CreateLessonCommand(
         val mainContent = getContentById.execute(mainContentId)
         val course = getCourseById.execute(params.courseId)
 
-        val supportContentIds = params.supportContent?.map {
+        val supportContentIds = params.supportContent.map {
             createContentCommand.execute(it)
-        } ?: emptyList()
+        }
 
         val supportContent = supportContentIds.map {
             getContentById.execute(it)
-        }
+        }.toMutableList()
 
         val lesson = Lesson(
             mainContent = mainContent,

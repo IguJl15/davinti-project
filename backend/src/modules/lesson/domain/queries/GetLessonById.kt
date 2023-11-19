@@ -1,10 +1,9 @@
 package com.davintiproject.backend.modules.lesson.domain.queries
 
 import com.davintiproject.backend.common.domain.Query
-import com.davintiproject.backend.modules.lesson.domain.entities.Lesson
-import com.davintiproject.backend.modules.lesson.domain.interfaces.LessonRepository
+import com.davintiproject.backend.modules.course.domain.queries.GetCourseById
+import com.davintiproject.backend.modules.lesson.domain.views.LessonView
 import org.springframework.http.HttpStatus
-import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.stereotype.Component
 import org.springframework.web.server.ResponseStatusException
 
@@ -15,13 +14,14 @@ data class GetLessonByIdDto (
 
 @Component
 class GetLessonById (
-    val lessonRepository: LessonRepository
-) : Query<GetLessonByIdDto, Lesson>{
-    @PreAuthorize("hasRole('INSTRUCTOR')")
-    override fun execute(params: GetLessonByIdDto): Lesson {
-        val lesson = lessonRepository.findByIdAndCourseId(params.lessonId, params.courseId)
-            .orElseThrow { ResponseStatusException(HttpStatus.NOT_FOUND) }
+    private val getCourse: GetCourseById
+) : Query<GetLessonByIdDto, LessonView> {
+    override fun execute(params: GetLessonByIdDto): LessonView {
+        val course = getCourse.execute(params.courseId)
 
-        return lesson
+        val lesson = course.lessons.singleOrNull { it.id == params.lessonId }
+            ?: throw ResponseStatusException(HttpStatus.NOT_FOUND)
+
+        return LessonView.fromLesson(lesson)
     }
 }

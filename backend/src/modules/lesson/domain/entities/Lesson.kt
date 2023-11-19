@@ -7,15 +7,19 @@ import jakarta.persistence.*
 class Lesson(
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    val id: Int =0,
+    val id: Int = 0,
 
-    @ManyToOne
+    @NotBlank
+    val title: String,
+
+    @OneToOne(cascade = [CascadeType.ALL], orphanRemoval = true)
+    @JoinColumn
     val mainContent: Content,
 
-    @OneToMany
-    val supportContent: List<Content>,
+    @OneToMany(cascade = [CascadeType.ALL], orphanRemoval = true)
+    val supportContent: MutableList<Content>,
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL] ,optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL], optional = false)
     @JoinColumn(name = "course_id")
     val course: Course
 )
