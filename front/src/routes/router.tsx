@@ -6,7 +6,7 @@ import { RegisterPage } from "../modules/Auth/pages/RegisterPage";
 import { AnonymusRoute } from "./AnonymusRoute";
 import {
   CoursesPage,
-  coursesPageLoader,
+  // coursesPageLoader,
 } from "../modules/Courses/pages/CoursesPage";
 
 export const router = createBrowserRouter([
@@ -40,7 +40,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "courses",
-        loader: coursesPageLoader,
+        // loader: coursesPageLoader,
         element: <CoursesPage />,
       },
     ],

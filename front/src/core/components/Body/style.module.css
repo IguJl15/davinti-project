@@ -1,5 +1,6 @@
 .main {
-  height: calc(100% - 21px);
+  height: 100%;
+  max-height: calc(100% - 60px);
   width: 100%;
 
   display: flex;

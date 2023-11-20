@@ -1,0 +1,14 @@
+.button_wrapper {
+  background: none;
+  border: 1px solid whitesmoke;
+
+  height: 48px;
+
+  display: flex;
+  padding: 0px 16px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1 0 0;
+  align-self: stretch;
+}
