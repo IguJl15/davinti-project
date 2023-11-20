@@ -1,10 +1,26 @@
 .button {
-  width: clamp(0px, 100%, 120px);
-  height: clamp(0px, 100%, 50px);
+  display: none;
+}
 
-  padding: 4px;
-  color: white;
-  background: #005BC0;
+@media (min-width: 1000px) {
+  .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: clamp(0px, 100%, 120px);
+    height: 35px;
 
-  border-radius: 12px;
+    padding: 4px;
+    color: white;
+    background: #005bc0;
+
+    border-radius: 100px;
+    border: none;
+
+    cursor: pointer;
+
+    &:hover {
+      background: rgb(37, 181, 248);
+    }
+  }
 }

@@ -1,6 +1,8 @@
 import { Body } from '../../../../core/components/Body';
 import { Button } from './components/Button';
-import "./style.css"
+import { ContentCard } from './components/ContentCard';
+import { DescriptionCard } from './components/DescripitionCard';
+import './style.css';
 
 function HomeCoursePage() {
   return (
@@ -8,7 +10,7 @@ function HomeCoursePage() {
       <div className="mainWrapper">
         <div className="section_1">
           <div className="sectionTitle">
-            <div className='title'>
+            <div className="title">
               <h2>CURSO DE VENDER CELTA</h2>
               <Button />
             </div>
@@ -17,9 +19,15 @@ function HomeCoursePage() {
               recognition lebel såväl som teniledes, laras.{' '}
             </p>
           </div>
-          <div className="sla"></div>
         </div>
-        <div className="section_2"></div>
+        <div className="section_2">
+          <div className="description">
+            <DescriptionCard />
+          </div>
+          <div className='content'>
+            <ContentCard />
+          </div>
+        </div>
       </div>
     </Body>
   );

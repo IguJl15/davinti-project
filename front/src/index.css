@@ -2,12 +2,14 @@
 
 :root {
   font-family: 'Roboto', sans-serif;
-  background: #1B1B1F;
-  color: aliceblue;
+  background: #FAF9FD;
+  color: #1B1B1F;
+
+  --m-3-sys-light-on-surface: #1B1B1F
+
 }
 
 header {
   width: 100%;
-
   list-style: none;
 }
