@@ -8,10 +8,7 @@ interface NavButtonProps {
 function NavButton({ redirectLink }: NavButtonProps) {
   return (
     <div className={style.button_wrapper}>
-      <NavLink
-        style={{ color: 'white', listStyle: 'none', textDecoration: 'none' }}
-        to={redirectLink}
-      >
+      <NavLink className={style.nav_link} to={redirectLink}>
         {redirectLink}
       </NavLink>
     </div>

@@ -1,5 +1,5 @@
-import IfipLogo from '../../../../public/baixados.png';
-import user_logo from '../../../../public/user_logo.png';
+import IfipLogo from '../../../assets/baixados.png';
+import user_logo from '../../../assets/user_logo.png';
 import styles from './style.module.css';
 import { NavButton } from '../NavButton';
 
@@ -15,6 +15,7 @@ function NavBar() {
         <NavButton redirectLink="home" />
         <NavButton redirectLink="login" />
         <NavButton redirectLink="register" />
+        <NavButton redirectLink='teste' />
       </div>
       <div className={styles.frame_2}>
         <div className={styles.user_icon}>

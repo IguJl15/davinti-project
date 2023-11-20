@@ -1,0 +1,17 @@
+.mainWrapper {
+  width: clamp(0px, 100%, 1200px);
+  padding-top: 30px;
+  padding-inline: 10px;
+}
+
+.sectionTitle {
+  & .title {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  & p{
+    padding-top: 5px;
+  }
+}
+

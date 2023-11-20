@@ -8,6 +8,7 @@ import {
   CoursesPage,
   // coursesPageLoader,
 } from "../modules/Courses/pages/CoursesPage";
+import { HomeCoursePage } from "../modules/Courses/pages/HomeCoursePage"
 
 export const router = createBrowserRouter([
   {
@@ -43,6 +44,10 @@ export const router = createBrowserRouter([
         // loader: coursesPageLoader,
         element: <CoursesPage />,
       },
+      {
+        path: "teste",
+        element: <HomeCoursePage />
+      }
     ],
   },
 ]);
