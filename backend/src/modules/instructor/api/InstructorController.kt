@@ -40,4 +40,9 @@ class InstructorController(
 
         return ResponseEntity.ok(instructor)
     }
+
+    @DeleteMapping("/{id}")
+    fun deleteInstructor(@PathVariable id: Int): ResponseEntity<Unit> {
+        return ResponseEntity.noContent().build()
+    }
 }

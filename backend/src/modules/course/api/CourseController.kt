@@ -35,15 +35,14 @@ class CourseController(
     }
 
     @GetMapping("{id}")
-    fun getById(@PathVariable id: Int): ResponseEntity<Any> {
-        return try {
-            val course = getByIdQuery.execute(id)
+    fun getById(@PathVariable id: Int): ResponseEntity<Course> {
+        val course = getByIdQuery.execute(id)
 
-            ResponseEntity.ok(course)
-        } catch (e: EntityNotFoundException) {
-            ResponseEntity.notFound().build()
-        } catch (e: AccessDeniedException) {
-            ResponseEntity.status(HttpStatus.FORBIDDEN).body(e.message)
-        }
+        return ResponseEntity.ok(course)
+    }
+
+    @DeleteMapping("/{id}")
+    fun deleteCourse(@PathVariable id: Int): ResponseEntity<Unit> {
+        return ResponseEntity.noContent().build()
     }
 }

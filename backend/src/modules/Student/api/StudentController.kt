@@ -50,4 +50,9 @@ class StudentController(
 
         return ResponseEntity.ok(enrolledCourses);
     }
+
+    @DeleteMapping("/{id}")
+    fun deleteStudent(@PathVariable id: Int): ResponseEntity<Unit> {
+        return ResponseEntity.noContent().build()
+    }
 }
