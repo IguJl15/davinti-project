@@ -1,3 +1,4 @@
+import Course from '../../../../../../modules/Courses/models/course';
 import { ContentCardItem } from '../ContentCardItem';
 import style from './style.module.css';
 
@@ -9,7 +10,7 @@ const values = [
   'Renegade sobe calçada?',
 ];
 
-function ContentCard() {
+function ContentCard({ course }: { course: Course }) {
   return (
     <div className={style.cardWrapper}>
       <div className={style.contentWrapper}>
@@ -17,8 +18,8 @@ function ContentCard() {
           <h2>Conteúdos do curso</h2>
         </section>
         <section className={style.contentCards}>
-          {values.map((value) => (
-            <ContentCardItem key={value} text={value} />
+          {course.lessons.map((value) => (
+            <ContentCardItem key={value.id} text={value.title} />
           ))}
         </section>
       </div>

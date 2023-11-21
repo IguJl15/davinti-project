@@ -5,7 +5,7 @@ import { LoginPage } from '../modules/Auth/pages/LoginPage';
 import { RegisterPage } from '../modules/Auth/pages/RegisterPage';
 // import { AnonymusRoute } from './AnonymusRoute';
 import { CoursesPage, coursesPageLoader } from '../modules/Courses/pages/CoursesPage';
-import { HomeCoursePage } from '../modules/Courses/pages/HomeCoursePage';
+import { HomeCoursePage, coursePageLoader } from '../modules/Courses/pages/HomeCoursePage';
 
 export const router = createBrowserRouter([
   {
@@ -34,7 +34,8 @@ export const router = createBrowserRouter([
         element: <CoursesPage />,
       },
       {
-        path: 'teste',
+        path: 'courses/:courseId',
+        loader: coursePageLoader,
         element: <HomeCoursePage />,
       },
     ],

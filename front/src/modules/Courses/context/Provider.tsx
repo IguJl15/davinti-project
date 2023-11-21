@@ -1,9 +1,6 @@
-import { PropsWithChildren, createContext, useContext } from "react";
-import {
-  authRepository,
-  httpClient,
-} from "../../../core/providers/AuthProvider/AuthProvider";
-import Course from "../models/course";
+import { PropsWithChildren, createContext, useContext } from 'react';
+import { authRepository, httpClient } from '../../../core/providers/AuthProvider/AuthProvider';
+import Course from '../models/course';
 
 export class CourseContextActions {
   // private httpClient: HttpClient;
@@ -13,12 +10,12 @@ export class CourseContextActions {
   }
 
   getAllAvailableCourses(): Promise<Course[]> {
-    return httpClient.get("/courses");
+    return httpClient.get('/courses');
   }
 
-  getCourseById(id: number): Promise<Course[]> {
+  getCourseById(id: number): Promise<Course> {
     {
-      return httpClient.get<Course[]>(`/courses/${id}`);
+      return httpClient.get<Course>(`/courses/${id}`);
     }
   }
 
@@ -39,18 +36,12 @@ export class CourseContextActions {
   }
 }
 
-const CourseActionsContext = createContext<CourseContextActions>(
-  {} as CourseContextActions
-);
+const CourseActionsContext = createContext<CourseContextActions>({} as CourseContextActions);
 
 export function CourseActionsProvider({ children }: PropsWithChildren) {
   const actions = new CourseContextActions();
 
-  return (
-    <CourseActionsContext.Provider value={actions}>
-      {children}
-    </CourseActionsContext.Provider>
-  );
+  return <CourseActionsContext.Provider value={actions}>{children}</CourseActionsContext.Provider>;
 }
 
 export function useCoursesActions() {
