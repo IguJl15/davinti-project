@@ -1,5 +1,5 @@
 .page_wrapper {
-  max-width: 1020px;
+  max-width: 1128px;
   width: 100%;
 
   padding: 0px 20px;
@@ -21,14 +21,20 @@
   padding: 18px 20px;
   gap: 24px;
 
-  background: #343538;
+  background: var(--md-sys-color-surface);
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .courses_content {
   display: flex;
 
+  padding: 16px;
+  background-color: var(--md-sys-color-primary-container);
+  border-radius: 12px;
   flex-direction: column;
+
+  align-self: stretch;
+
   gap: 16px;
 
   & .courses_list {
