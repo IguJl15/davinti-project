@@ -46,7 +46,7 @@ function HomeCoursePage() {
         </div>
         <div className="section_2">
           <div className="description">
-            <DescriptionCard />
+            <DescriptionCard description={course.description} />
             <UserCard
               name={course.instructor.completeName}
               job="Analise e Desenvolvimento"

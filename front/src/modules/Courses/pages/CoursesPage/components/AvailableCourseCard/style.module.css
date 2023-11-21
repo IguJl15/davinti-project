@@ -55,8 +55,8 @@
 
   & .footer {
     display: flex;
-    justify-content: end;
-    align-items: flex-start;
+    justify-content: space-between;
+    align-items: center;
     align-content: flex-start;
     gap: 8px;
     align-self: stretch;

@@ -28,7 +28,7 @@ class CourseController(
     }
 
     @GetMapping("")
-    fun getAll(): ResponseEntity<Collection<Course>> {
+    fun getAll(): ResponseEntity<Collection<CourseView>> {
         val courses = getAllQuery.execute(Unit)
 
         return ResponseEntity.ok(courses)
