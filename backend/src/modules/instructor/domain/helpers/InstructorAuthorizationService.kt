@@ -13,8 +13,8 @@ class InstructorAuthorizationService {
 
         if (user.role == UserRole.admin) return true
 
-        if(user.role == UserRole.instructor) {
-            if(user.id == instructor.id) return true
+        if (user.role == UserRole.instructor) {
+            if (user.id == instructor.id) return true
         }
 
         return false

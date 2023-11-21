@@ -26,6 +26,7 @@ class LogoutCommand(
         return logout(
             params.request,
             params.response,
+
             params.authentication
         )
     }

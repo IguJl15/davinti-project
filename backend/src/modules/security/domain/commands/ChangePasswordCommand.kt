@@ -9,17 +9,13 @@ import org.springframework.stereotype.Service
 import java.security.Principal
 
 data class ChangePasswordDto(
-    val currentPassword: String,
-    val newPassword: String,
-    val confirmationPassword: String,
-    val connectedUser: Principal
+    val currentPassword: String, val newPassword: String, val confirmationPassword: String, val connectedUser: Principal
 )
 
 
 @Service
 class ChangePasswordCommand(
-    private val passwordEncoder: PasswordEncoder,
-    private val repository: UserRepository
+    private val passwordEncoder: PasswordEncoder, private val repository: UserRepository
 ) : Command<ChangePasswordDto, Unit> {
 
     override fun execute(params: ChangePasswordDto) {

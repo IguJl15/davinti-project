@@ -8,8 +8,7 @@ import com.davintiproject.backend.modules.security.domain.entities.User
 import org.springframework.stereotype.Component
 
 data class SaveTokenDto(
-    val user: User,
-    val token: String
+    val user: User, val token: String
 )
 
 @Component
