@@ -40,4 +40,9 @@ class CourseController(
 
         return ResponseEntity.ok(course)
     }
+
+    @DeleteMapping("/{id}")
+    fun deleteCourse(@PathVariable id: Int): ResponseEntity<Unit> {
+        return ResponseEntity.noContent().build()
+    }
 }
