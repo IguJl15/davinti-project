@@ -27,6 +27,7 @@ class Course(
     val lessons: List<Lesson> = emptyList(),
 
     @OneToMany(mappedBy = "course")
+    @JsonIgnore
     val announcements: List<Announcement> = emptyList()
 ) {
     val instructorId get() = instructor.id

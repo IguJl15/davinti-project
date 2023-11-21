@@ -3,6 +3,7 @@ package com.davintiproject.backend.modules.Student.domain.entities
 import com.davintiproject.backend.modules.course.domain.entities.Course
 import com.davintiproject.backend.modules.security.domain.entities.User
 import com.davintiproject.backend.modules.security.domain.entities.UserRole
+import com.fasterxml.jackson.annotation.JsonIgnore
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.JoinTable
@@ -25,6 +26,7 @@ class Student(
 
     @ManyToMany
     @JoinTable(name = "enrollment")
+    @JsonIgnore
     val enrolledCourses: MutableList<Course> = mutableListOf(),
 
     pass: String,
