@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*
 import java.net.URI
 
 
-data class RegisterParams (
+data class RegisterParams(
     val name: String,
     val email: String,
     val password: String,

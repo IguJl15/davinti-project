@@ -50,6 +50,10 @@ dependencies {
 	// Testing
 	testImplementation("org.springframework.boot:spring-boot-starter-test:3.1.0")
 	testImplementation("org.springframework.security:spring-security-test:6.0.2")
+
+	// OpenAPI
+	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0")
+
 }
 
 tasks.withType<KotlinCompile> {

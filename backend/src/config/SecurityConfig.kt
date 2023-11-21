@@ -58,8 +58,9 @@ class SecurityConfig(
                 it.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             }
             .authorizeHttpRequests { authorize ->
+                authorize.requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
                 authorize.dispatcherTypeMatchers(DispatcherType.ERROR).permitAll()
-                authorize.requestMatchers( HttpMethod.GET ,"/public", "/courses").permitAll()
+                authorize.requestMatchers(HttpMethod.GET, "/public", "/courses").permitAll()
                 authorize.requestMatchers(
                     HttpMethod.POST,
                     "/session",

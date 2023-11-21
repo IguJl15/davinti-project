@@ -8,6 +8,7 @@ spring:
   flyway:
     schemas: public
     driver-class-name: org.postgresql.Driver
+    baseline-description: true
   datasource:
     url: jdbc:postgresql://localhost:5432/mydatabase
     username: postgres
