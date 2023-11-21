@@ -1,4 +1,4 @@
-import style from "./style.module.css"
+import style from './style.module.css';
 
 interface CardContentItemProps {
   text: string;
@@ -6,7 +6,7 @@ interface CardContentItemProps {
 
 function ContentCardItem({ text }: CardContentItemProps) {
   return (
-    <div className={style.cardItem}>
+    <div className={style.cardItem + ' title-medium'}>
       <span className={style.text}>{text}</span>
     </div>
   );

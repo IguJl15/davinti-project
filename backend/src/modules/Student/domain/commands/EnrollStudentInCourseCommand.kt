@@ -28,11 +28,11 @@ class EnrollStudentInCourseCommand(
         val student = getStudentById.execute(params.studentId)
         val course = getCourseById.execute(params.courseId)
 
-        if (student.enrolledCourses.contains(course) && course.studentsEnrolled.contains(student)) {
+        if (student.enrolledCourses.any { it.id == course.id } ) {
             throw ResponseStatusException(HttpStatus.BAD_REQUEST, "Already enrolled")
         }
 
-        student.enrolledCourses.add(course)
+        student.enrolledCourses.add(course.course)
 
         studentRepository.save(student)
 

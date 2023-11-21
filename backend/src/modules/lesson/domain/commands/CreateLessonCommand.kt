@@ -27,7 +27,7 @@ class CreateLessonCommand(
     override fun execute(params: CreateLessonDto): Int {
         val mainContentId = createContentCommand.execute(params.mainContent)
         val mainContent = getContentById.execute(mainContentId)
-        val course = getCourseById.execute(params.courseId)
+        val courseView = getCourseById.execute(params.courseId)
 
         val supportContentIds = params.supportContent.map {
             createContentCommand.execute(it)
@@ -41,7 +41,7 @@ class CreateLessonCommand(
             title = params.title,
             mainContent = mainContent,
             supportContent = supportContent,
-            course = course
+            course = courseView.course
         )
 
         return lessonRepository.save(lesson).id

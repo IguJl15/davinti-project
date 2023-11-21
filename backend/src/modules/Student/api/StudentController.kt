@@ -8,6 +8,7 @@ import com.davintiproject.backend.modules.Student.domain.entities.Student
 import com.davintiproject.backend.modules.Student.domain.queries.GetAllStudents
 import com.davintiproject.backend.modules.Student.domain.queries.GetEnrolledCourses
 import com.davintiproject.backend.modules.course.domain.entities.Course
+import com.davintiproject.backend.modules.course.domain.queries.CourseView
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -45,7 +46,7 @@ class StudentController(
     }
 
     @GetMapping("/{id}/courses")
-    fun enrolls(@PathVariable id: Int): ResponseEntity<Collection<Course>> {
+    fun enrolls(@PathVariable id: Int): ResponseEntity<Collection<CourseView>> {
         val enrolledCourses = getEnrolledCourses.execute(id);
 
         return ResponseEntity.ok(enrolledCourses);

@@ -5,7 +5,8 @@ import { LoginPage } from '../modules/Auth/pages/LoginPage';
 import { RegisterPage } from '../modules/Auth/pages/RegisterPage';
 // import { AnonymusRoute } from './AnonymusRoute';
 import { CoursesPage, coursesPageLoader } from '../modules/Courses/pages/CoursesPage';
-import { HomeCoursePage } from '../modules/Courses/pages/HomeCoursePage';
+import { HomeCoursePage, coursePageLoader } from '../modules/Courses/pages/HomeCoursePage';
+import { AnonymusRoute } from './AnonymusRoute';
 
 export const router = createBrowserRouter([
   {
@@ -14,7 +15,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Navigate to="/home" />,
+        element: <Navigate to="/courses" />,
       },
       {
         path: 'home',
@@ -22,11 +23,19 @@ export const router = createBrowserRouter([
       },
       {
         path: 'register',
-        element: <RegisterPage />,
+        element: (
+          <AnonymusRoute>
+            <RegisterPage />
+          </AnonymusRoute>
+        ),
       },
       {
         path: 'login',
-        element: <LoginPage />,
+        element: (
+          <AnonymusRoute>
+            <LoginPage />
+          </AnonymusRoute>
+        ),
       },
       {
         path: 'courses',
@@ -34,7 +43,8 @@ export const router = createBrowserRouter([
         element: <CoursesPage />,
       },
       {
-        path: 'teste',
+        path: 'courses/:courseId',
+        loader: coursePageLoader,
         element: <HomeCoursePage />,
       },
     ],

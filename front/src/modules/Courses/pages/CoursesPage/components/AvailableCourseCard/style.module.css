@@ -4,7 +4,7 @@
   padding: 1rem;
   align-self: stretch;
   border-radius: 8px;
-  background: grey;
+  background: var(--md-sys-color-surface);
   box-shadow: 0 0 4px #0003;
   flex: 1 1 300px;
 
@@ -55,8 +55,8 @@
 
   & .footer {
     display: flex;
-    justify-content: end;
-    align-items: flex-start;
+    justify-content: space-between;
+    align-items: center;
     align-content: flex-start;
     gap: 8px;
     align-self: stretch;

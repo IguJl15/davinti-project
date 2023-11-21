@@ -2,8 +2,10 @@ import IfipLogo from '../../../assets/baixados.png';
 import user_logo from '../../../assets/user_logo.png';
 import styles from './style.module.css';
 import { NavButton } from '../NavButton';
+import { useAuth } from '../../../core/hooks/useAuth';
 
 function NavBar() {
+  const { isSignedIn, logOut } = useAuth();
   return (
     <div className={styles.navbar_wrapper}>
       <div className={styles.frame_1}>
@@ -12,11 +14,20 @@ function NavBar() {
         </div>
       </div>
       <div className={styles.button_wrapper}>
-        <NavButton redirectLink="home" />
-        <NavButton redirectLink="login" />
-        <NavButton redirectLink="register" />
-        <NavButton redirectLink="teste" />
-        <NavButton redirectLink="courses" />
+        <NavButton label="Início" redirectLink="home" />
+
+        {!isSignedIn && (
+          <>
+            <NavButton label="Entrar" redirectLink="login" />
+            <NavButton label="Registrar" redirectLink="register" />
+          </>
+        )}
+        {isSignedIn && (
+          <>
+            <NavButton label="Cursos" redirectLink="courses" />
+            <NavButton label="Sair" redirectLink="home" onClick={logOut} />
+          </>
+        )}
       </div>
       <div className={styles.frame_2}>
         <div className={styles.user_icon}>
