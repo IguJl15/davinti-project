@@ -28,14 +28,14 @@ class CreateAnnouncementCommand(
         val instructorUser = SecurityContextHolder.getContext().authentication.principal as User
 
         val instructor = getInstructorById.execute(instructorUser.id)
-        val course = getCourseById.execute(params.courseId)
+        val courseView = getCourseById.execute(params.courseId)
 
         val announcement = announcementRepository.save(
             Announcement(
                 title = params.title,
                 content = params.content,
                 author = instructor,
-                course = course
+                course = courseView.course
             )
         )
 

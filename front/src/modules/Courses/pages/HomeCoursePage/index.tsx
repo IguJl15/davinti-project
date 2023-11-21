@@ -10,23 +10,19 @@ import {
 } from '../../../../modules/Courses/context/Provider';
 import Course from '../../../../modules/Courses/models/course';
 import { User } from 'core/interfaces/User';
-import { httpClient } from '../../../../core/providers/AuthProvider/AuthProvider';
 import { PrimaryButton } from '../../../../core/components/Button';
 
-async function coursePageLoader({
-  params,
-}: LoaderFunctionArgs): Promise<{ course: Course; instructor: User }> {
+async function coursePageLoader({ params }: LoaderFunctionArgs): Promise<{ course: Course }> {
   const actions = new CourseContextActions();
   const course = await actions.getCourseById(Number(params.courseId));
   return {
     course,
-    instructor: await httpClient.get('/users/' + course.instructorId),
   };
 }
 
 function HomeCoursePage() {
   const { enrollCurrentUserOnCourse } = useCoursesActions();
-  const { course, instructor } = useLoaderData() as { course: Course; instructor: User };
+  const { course } = useLoaderData() as { course: Course; instructor: User };
 
   console.table(course);
 
@@ -52,7 +48,7 @@ function HomeCoursePage() {
           <div className="description">
             <DescriptionCard />
             <UserCard
-              name={instructor.completeName}
+              name={course.instructor.completeName}
               job="Analise e Desenvolvimento"
               role="Instituto Federal do Piaui IFPI"
             />

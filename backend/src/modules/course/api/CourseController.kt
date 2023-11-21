@@ -3,9 +3,9 @@ package com.davintiproject.backend.modules.course.api
 import com.davintiproject.backend.modules.course.domain.commands.CreateCourseCommand
 import com.davintiproject.backend.modules.course.domain.commands.CreateCourseDto
 import com.davintiproject.backend.modules.course.domain.entities.Course
+import com.davintiproject.backend.modules.course.domain.queries.CourseView
 import com.davintiproject.backend.modules.course.domain.queries.GetAllAvailableCourses
 import com.davintiproject.backend.modules.course.domain.queries.GetCourseById
-import jakarta.persistence.EntityNotFoundException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -35,10 +35,10 @@ class CourseController(
     }
 
     @GetMapping("{id}")
-    fun getById(@PathVariable id: Int): ResponseEntity<Course> {
-        val course = getByIdQuery.execute(id)
+    fun getById(@PathVariable id: Int): ResponseEntity<CourseView> {
+        val courseView = getByIdQuery.execute(id)
 
-        return ResponseEntity.ok(course)
+        return ResponseEntity.ok(courseView)
     }
 
     @DeleteMapping("/{id}")
