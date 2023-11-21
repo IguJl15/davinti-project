@@ -24,7 +24,10 @@ class Course(
     val instructor: Instructor,
 
     @OneToMany(mappedBy = "course")
-    val lessons: List<Lesson> = emptyList()
+    val lessons: List<Lesson> = emptyList(),
+
+    @OneToMany(mappedBy = "course")
+    val announcements: List<Announcement> = emptyList()
 ) {
     val instructorId get() = instructor.id
 }

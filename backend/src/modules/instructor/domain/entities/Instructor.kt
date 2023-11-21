@@ -1,5 +1,6 @@
 package com.davintiproject.backend.modules.instructor.domain.entities
 
+import com.davintiproject.backend.modules.course.domain.entities.Announcement
 import com.davintiproject.backend.modules.course.domain.entities.Course
 import com.davintiproject.backend.modules.security.domain.entities.User
 import com.davintiproject.backend.modules.security.domain.entities.UserRole
@@ -15,6 +16,9 @@ class Instructor(
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "instructor", cascade = [CascadeType.ALL])
     val courses: List<Course> = emptyList(),
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "author", cascade = [CascadeType.ALL])
+    val announcements: List<Announcement> = emptyList(),
 
     pass: String
 ) : User(id = 0, completeName, email, pass, UserRole.instructor, emptyList())
