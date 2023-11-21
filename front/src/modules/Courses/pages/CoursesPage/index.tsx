@@ -1,10 +1,10 @@
-import { useLoaderData } from "react-router-dom";
-import { Body } from "../../../../core/components/Body";
-import { useAuth } from "../../../../core/hooks/useAuth";
-import { CourseContextActions } from "../../context/Provider";
-import Course from "../../models/course";
-import AvailableCourseCard from "./components/AvailableCourseCard";
-import styles from "./style.module.css";
+import { useLoaderData } from 'react-router-dom';
+import { Body } from '../../../../core/components/Body';
+import { useAuth } from '../../../../core/hooks/useAuth';
+import { CourseContextActions } from '../../context/Provider';
+import Course from '../../models/course';
+import AvailableCourseCard from './components/AvailableCourseCard';
+import styles from './style.module.css';
 
 async function coursesPageLoader(): Promise<{
   courses: Course[];

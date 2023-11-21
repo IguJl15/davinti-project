@@ -6,7 +6,7 @@ const values = [
   'Motor de marea turbo',
   'Celta stage 2?',
   'Hilux capota?',
-  'Renegade sobe caclçada?',
+  'Renegade sobe calçada?',
 ];
 
 function ContentCard() {

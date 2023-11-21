@@ -1,18 +1,15 @@
-import { Navigate, createBrowserRouter } from "react-router-dom";
-import Root from "../App";
-import { HomePage } from "../modules/Home/pages/HomePage";
-import { LoginPage } from "../modules/Auth/pages/LoginPage";
-import { RegisterPage } from "../modules/Auth/pages/RegisterPage";
-import { AnonymusRoute } from "./AnonymusRoute";
-import {
-  CoursesPage,
-  // coursesPageLoader,
-} from "../modules/Courses/pages/CoursesPage";
-import { HomeCoursePage } from "../modules/Courses/pages/HomeCoursePage"
+import Root from '../App';
+import { Navigate, createBrowserRouter } from 'react-router-dom';
+import { HomePage } from '../modules/Home/pages/HomePage';
+import { LoginPage } from '../modules/Auth/pages/LoginPage';
+import { RegisterPage } from '../modules/Auth/pages/RegisterPage';
+import { AnonymusRoute } from './AnonymusRoute';
+import { CoursesPage, coursesPageLoader } from '../modules/Courses/pages/CoursesPage';
+import { HomeCoursePage } from '../modules/Courses/pages/HomeCoursePage';
 
 export const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <Root />,
     children: [
       {
@@ -20,11 +17,11 @@ export const router = createBrowserRouter([
         element: <Navigate to="/home" />,
       },
       {
-        path: "home",
+        path: 'home',
         element: <HomePage />,
       },
       {
-        path: "register",
+        path: 'register',
         element: (
           <AnonymusRoute>
             <RegisterPage />
@@ -32,7 +29,7 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "login",
+        path: 'login',
         element: (
           <AnonymusRoute>
             <LoginPage />
@@ -40,14 +37,14 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "courses",
-        // loader: coursesPageLoader,
+        path: 'courses',
+        loader: coursesPageLoader,
         element: <CoursesPage />,
       },
       {
-        path: "teste",
-        element: <HomeCoursePage />
-      }
+        path: 'teste',
+        element: <HomeCoursePage />,
+      },
     ],
   },
 ]);

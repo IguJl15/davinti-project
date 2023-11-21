@@ -15,7 +15,8 @@ function NavBar() {
         <NavButton redirectLink="home" />
         <NavButton redirectLink="login" />
         <NavButton redirectLink="register" />
-        <NavButton redirectLink='teste' />
+        <NavButton redirectLink="teste" />
+        <NavButton redirectLink="courses" />
       </div>
       <div className={styles.frame_2}>
         <div className={styles.user_icon}>
