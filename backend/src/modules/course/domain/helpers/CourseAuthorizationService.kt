@@ -13,15 +13,10 @@ class CourseAuthorizationService {
 
         val user = SecurityContextHolder.getContext().authentication.principal as User
 
-        if (user.role == UserRole.admin) return true
-
-        if (user.role == UserRole.instructor) return user.id == course.instructorId
-
-        if (user.role == UserRole.user) {
-            return course.studentsEnrolled.any { it.id == user.id }
+        return when (user.role) {
+            UserRole.user -> course.studentsEnrolled.any { it.id == user.id }
+            UserRole.admin -> true
+            UserRole.instructor -> user.id == course.instructorId
         }
-
-
-        return false
     }
 }

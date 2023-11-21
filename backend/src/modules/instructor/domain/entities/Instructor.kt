@@ -3,14 +3,10 @@ package com.davintiproject.backend.modules.instructor.domain.entities
 import com.davintiproject.backend.modules.course.domain.entities.Course
 import com.davintiproject.backend.modules.security.domain.entities.User
 import com.davintiproject.backend.modules.security.domain.entities.UserRole
-import jakarta.persistence.CascadeType
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.FetchType
-import jakarta.persistence.OneToMany
+import jakarta.persistence.*
 
 @Entity
-class Instructor (
+class Instructor(
     completeName: String,
     email: String,
 

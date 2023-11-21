@@ -13,8 +13,6 @@ class RevokeAllUserTokens(
 
         if (validUserTokens.isEmpty()) return
 
-        tokenRepository.saveAll(
-            validUserTokens.map { it.copy(expired = true, revoked = true) }
-        )
+        tokenRepository.saveAll(validUserTokens.map { it.copy(expired = true, revoked = true) })
     }
 }

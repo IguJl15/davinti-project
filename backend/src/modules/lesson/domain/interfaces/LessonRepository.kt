@@ -3,7 +3,7 @@ package com.davintiproject.backend.modules.lesson.domain.interfaces
 import com.davintiproject.backend.modules.lesson.domain.entities.Lesson
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
-import java.util.Optional
+import java.util.*
 
 @Repository
 interface LessonRepository : JpaRepository<Lesson, Int> {

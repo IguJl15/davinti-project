@@ -13,8 +13,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/session")
 @PreAuthorize("isAnonymous()")
 class SessionController(
-    private val loginCommand: LoginCommand,
-    private val refreshToken: RefreshTokenCommand
+    private val loginCommand: LoginCommand, private val refreshToken: RefreshTokenCommand
 ) {
     @PostMapping
     fun login(@RequestBody params: LoginDto): ResponseEntity<TokenPair> {

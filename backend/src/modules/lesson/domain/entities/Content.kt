@@ -28,7 +28,7 @@ class UrlContent(
 
 @Entity
 @DiscriminatorValue("video")
-class VideoContent (
+class VideoContent(
     title: String,
     val videoUrl: String
 ) : Content(title = title)

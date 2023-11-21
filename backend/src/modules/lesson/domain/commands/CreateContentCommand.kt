@@ -19,8 +19,8 @@ data class CreateContentDto(
 
 @Component
 class CreateContentCommand(
-    val contentRepository: ContentRepository
-) : Command<CreateContentDto, Int>{
+    private val contentRepository: ContentRepository,
+) : Command<CreateContentDto, Int> {
 
     @PreAuthorize("hasRole('INSTRUCTOR')")
     override fun execute(params: CreateContentDto): Int {

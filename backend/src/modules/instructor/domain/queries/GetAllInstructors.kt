@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component
 @Component
 class GetAllInstructors(
     val instructorRepository: InstructorRepository
-) : Query<Unit, Collection<Instructor>>{
+) : Query<Unit, Collection<Instructor>> {
 
     @PreAuthorize("hasRole('ADMIN')")
     override fun execute(params: Unit): Collection<Instructor> {
