@@ -16,7 +16,7 @@ services:
     container_name: backend
     build:
       context: .
-      target: development
+      target: release
     restart: on-failure
     environment:
       - 'SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/mydatabase'
