@@ -7,6 +7,7 @@ import { Input } from '../../../../core/components/Input';
 import { PrimaryButton } from '../../../../core/components/Button';
 import { ErrorMessage } from '../../../../core/components/ErrorText';
 import { useAuth } from '../../../../core/hooks/useAuth';
+import { WelcomeContent } from '../../components/welcome_content';
 
 type CreateRegisterFormData = z.infer<typeof RegisterSchema>;
 
@@ -32,17 +33,7 @@ export function RegisterPage() {
   return (
     <div className={style.page_wrapper}>
       <div className={style.form_container}>
-        <div className={style.welcome_content}>
-          <span>COMPANY LOGO</span>
-          <div className="welcome_text">
-            <h2>Lorem Ipsum.....</h2>
-            <span>
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-              has been the industry's standard dummy text ever since the 1500s,
-            </span>
-          </div>
-          <span>Lorem ipsum solo ador</span>
-        </div>
+        <WelcomeContent />
 
         <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
           <div className={style.company_logo_wrapper}>

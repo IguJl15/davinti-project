@@ -2,6 +2,7 @@
 import { ForwardRefRenderFunction, forwardRef } from 'react';
 import '@material/web/textfield/outlined-text-field';
 import styles from './style.module.css';
+import { MdOutlinedTextField } from '@material/web/textfield/outlined-text-field';
 
 interface InputBaseProps {
   inputType: string;
@@ -14,17 +15,14 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputBaseProps> = (
   ref
 ) => {
   return (
-    <div>
-      {/* https://github.com/material-components/material-web/blob/main/docs/components/text-field.md */}
-      <md-outlined-text-field
-        class={styles.input}
-        label={label}
-        type={inputType}
-        {...rest}
-        ref={ref}
-        autoComplete={autoComplete}
-      />
-    </div>
+    <md-outlined-text-field
+      class={styles.input}
+      label={label}
+      type={inputType}
+      {...rest}
+      ref={ref}
+      autoComplete={autoComplete}
+    ></md-outlined-text-field>
   );
 };
 
