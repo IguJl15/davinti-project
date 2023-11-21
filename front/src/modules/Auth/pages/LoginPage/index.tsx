@@ -9,7 +9,7 @@ import { ErrorMessage } from '../../../../core/components/ErrorText';
 import { useAuth } from '../../../../core/hooks/useAuth';
 import { useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
-import { MdOutlinedTextField } from '@material/web/textfield/outlined-text-field';
+import { WelcomeContent } from '../../components/welcome_content';
 
 type CreateLoginFormData = z.infer<typeof LoginSchema>;
 
@@ -39,17 +39,7 @@ function LoginPage() {
   return (
     <div className={style.page_wrapper}>
       <div className={style.form_container}>
-        <div className={style.welcome_content}>
-          <span>COMPANY LOGO</span>
-          <div className="welcome_text">
-            <h2>Lorem Ipsum.....</h2>
-            <span>
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-              has been the industry's standard dummy text ever since the 1500s,
-            </span>
-          </div>
-          <span>Lorem ipsum solo ador</span>
-        </div>
+        <WelcomeContent />
 
         <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
           <div className={style.company_logo_wrapper}>
