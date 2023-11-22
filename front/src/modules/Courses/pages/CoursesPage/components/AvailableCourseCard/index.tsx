@@ -1,6 +1,5 @@
 import styles from './style.module.css';
 import Course from '../../../../models/course';
-import { useCoursesActions } from '../../../../context/Provider';
 import { useAuth } from '../../../../../../core/hooks/useAuth';
 import { PrimaryButton } from '../../../../../../core/components/Button';
 import { useNavigate } from 'react-router-dom';

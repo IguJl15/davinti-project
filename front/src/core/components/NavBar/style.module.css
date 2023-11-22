@@ -47,11 +47,11 @@
 
 @media (min-width: 1000px) {
   .button_wrapper {
-    width: 30%;
+    width: 50%;
     height: 100%;
     display: flex;
     gap: 10px;
 
-    align-self: flex-start;
+    align-self: center;
   }
 }

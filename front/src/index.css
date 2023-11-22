@@ -4,7 +4,7 @@
 :root {
   font-family: 'Roboto', sans-serif;
   background: var(--md-sys-color-background);
-  color: var(--md-sys-color-on-background);
+  color: black;
 
   --m-3-sys-light-on-surface: #1b1b1f;
 }

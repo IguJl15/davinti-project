@@ -1,0 +1,29 @@
+.cardList {
+  width: clamp(300px, 100%, 1000px);
+  height: clamp(600px, 100%, 800px);
+  background: #F2F0F4;
+  padding: 20px 12px;
+}
+
+.contentWrapper {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.frame1 {
+  width: 100%;
+  height: auto;
+
+  display: flex;
+  justify-content: space-between;
+
+  & h2{
+    height: 40px;
+    display: flex;
+    align-items: center;
+  }
+}

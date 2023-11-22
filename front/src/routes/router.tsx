@@ -3,10 +3,10 @@ import { Navigate, createBrowserRouter } from 'react-router-dom';
 import { HomePage } from '../modules/Home/pages/HomePage';
 import { LoginPage } from '../modules/Auth/pages/LoginPage';
 import { RegisterPage } from '../modules/Auth/pages/RegisterPage';
-// import { AnonymusRoute } from './AnonymusRoute';
+import { AnonymusRoute } from './AnonymusRoute';
 import { CoursesPage, coursesPageLoader } from '../modules/Courses/pages/CoursesPage';
 import { HomeCoursePage, coursePageLoader } from '../modules/Courses/pages/HomeCoursePage';
-import { AnonymusRoute } from './AnonymusRoute';
+import { CoursesList } from '../modules/Instructor/pages/CoursesList';
 
 export const router = createBrowserRouter([
   {
@@ -41,12 +41,18 @@ export const router = createBrowserRouter([
         path: 'courses',
         loader: coursesPageLoader,
         element: <CoursesPage />,
+        children: [
+          {
+            path:':courseId',
+            loader: coursePageLoader,
+            element: <HomeCoursePage />,
+          },
+        ]
       },
       {
-        path: 'courses/:courseId',
-        loader: coursePageLoader,
-        element: <HomeCoursePage />,
-      },
+        path:"instructor",
+        element: <CoursesList />,
+      }
     ],
   },
 ]);

@@ -28,6 +28,8 @@ function NavBar() {
             <NavButton label="Sair" redirectLink="home" onClick={logOut} />
           </>
         )}
+
+        <NavButton label="Instuctor courses" redirectLink="instructor/my_courses" />
       </div>
       <div className={styles.frame_2}>
         <div className={styles.user_icon}>
