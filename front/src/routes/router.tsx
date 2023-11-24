@@ -15,7 +15,7 @@ export const router = createBrowserRouter([
     element: <Root />,
     children: [
       {
-        path: "lessons",
+        path: 'lessons',
         element: <CourseClass />,
       },
       {
@@ -42,18 +42,16 @@ export const router = createBrowserRouter([
         path: 'courses',
         loader: coursesPageLoader,
         element: <CoursesPage />,
-        children: [
-          {
-            path:':courseId',
-            loader: coursePageLoader,
-            element: <HomeCoursePage />,
-          },
-        ]
       },
       {
-        path:"instructor",
+        path: 'courses/:courseId',
+        loader: coursePageLoader,
+        element: <HomeCoursePage />,
+      },
+      {
+        path: 'instructor',
         element: <CoursesList />,
-      }
+      },
     ],
   },
 ]);
