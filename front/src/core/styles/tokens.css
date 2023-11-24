@@ -211,105 +211,105 @@
   /* display - large */
   --md-typescale-display-large-font-family-name: Roboto;
   --md-typescale-display-large-font-family-style: Regular;
-  --md-typescale-display-large-font-weight: 400px;
+  --md-typescale-display-large-font-weight: 400;
   --md-typescale-display-large-font-size: 57px;
   --md-typescale-display-large-line-height: 64px;
   --md-typescale-display-large-letter-spacing: -0.25px;
   /* display - medium */
   --md-typescale-display-medium-font-family-name: Roboto;
   --md-typescale-display-medium-font-family-style: Regular;
-  --md-typescale-display-medium-font-weight: 400px;
+  --md-typescale-display-medium-font-weight: 400;
   --md-typescale-display-medium-font-size: 45px;
   --md-typescale-display-medium-line-height: 52px;
   --md-typescale-display-medium-letter-spacing: 0px;
   /* display - small */
   --md-typescale-display-small-font-family-name: Roboto;
   --md-typescale-display-small-font-family-style: Regular;
-  --md-typescale-display-small-font-weight: 400px;
+  --md-typescale-display-small-font-weight: 400;
   --md-typescale-display-small-font-size: 36px;
   --md-typescale-display-small-line-height: 44px;
   --md-typescale-display-small-letter-spacing: 0px;
   /* headline - large */
   --md-typescale-headline-large-font-family-name: Roboto;
   --md-typescale-headline-large-font-family-style: Regular;
-  --md-typescale-headline-large-font-weight: 400px;
+  --md-typescale-headline-large-font-weight: 400;
   --md-typescale-headline-large-font-size: 32px;
   --md-typescale-headline-large-line-height: 40px;
   --md-typescale-headline-large-letter-spacing: 0px;
   /* headline - medium */
   --md-typescale-headline-medium-font-family-name: Roboto;
   --md-typescale-headline-medium-font-family-style: Regular;
-  --md-typescale-headline-medium-font-weight: 400px;
+  --md-typescale-headline-medium-font-weight: 400;
   --md-typescale-headline-medium-font-size: 28px;
   --md-typescale-headline-medium-line-height: 36px;
   --md-typescale-headline-medium-letter-spacing: 0px;
   /* headline - small */
   --md-typescale-headline-small-font-family-name: Roboto;
   --md-typescale-headline-small-font-family-style: Regular;
-  --md-typescale-headline-small-font-weight: 400px;
+  --md-typescale-headline-small-font-weight: 400;
   --md-typescale-headline-small-font-size: 24px;
   --md-typescale-headline-small-line-height: 32px;
   --md-typescale-headline-small-letter-spacing: 0px;
   /* body - large */
   --md-typescale-body-large-font-family-name: Roboto;
   --md-typescale-body-large-font-family-style: Regular;
-  --md-typescale-body-large-font-weight: 400px;
+  --md-typescale-body-large-font-weight: 400;
   --md-typescale-body-large-font-size: 16px;
   --md-typescale-body-large-line-height: 24px;
   --md-typescale-body-large-letter-spacing: 0.5px;
   /* body - medium */
   --md-typescale-body-medium-font-family-name: Roboto;
   --md-typescale-body-medium-font-family-style: Regular;
-  --md-typescale-body-medium-font-weight: 400px;
+  --md-typescale-body-medium-font-weight: 400;
   --md-typescale-body-medium-font-size: 14px;
   --md-typescale-body-medium-line-height: 20px;
   --md-typescale-body-medium-letter-spacing: 0.25px;
   /* body - small */
   --md-typescale-body-small-font-family-name: Roboto;
   --md-typescale-body-small-font-family-style: Regular;
-  --md-typescale-body-small-font-weight: 400px;
+  --md-typescale-body-small-font-weight: 400;
   --md-typescale-body-small-font-size: 12px;
   --md-typescale-body-small-line-height: 16px;
   --md-typescale-body-small-letter-spacing: 0.4px;
   /* label - large */
   --md-typescale-label-large-font-family-name: Roboto;
   --md-typescale-label-large-font-family-style: Medium;
-  --md-typescale-label-large-font-weight: 500px;
+  --md-typescale-label-large-font-weight: 500;
   --md-typescale-label-large-font-size: 14px;
   --md-typescale-label-large-line-height: 20px;
   --md-typescale-label-large-letter-spacing: 0.1px;
   /* label - medium */
   --md-typescale-label-medium-font-family-name: Roboto;
   --md-typescale-label-medium-font-family-style: Medium;
-  --md-typescale-label-medium-font-weight: 500px;
+  --md-typescale-label-medium-font-weight: 500;
   --md-typescale-label-medium-font-size: 12px;
   --md-typescale-label-medium-line-height: 16px;
   --md-typescale-label-medium-letter-spacing: 0.5px;
   /* label - small */
   --md-typescale-label-small-font-family-name: Roboto;
   --md-typescale-label-small-font-family-style: Medium;
-  --md-typescale-label-small-font-weight: 500px;
+  --md-typescale-label-small-font-weight: 500;
   --md-typescale-label-small-font-size: 11px;
   --md-typescale-label-small-line-height: 16px;
   --md-typescale-label-small-letter-spacing: 0.5px;
   /* title - large */
   --md-typescale-title-large-font-family-name: Roboto;
   --md-typescale-title-large-font-family-style: Regular;
-  --md-typescale-title-large-font-weight: 400px;
+  --md-typescale-title-large-font-weight: 400;
   --md-typescale-title-large-font-size: 22px;
   --md-typescale-title-large-line-height: 28px;
   --md-typescale-title-large-letter-spacing: 0px;
   /* title - medium */
   --md-typescale-title-medium-font-family-name: Roboto;
   --md-typescale-title-medium-font-family-style: Medium;
-  --md-typescale-title-medium-font-weight: 500px;
+  --md-typescale-title-medium-font-weight: 500;
   --md-typescale-title-medium-font-size: 16px;
   --md-typescale-title-medium-line-height: 24px;
   --md-typescale-title-medium-letter-spacing: 0.15px;
   /* title - small */
   --md-typescale-title-small-font-family-name: Roboto;
   --md-typescale-title-small-font-family-style: Medium;
-  --md-typescale-title-small-font-weight: 500px;
+  --md-typescale-title-small-font-weight: 500;
   --md-typescale-title-small-font-size: 14px;
   --md-typescale-title-small-line-height: 20px;
   --md-typescale-title-small-letter-spacing: 0.1px;
