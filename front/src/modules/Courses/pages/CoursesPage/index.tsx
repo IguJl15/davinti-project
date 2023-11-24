@@ -28,39 +28,37 @@ function CoursesPage() {
 
   return (
     <Body>
-      <div className={styles.page_wrapper}>
-        <Greetings />
-        <div className={styles.main_wrapper}>
-          {isSignedIn && (
-            <div className={styles.courses_content}>
-              <div className={styles.title}>
-                <h3>Continue seus cursos</h3>
-              </div>
-              {enrolledCourses.length == 0 ? (
-                <>Você ainda não começou nenhum curso</>
-              ) : (
-                <div className={styles.courses_list}>
-                  {enrolledCourses.map((course) => (
-                    <AvailableCourseCard key={course.id} {...course} />
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
+      <Greetings />
+      <div className={styles.main_wrapper}>
+        {isSignedIn && (
           <div className={styles.courses_content}>
             <div className={styles.title}>
-              <h3>Cursos disponíveis</h3>
+              <h3>Continue seus cursos</h3>
             </div>
-            {courses.length == 0 ? (
-              <>Nenhum curso ainda</>
+            {enrolledCourses.length == 0 ? (
+              <>Você ainda não começou nenhum curso</>
             ) : (
               <div className={styles.courses_list}>
-                {courses.map((course) => (
+                {enrolledCourses.map((course) => (
                   <AvailableCourseCard key={course.id} {...course} />
                 ))}
               </div>
             )}
           </div>
+        )}
+        <div className={styles.courses_content}>
+          <div className={styles.title}>
+            <h3>Cursos disponíveis</h3>
+          </div>
+          {courses.length == 0 ? (
+            <>Nenhum curso ainda</>
+          ) : (
+            <div className={styles.courses_list}>
+              {courses.map((course) => (
+                <AvailableCourseCard key={course.id} {...course} />
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </Body>
