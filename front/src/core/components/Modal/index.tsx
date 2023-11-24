@@ -16,8 +16,8 @@ function Modal({ state, handleSubmit, changeState }: ModalProps) {
           <div className={style.modal}>
             <form onSubmit={handleSubmit}>
               <h3>Preencha o formulario</h3>
-              <Input label="Nome do curso" inputType="text" />
-              <Input label="Descrição do curso" inputType="text" />
+              <Input label="Nome do curso" inputType="email" />
+              <Input label="Descrição do curso" inputType="email" />
               <div>
                 <PrimaryButton label="ENVIAR" type="submit" />
                 <PrimaryButton

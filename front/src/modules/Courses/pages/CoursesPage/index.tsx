@@ -5,6 +5,7 @@ import { CourseContextActions } from '../../context/Provider';
 import Course from '../../models/course';
 import AvailableCourseCard from './components/AvailableCourseCard';
 import styles from './style.module.css';
+import { Greetings } from './components/Greetings';
 
 async function coursesPageLoader(): Promise<{
   courses: Course[];
@@ -19,7 +20,7 @@ async function coursesPageLoader(): Promise<{
 }
 
 function CoursesPage() {
-  const { isSignedIn, authData } = useAuth();
+  const { isSignedIn } = useAuth();
   const { courses, enrolledCourses } = useLoaderData() as {
     courses: Course[];
     enrolledCourses: Course[];
@@ -28,13 +29,7 @@ function CoursesPage() {
   return (
     <Body>
       <div className={styles.page_wrapper}>
-        <div className={styles.greeting}>
-          {isSignedIn ? (
-            <h2>Hello, {authData!.user!.completeName}</h2>
-          ) : (
-            <h2>Olá! Seja bem vindo</h2>
-          )}
-        </div>
+        <Greetings />
         <div className={styles.main_wrapper}>
           {isSignedIn && (
             <div className={styles.courses_content}>
@@ -52,7 +47,6 @@ function CoursesPage() {
               )}
             </div>
           )}
-
           <div className={styles.courses_content}>
             <div className={styles.title}>
               <h3>Cursos disponíveis</h3>
