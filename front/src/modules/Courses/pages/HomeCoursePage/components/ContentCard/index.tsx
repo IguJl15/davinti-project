@@ -7,7 +7,7 @@ function ContentCard({ course }: { course: Course }) {
     <div className={style.cardWrapper}>
       <div className={style.contentWrapper}>
         <section className={style.text}>
-          <h2>Conteúdos do curso</h2>
+          <h2 className="title-large">Conteúdos do curso</h2>
         </section>
         <section className={style.contentCards}>
           {course.lessons.map((value) => (

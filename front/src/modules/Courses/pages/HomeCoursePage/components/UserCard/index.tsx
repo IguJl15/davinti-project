@@ -15,8 +15,10 @@ function UserCard({ name, job, role }: UserCardProps) {
       </div>
       <div className={style.contentWrapper}>
         <h4 className="title-large on-surface-text">{name}</h4>
-        <p className="label-large on-surface-variant-text">{job}</p>
-        <p className="label-large on-surface-variant-text">{role}</p>
+        <div className={style.details}>
+          <p className="label-large on-surface-variant-text">{job}</p>
+          <p className="label-large on-surface-variant-text">{role}</p>
+        </div>
       </div>
     </div>
   );
