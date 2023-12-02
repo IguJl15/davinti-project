@@ -18,9 +18,9 @@ class GetAnnouncementById(
 ) : Query<GetAnnouncementByIdDto, Announcement> {
     @PreAuthorize("hasRole('INSTRUCTOR')")
     override fun execute(params: GetAnnouncementByIdDto): Announcement {
-        val course = getCourse.execute(params.courseId)
+        val courseView = getCourse.execute(params.courseId)
 
-        val announcement = course.announcements.singleOrNull { it.id == params.announcementId } ?: throw ResponseStatusException(
+        val announcement = courseView.course.announcements.singleOrNull { it.id == params.announcementId } ?: throw ResponseStatusException(
             HttpStatus.NOT_FOUND
         )
 

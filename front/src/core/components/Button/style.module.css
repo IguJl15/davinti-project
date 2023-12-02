@@ -1,0 +1,110 @@
+.button {
+  display: inline-flex;
+  height: 40px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+
+  border-radius: 20px;
+
+  border: none;
+  overflow: hidden;
+
+  --default-shadow: 0px 1px 3px 1px #00000026, 0px 1px 2px 0px #0000004d;
+
+  & .state {
+    display: flex;
+    padding: 10px 24px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    flex: 1 0 0;
+    align-self: stretch;
+  }
+
+  &.icon .state {
+    padding: 10px 24px 10px 16px;
+  }
+}
+
+.Primary {
+  --text-color: var(--md-sys-color-on-primary);
+  --background-color: var(--md-sys-color-primary);
+
+  /* Hover */
+  --hover-background-color: color-mix(in srgb, var(--md-sys-color-on-primary) 8%, transparent);
+  --hover-shadow: var(--default-shadow);
+
+  /* Clicked */
+  --active-background-color: color-mix(in srgb, var(--md-sys-color-on-primary) 12%, transparent);
+}
+
+.Text {
+  --text-color: var(--md-sys-color-primary);
+  --background-color: transparent;
+
+  /* Hover */
+  --hover-background-color: color-mix(in srgb, var(--md-sys-color-primary) 8%, transparent);
+  --hover-shadow: unset;
+
+  /* Clicked */
+  --active-background-color: color-mix(in srgb, var(--md-sys-color-primary) 12%, transparent);
+
+  & .state {
+    padding: 10px 12px;
+  }
+
+  &.icon .state {
+    padding: 10px 16px 10px 12px;
+  }
+}
+
+.Tonal {
+  --text-color: var(--md-sys-color-on-secondary-container);
+  --background-color: var(--md-sys-color-secondary-container);
+
+  /* Hover */
+  --hover-background-color: color-mix(
+    in srgb,
+    var(--md-sys-color-on-secondary-container) 8%,
+    transparent
+  );
+  --hover-shadow: var(--default-shadow);
+
+  /* Clicked */
+  --active-background-color: color-mix(
+    in srgb,
+    var(--md-sys-color-on-secondary-container) 12%,
+    transparent
+  );
+}
+
+.button {
+  color: var(--text-color);
+  background-color: var(--background-color);
+
+  &:hover {
+    box-shadow: var(--hover-shadow);
+
+    & .state {
+      background: var(--hover-background-color);
+    }
+  }
+
+  &:active .state {
+    background: var(--active-background-color);
+  }
+
+  &.disabled {
+    background-color: unset;
+    color: var(--md-sys-color-on-surface);
+    box-shadow: unset;
+
+    & .state {
+      opacity: 0.38;
+      background: color-mix(in srgb, var(--md-sys-color-on-surface) 12%, transparent);
+    }
+  }
+}

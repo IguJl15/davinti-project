@@ -9,7 +9,10 @@ import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Component
 
-data class CreateCourseDto(val name: String)
+data class CreateCourseDto(
+    val name: String,
+    val description: String,
+)
 
 @Component
 class CreateCourseCommand(

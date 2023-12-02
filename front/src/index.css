@@ -1,6 +1,15 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import url('./core/styles/theme.css');
+
+:root {
+  font-family: 'Roboto', sans-serif;
+  background: var(--md-sys-color-background);
+  color: black;
+
+  --m-3-sys-light-on-surface: #1b1b1f;
 }
 
+header {
+  width: 100%;
+  list-style: none;
+}

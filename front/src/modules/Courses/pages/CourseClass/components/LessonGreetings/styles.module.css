@@ -1,0 +1,15 @@
+.greetings_wrapper {
+  padding-left: 5px;
+  padding-bottom: 2px;
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  height: auto;
+}
+
+.text_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}

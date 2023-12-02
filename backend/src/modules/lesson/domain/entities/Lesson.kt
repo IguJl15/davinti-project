@@ -1,6 +1,7 @@
 package com.davintiproject.backend.modules.lesson.domain.entities
 
 import com.davintiproject.backend.modules.course.domain.entities.Course
+import com.fasterxml.jackson.annotation.JsonIgnore
 import jakarta.persistence.*
 import jakarta.validation.constraints.NotBlank
 
@@ -22,5 +23,6 @@ class Lesson(
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.PERSIST, CascadeType.MERGE], optional = false)
     @JoinColumn(name = "course_id")
+    @JsonIgnore
     val course: Course
 )

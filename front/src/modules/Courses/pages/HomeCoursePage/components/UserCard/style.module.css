@@ -1,0 +1,29 @@
+.cardWrapper {
+  display: flex;
+  padding: 8px;
+  gap: 8px;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-self: stretch;
+}
+
+.logoWrapper {
+  display: flex;
+  width: 80px;
+  height: 80px;
+  justify-content: center;
+}
+
+.contentWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-self: stretch;
+  flex: 1 0 0;
+
+  & .details {
+    display: flex;
+    flex-direction: column;
+  }
+}

@@ -1,21 +1,18 @@
-import { useState } from "react";
+import { Outlet } from 'react-router-dom';
+import { NavBar } from './core/components/NavBar';
+import './index.css';
 
-function App() {
-  const [state, setState] = useState(0);
-
-  const handleButtonClick = () => {
-    setState(state + 1);
-  };
-
+const Root = () => {
   return (
     <>
-      <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
-        <button onClick={handleButtonClick} style={{ width: "300px" }}>
-          {state}
-        </button>
-      </div>
+      <header>
+        <NavBar />
+      </header>
+
+      <Outlet />
+      <footer></footer>
     </>
   );
-}
+};
 
-export default App;
+export default Root;

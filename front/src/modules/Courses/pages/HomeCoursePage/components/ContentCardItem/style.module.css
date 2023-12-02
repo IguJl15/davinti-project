@@ -1,0 +1,25 @@
+.cardItem {
+  width: clamp(250px, 100%, 750px);
+  display: flex;
+  padding: 8px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  align-self: stretch;
+  background: var(--md-sys-color-surface);
+  border-radius: 8px;
+}
+
+.text {
+  overflow: hidden;
+  color: var(--md-sys-color-on-surface);
+
+  text-overflow: ellipsis;
+  /* M3/title/medium */
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+}
