@@ -29,7 +29,7 @@ function NavBar() {
           </>
         )}
 
-        <NavButton label="Instuctor courses" redirectLink="instructor/my_courses" />
+        <NavButton label="Instuctor courses" redirectLink="instructor" />
       </div>
       <div className={styles.frame_2}>
         <div className={styles.user_icon}>
