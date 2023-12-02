@@ -33,7 +33,6 @@ class DeleteCourseCommand(
         }
 
         courseRepository.deleteById(course.id)
-        EntityManager
     }
 
 }
