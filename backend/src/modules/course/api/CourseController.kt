@@ -2,6 +2,7 @@ package com.davintiproject.backend.modules.course.api
 
 import com.davintiproject.backend.modules.course.domain.commands.CreateCourseCommand
 import com.davintiproject.backend.modules.course.domain.commands.CreateCourseDto
+import com.davintiproject.backend.modules.course.domain.commands.DeleteCourseCommand
 import com.davintiproject.backend.modules.course.domain.entities.Course
 import com.davintiproject.backend.modules.course.domain.queries.GetAllAvailableCourses
 import com.davintiproject.backend.modules.course.domain.queries.GetCourseById
@@ -17,7 +18,8 @@ import java.net.URI
 class CourseController(
     val createCommand: CreateCourseCommand,
     val getAllQuery: GetAllAvailableCourses,
-    val getByIdQuery: GetCourseById
+    val getByIdQuery: GetCourseById,
+    val deleteCommand: DeleteCourseCommand
 ) {
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
@@ -43,6 +45,8 @@ class CourseController(
 
     @DeleteMapping("/{id}")
     fun deleteCourse(@PathVariable id: Int): ResponseEntity<Unit> {
+        deleteCommand.execute(id)
+
         return ResponseEntity.noContent().build()
     }
 }

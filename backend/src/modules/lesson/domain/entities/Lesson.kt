@@ -20,7 +20,7 @@ class Lesson(
     @OneToMany(cascade = [CascadeType.ALL], orphanRemoval = true)
     val supportContent: MutableList<Content>,
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL], optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.PERSIST, CascadeType.MERGE], optional = false)
     @JoinColumn(name = "course_id")
     val course: Course
 )

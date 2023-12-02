@@ -18,7 +18,7 @@ class Course(
     @JsonIgnore
     val studentsEnrolled: MutableList<Student> = mutableListOf(),
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL], optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.PERSIST, CascadeType.MERGE], optional = false)
     @JoinColumn(name = "user_id", nullable = false)
     @JsonIgnore
     val instructor: Instructor,

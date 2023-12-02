@@ -2,7 +2,7 @@ package com.davintiproject.backend.modules.course.api
 
 import com.davintiproject.backend.modules.course.domain.commands.CreateAnnouncementCommand
 import com.davintiproject.backend.modules.course.domain.commands.CreateAnnouncementDto
-//import com.davintiproject.backend.modules.course.domain.commands.DeleteAnnouncementCommand
+import com.davintiproject.backend.modules.course.domain.commands.DeleteAnnouncementCommand
 import com.davintiproject.backend.modules.course.domain.entities.Announcement
 import com.davintiproject.backend.modules.course.domain.queries.GetAllAnnouncement
 import com.davintiproject.backend.modules.course.domain.queries.GetAnnouncementById
@@ -24,8 +24,8 @@ import java.net.URI
 class AnnouncementController (
     val createCommand: CreateAnnouncementCommand,
     val getAllQuery: GetAllAnnouncement,
-    val getByIdQuery: GetAnnouncementById
-//    val deleteCommand: DeleteAnnouncementCommand
+    val getByIdQuery: GetAnnouncementById,
+    val deleteCommand: DeleteAnnouncementCommand
 ) {
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
@@ -51,11 +51,11 @@ class AnnouncementController (
         return ResponseEntity.ok(announcement)
     }
 
-//    @DeleteMapping("/{announcementId}")
-//    @ResponseStatus(HttpStatus.NO_CONTENT)
-//    fun deleteAnnouncement(@PathVariable courseId: Int, @PathVariable announcementId: Int): ResponseEntity<Unit> {
-//        deleteCommand.execute(GetAnnouncementByIdDto(courseId,announcementId))
-//
-//        return ResponseEntity.noContent().build()
-//    }
+    @DeleteMapping("/{announcementId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    fun deleteAnnouncement(@PathVariable courseId: Int, @PathVariable announcementId: Int): ResponseEntity<Unit> {
+        deleteCommand.execute(GetAnnouncementByIdDto(courseId,announcementId))
+
+        return ResponseEntity.noContent().build()
+    }
 }
