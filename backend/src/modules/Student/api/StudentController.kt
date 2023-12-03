@@ -1,9 +1,6 @@
 package com.davintiproject.backend.modules.Student.api
 
-import com.davintiproject.backend.modules.Student.domain.commands.CreateStudentCommand
-import com.davintiproject.backend.modules.Student.domain.commands.CreateStudentDto
-import com.davintiproject.backend.modules.Student.domain.commands.EnrollStudentInCourseCommand
-import com.davintiproject.backend.modules.Student.domain.commands.EnrollStudentInCourseDto
+import com.davintiproject.backend.modules.Student.domain.commands.*
 import com.davintiproject.backend.modules.Student.domain.entities.Student
 import com.davintiproject.backend.modules.Student.domain.queries.GetAllStudents
 import com.davintiproject.backend.modules.Student.domain.queries.GetEnrolledCourseById
@@ -23,7 +20,8 @@ class StudentController(
     val getAllQuery: GetAllStudents,
     val getEnrolledCourses: GetEnrolledCourses,
     val enrollStudentInCourse: EnrollStudentInCourseCommand,
-    val getEnrolledCourseById: GetEnrolledCourseById
+    val getEnrolledCourseById: GetEnrolledCourseById,
+    val deleteCommand: DeleteStudentCommand
 ) {
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
@@ -57,6 +55,8 @@ class StudentController(
 
     @DeleteMapping("/{id}")
     fun deleteStudent(@PathVariable id: Int): ResponseEntity<Unit> {
+        deleteCommand.execute(id)
+
         return ResponseEntity.noContent().build()
     }
 
