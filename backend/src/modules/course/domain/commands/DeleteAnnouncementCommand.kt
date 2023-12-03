@@ -18,17 +18,22 @@ class DeleteAnnouncementCommand(
     private val getInstructor: GetInstructorById,
     private val announcementRepository: AnnouncementRepository
 ) : Command<GetAnnouncementByIdDto, Unit>{
-    @PreAuthorize("hasRole('INSTRUCTOR')")
+    @PreAuthorize("hasRole('INSTRUCTOR') or hasRole('ADMIN')")
     override fun execute(params: GetAnnouncementByIdDto) {
-        val announcement = getAnnouncementById.execute(params)
+        val isAdmin = SecurityContextHolder.getContext().authentication.authorities
+            .any { it.authority == "ROLE_ADMIN" }
 
-        val user = SecurityContextHolder.getContext().authentication.principal as User
-        val instructor = getInstructor.execute(user.id)
+        if (!isAdmin) {
+            // Se não for um administrador, verificar se é o instrutor correto
+            val user = SecurityContextHolder.getContext().authentication.principal as User
+            val instructor = getInstructor.execute(user.id)
 
-        if (instructor.courses.none { it.id == params.courseId }) {
-            throw ResponseStatusException(HttpStatus.FORBIDDEN, "You don't have access to this resource")
+            if (instructor.courses.none { it.id == params.courseId }) {
+                throw ResponseStatusException(HttpStatus.FORBIDDEN, "You don't have access to this resource")
+            }
         }
 
+        val announcement = getAnnouncementById.execute(params)
         announcementRepository.deleteById(announcement.id)
     }
 }

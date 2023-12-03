@@ -16,7 +16,7 @@ data class GetAnnouncementByIdDto (
 class GetAnnouncementById(
     val getCourse: GetCourseById
 ) : Query<GetAnnouncementByIdDto, Announcement> {
-    @PreAuthorize("hasRole('INSTRUCTOR')")
+    @PreAuthorize("hasRole('INSTRUCTOR') || hasRole('ADMIN')")
     override fun execute(params: GetAnnouncementByIdDto): Announcement {
         val courseView = getCourse.execute(params.courseId)
 

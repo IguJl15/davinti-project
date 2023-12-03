@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component
 class GetAllAnnouncement(
     val announcementRepository: AnnouncementRepository
 ) : Query<Int, Collection<Announcement>> {
-    @PreAuthorize("hasRole('INSTRUCTOR')")
+    @PreAuthorize("hasRole('INSTRUCTOR') || hasRole('ADMIN')")
     override fun execute(params: Int): Collection<Announcement> {
         val announcements = announcementRepository.findByCourseId(params)
 
