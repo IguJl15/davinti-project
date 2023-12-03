@@ -1,0 +1,12 @@
+.card {
+  display: flex;
+  height: 50px;
+  padding: 0px 10px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  align-self: stretch;
+
+  border: 1px solid var(--LIGHT-GRAY, #f5f5f5);
+  background: var(--m-3-sys-light-surface-container-lowest, #fff);
+}

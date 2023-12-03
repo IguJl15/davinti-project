@@ -20,7 +20,7 @@ async function coursePageLoader({ params }: LoaderFunctionArgs): Promise<{ cours
   };
 }
 
-function HomeCoursePage() {
+function CourseHomePage() {
   const { enrollCurrentUserOnCourse } = useCoursesActions();
   const { course } = useLoaderData() as { course: Course; instructor: User };
 
@@ -57,4 +57,4 @@ function HomeCoursePage() {
   );
 }
 
-export { HomeCoursePage, coursePageLoader };
+export { CourseHomePage, coursePageLoader };
