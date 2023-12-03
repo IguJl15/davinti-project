@@ -7,7 +7,7 @@ type ButtonProps = {
   label: string;
   onClick?: () => void;
   type?: 'button' | 'reset' | 'submit';
-  style?: ButtonStyle;
+  buttonStyle?: ButtonStyle;
   icon?: ReactNode;
   disabled?: boolean;
 };
@@ -19,8 +19,9 @@ function PrimaryButton({
   onClick,
   icon = undefined,
   type = 'button',
-  style = 'Primary',
+  buttonStyle = 'Primary',
   disabled = false,
+  ...rest
 }: ButtonProps) {
   return (
     <button
@@ -29,11 +30,12 @@ function PrimaryButton({
       className={
         `label-large ` +
         `${styles.button} ` +
-        `${styles[style]} ` +
+        `${styles[buttonStyle]} ` +
         `${disabled && styles.disabled} ` +
         `${icon && styles.icon} `
       }
       type={type}
+      {...rest}
     >
       <span className={styles.state}>
         {icon}

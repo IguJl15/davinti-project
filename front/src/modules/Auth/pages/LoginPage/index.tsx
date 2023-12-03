@@ -58,7 +58,7 @@ function LoginPage() {
             {...register('password')}
           />
           <ErrorMessage>{errors.password?.message}</ErrorMessage>
-          <PrimaryButton type="submit" label="Entrar" style="Text" />
+          <PrimaryButton type="submit" label="Entrar" buttonStyle="Text" />
         </form>
       </div>
     </div>
