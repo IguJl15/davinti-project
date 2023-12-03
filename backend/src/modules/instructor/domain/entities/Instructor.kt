@@ -14,7 +14,7 @@ class Instructor(
     @Column(nullable = false)
     val siape: String = "",
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "instructor", cascade = [CascadeType.ALL])
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "instructor")
     val courses: List<Course> = emptyList(),
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "author", cascade = [CascadeType.ALL])

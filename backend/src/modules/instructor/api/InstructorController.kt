@@ -2,6 +2,7 @@ package com.davintiproject.backend.modules.instructor.api
 
 import com.davintiproject.backend.modules.instructor.domain.commands.CreateInstructorCommand
 import com.davintiproject.backend.modules.instructor.domain.commands.CreateInstructorDto
+import com.davintiproject.backend.modules.instructor.domain.commands.DeleteInstructorCommand
 import com.davintiproject.backend.modules.instructor.domain.entities.Instructor
 import com.davintiproject.backend.modules.instructor.domain.queries.GetAllInstructors
 import com.davintiproject.backend.modules.instructor.domain.queries.GetInstructorById
@@ -15,7 +16,8 @@ import java.net.URI
 class InstructorController(
     val createCommand: CreateInstructorCommand,
     val getAllQuery: GetAllInstructors,
-    val getByIdQuery: GetInstructorById
+    val getByIdQuery: GetInstructorById,
+    val deleteCommand: DeleteInstructorCommand
 ) {
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
@@ -43,6 +45,8 @@ class InstructorController(
 
     @DeleteMapping("/{id}")
     fun deleteInstructor(@PathVariable id: Int): ResponseEntity<Unit> {
+        deleteCommand.execute(id)
+
         return ResponseEntity.noContent().build()
     }
 }
