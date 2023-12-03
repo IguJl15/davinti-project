@@ -16,7 +16,7 @@ class Course(
     var isPublic: Boolean = false,
 
     @Column(length = 1000)
-    val description: String = "",
+    val description: String? = "",
 
     @ManyToMany(mappedBy = "enrolledCourses")
     @JsonIgnore
@@ -35,4 +35,5 @@ class Course(
     val announcements: List<Announcement> = emptyList()
 ) {
     val instructorId get() = instructor.id
+
 }

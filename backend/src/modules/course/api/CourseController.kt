@@ -1,8 +1,6 @@
 package com.davintiproject.backend.modules.course.api
 
-import com.davintiproject.backend.modules.course.domain.commands.CreateCourseCommand
-import com.davintiproject.backend.modules.course.domain.commands.CreateCourseDto
-import com.davintiproject.backend.modules.course.domain.commands.DeleteCourseCommand
+import com.davintiproject.backend.modules.course.domain.commands.*
 import com.davintiproject.backend.modules.course.domain.entities.Course
 import com.davintiproject.backend.modules.course.domain.queries.CourseView
 import com.davintiproject.backend.modules.course.domain.queries.GetAllAvailableCourses
@@ -19,7 +17,8 @@ class CourseController(
     val createCommand: CreateCourseCommand,
     val getAllQuery: GetAllAvailableCourses,
     val getByIdQuery: GetCourseById,
-    val deleteCommand: DeleteCourseCommand
+    val deleteCommand: DeleteCourseCommand,
+    val changeInstructorCommand: ChangeInstructorOfCourseCommand
 ) {
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
@@ -48,5 +47,14 @@ class CourseController(
         deleteCommand.execute(id)
 
         return ResponseEntity.noContent().build()
+    }
+
+    @PatchMapping("/{courseId}/instructors/{instructorId}")
+    fun updateInstructor(@PathVariable courseId: Int, @PathVariable instructorId: Int): ResponseEntity<CourseView> {
+        val dto = ChangeInstructorOfCourseDto(courseId, instructorId)
+
+        val course = changeInstructorCommand.execute(dto)
+
+        return ResponseEntity.ok(course)
     }
 }
