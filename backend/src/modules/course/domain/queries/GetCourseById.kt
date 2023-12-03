@@ -14,12 +14,17 @@ import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Component
 import org.springframework.web.server.ResponseStatusException
 
+data class InstructorView(
+    val name: String,
+    val siape: String,
+)
+
 data class CourseView(
     val id: Int,
     var name: String,
-    val description: String,
+    val description: String?,
 
-    val instructor: Instructor,
+    val instructor: InstructorView,
 
     val lessons: List<Lesson>,
 
@@ -27,8 +32,11 @@ data class CourseView(
     val course: Course
 ) {
     companion object {
+
         fun fromCourse(course: Course): CourseView {
-            return CourseView(course.id, course.name, course.description,course.instructor, course.lessons, course)
+            val instructor = InstructorView(course.instructor.completeName, course.instructor.siape)
+
+            return CourseView(course.id, course.name, course.description, instructor, course.lessons, course)
 
         }
     }
