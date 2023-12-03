@@ -6,6 +6,8 @@ import com.davintiproject.backend.modules.Student.domain.commands.EnrollStudentI
 import com.davintiproject.backend.modules.Student.domain.commands.EnrollStudentInCourseDto
 import com.davintiproject.backend.modules.Student.domain.entities.Student
 import com.davintiproject.backend.modules.Student.domain.queries.GetAllStudents
+import com.davintiproject.backend.modules.Student.domain.queries.GetEnrolledCourseById
+import com.davintiproject.backend.modules.Student.domain.queries.GetEnrolledCourseByIdDto
 import com.davintiproject.backend.modules.Student.domain.queries.GetEnrolledCourses
 import com.davintiproject.backend.modules.course.domain.entities.Course
 import com.davintiproject.backend.modules.course.domain.queries.CourseView
@@ -20,7 +22,8 @@ class StudentController(
     val createCommand: CreateStudentCommand,
     val getAllQuery: GetAllStudents,
     val getEnrolledCourses: GetEnrolledCourses,
-    val enrollStudentInCourse: EnrollStudentInCourseCommand
+    val enrollStudentInCourse: EnrollStudentInCourseCommand,
+    val getEnrolledCourseById: GetEnrolledCourseById
 ) {
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
@@ -55,5 +58,13 @@ class StudentController(
     @DeleteMapping("/{id}")
     fun deleteStudent(@PathVariable id: Int): ResponseEntity<Unit> {
         return ResponseEntity.noContent().build()
+    }
+
+    @GetMapping("/{studentId}/courses/{courseId}")
+    fun getCoursePageInfo(@PathVariable studentId: Int, @PathVariable courseId: Int): ResponseEntity<CourseView> {
+        val getEnrolledCourseByIdDto = GetEnrolledCourseByIdDto(studentId, courseId)
+        val result = getEnrolledCourseById.execute(getEnrolledCourseByIdDto)
+
+        return ResponseEntity.ok(result)
     }
 }
