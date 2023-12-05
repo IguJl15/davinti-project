@@ -27,7 +27,7 @@ class CreateCourseCommand(
         val instructor = instructorRepository.findById(instructorUser.id).get()
 
         val course = courseRepository.save(
-            Course(name = params.name, isPublic = true, instructor = instructor)
+            Course(name = params.name, description = params.description, isPublic = true, instructor = instructor)
         )
 
         return course.id
