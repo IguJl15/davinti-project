@@ -17,8 +17,7 @@ class CourseController(
     val createCommand: CreateCourseCommand,
     val getAllQuery: GetAllAvailableCourses,
     val getByIdQuery: GetCourseById,
-    val deleteCommand: DeleteCourseCommand,
-    val changeInstructorCommand: ChangeInstructorOfCourseCommand
+    val deleteCommand: DeleteCourseCommand
 ) {
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
@@ -49,12 +48,12 @@ class CourseController(
         return ResponseEntity.noContent().build()
     }
 
-    @PatchMapping("/{courseId}/instructors/{instructorId}")
-    fun updateInstructor(@PathVariable courseId: Int, @PathVariable instructorId: Int): ResponseEntity<CourseView> {
-        val dto = ChangeInstructorOfCourseDto(courseId, instructorId)
-
-        val course = changeInstructorCommand.execute(dto)
-
-        return ResponseEntity.ok(course)
-    }
+//    @PatchMapping("/{courseId}/instructors/{instructorId}")
+//    fun updateInstructor(@PathVariable courseId: Int, @PathVariable instructorId: Int): ResponseEntity<CourseView> {
+//        val dto = ChangeInstructorOfCourseDto(courseId, instructorId)
+//
+//        val course = changeInstructorCommand.execute(dto)
+//
+//        return ResponseEntity.ok(course)
+//    }
 }
