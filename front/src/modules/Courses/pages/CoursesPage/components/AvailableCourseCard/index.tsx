@@ -25,7 +25,7 @@ export default function AvailableCourseCard(course: Course) {
             <>
               <PrimaryButton
                 label="Detalhes"
-                style="Text"
+                buttonStyle="Text"
                 onClick={() => {
                   navigate('/courses/' + course.id);
                 }}
