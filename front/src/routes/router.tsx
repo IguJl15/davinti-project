@@ -5,7 +5,8 @@ import { LoginPage } from '../modules/Auth/pages/LoginPage';
 import { RegisterPage } from '../modules/Auth/pages/RegisterPage';
 import { AnonymusRoute } from './AnonymusRoute';
 import { CoursesPage, coursesPageLoader } from '../modules/Courses/pages/CoursesPage';
-import { HomeCoursePage, coursePageLoader } from '../modules/Courses/pages/HomeCoursePage';
+import { CourseHomePage, coursePageLoader } from '../modules/Courses/pages/CoursesHomePage';
+import { StudentCourses } from '../modules/Courses/pages/StudentCourses';
 import { CoursesList } from '../modules/Instructor/pages/CoursesList';
 import { CourseClass } from '../modules/Courses/pages/CourseClass';
 
@@ -14,10 +15,6 @@ export const router = createBrowserRouter([
     path: '/',
     element: <Root />,
     children: [
-      {
-        path: 'lessons',
-        element: <CourseClass />,
-      },
       {
         path: 'home',
         element: <HomePage />,
@@ -46,16 +43,21 @@ export const router = createBrowserRouter([
       {
         path: 'courses/:courseId',
         loader: coursePageLoader,
-        element: <HomeCoursePage />,
+        element: <CourseHomePage />,
       },
       {
-        path: 'instructor',
+        path: '/student/:studentId/courses',
+        loader: coursesPageLoader,
+        element: <StudentCourses />,
+      },
+      {
+        path: '/student/:studentId/courses/courseId/lesson',
+        element: <CourseClass />,
+      },
+      {
+        path: 'instructor/:instructorId/courses',
         element: <CoursesList />,
       },
-      {
-        path: "student/courses",
-        element: <div></div>
-      }
     ],
   },
 ]);
