@@ -2,7 +2,7 @@ export default interface Course {
     id: number
     name: string
     description: string
-    instructor: { completeName: string }
+    instructor: { name: string }
     lessons: Lessson[]
 }
 

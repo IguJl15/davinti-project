@@ -46,7 +46,7 @@ function CourseHomePage() {
           </div>
           <aside>
             <UserCard
-              name={course.instructor.completeName}
+              name={course.instructor.name}
               job="Analise e Desenvolvimento"
               role="Instituto Federal do Piaui IFPI"
             />

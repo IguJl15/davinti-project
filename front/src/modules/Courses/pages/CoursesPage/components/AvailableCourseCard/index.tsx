@@ -18,9 +18,7 @@ export default function AvailableCourseCard(course: Course) {
           </div>
         </div>
         <div className={styles.footer}>
-          <span className="label-small on-surface-variant-text">
-            {course.instructor.completeName}
-          </span>
+          <span className="label-small on-surface-variant-text">{course.instructor.name}</span>
           {isSignedIn && (
             <>
               <PrimaryButton
