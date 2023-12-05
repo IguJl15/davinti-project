@@ -9,12 +9,8 @@ interface ProgresCardProps {
 export function ProgresCard({ text, progressText }: ProgresCardProps): React.JSX.Element {
   return (
     <div className={styles.card}>
-      <p className="body-large">
-        Voce ja {text}
-      </p>
-      <p className="title-medium">
-        {progressText}
-      </p>
+      <p className="body-large">Voce já {text}</p>
+      <p className="title-medium">{progressText}</p>
     </div>
   );
 }

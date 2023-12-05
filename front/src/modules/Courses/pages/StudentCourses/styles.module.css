@@ -1,5 +1,4 @@
 .content_wrapper {
-  width: clamp(0px, 100%, 1128px);
   height: auto;
 
   display: flex;

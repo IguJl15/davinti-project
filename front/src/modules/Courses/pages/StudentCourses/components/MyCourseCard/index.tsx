@@ -10,16 +10,16 @@ interface MyCourseCardProps {
 function MyCourseCard({ progression, courseName }: MyCourseCardProps): React.JSX.Element {
   return (
     <div className={styles.card}>
-      <div className="courseName">
-        <p className='title-medium' >{courseName}</p>
-        <p className='body-medium'>{courseName}</p>
+      <div className={styles.courseName}>
+        <p className="title-medium">{courseName}</p>
+        <p className="body-medium">{courseName}</p>
       </div>
-      <div className="courseProgress">
+      <div className={styles.courseProgress}>
         <span>Progresso: {progression}%</span>
       </div>
       <div className="buttonWrapper">
         <PrimaryButton label="Continuar" />
-        <PrimaryButton label="Remover" buttonStyle='Text'  />
+        <PrimaryButton label="Remover" buttonStyle="Text" />
       </div>
     </div>
   );
