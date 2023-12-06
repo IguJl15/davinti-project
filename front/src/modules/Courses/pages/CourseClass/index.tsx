@@ -4,13 +4,16 @@ import { Content, ContentType } from './components/Content';
 import { LessonGreetings } from './components/LessonGreetings';
 import styles from './style.module.css';
 import SupportContentCard from './components/SupportContent';
-import { LoaderFunctionArgs, useLoaderData } from 'react-router-dom';
+import { LoaderFunctionArgs, useLoaderData, useNavigate } from 'react-router-dom';
 import { CourseContextActions } from '../../../../modules/Courses/context/Provider';
-import { LessonContextActions } from '../../../../modules/Courses/context/LessonContextActions';
+import {
+  CourseProgressionStatus,
+  LessonContextActions,
+} from '../../../../modules/Courses/context/LessonContextActions';
 
 type CourseClassLoaderData = {
   course: Course;
-  courseLessonIndex: number;
+  courseProgression: CourseProgressionStatus;
 };
 
 export async function courseClassLoader({
@@ -24,14 +27,16 @@ export async function courseClassLoader({
 
   return {
     course,
-    courseLessonIndex: progress.lesson,
+    courseProgression: progress,
   };
 }
 
 function CourseClass() {
-  const { course, courseLessonIndex } = useLoaderData() as CourseClassLoaderData;
+  const navigate = useNavigate();
+  const lessonsActions = new LessonContextActions();
+  const { course, courseProgression: progression } = useLoaderData() as CourseClassLoaderData;
 
-  const lesson = course.lessons[courseLessonIndex - 1];
+  const lesson = course.lessons[progression.lesson - 1];
 
   var mainContentType: ContentType;
   const mainContent = lesson.mainContent;
@@ -40,9 +45,23 @@ function CourseClass() {
   else if (mainContent.videoUrl != null) mainContentType = ContentType.VIDEO;
   else if (mainContent.text != null) mainContentType = ContentType.TEXT;
 
+  const isLastLesson = course.lessons.length <= progression.lesson;
+
   return (
     <Body>
-      <LessonGreetings courseName={course.name} lessonName={lesson.title} />
+      <LessonGreetings
+        courseName={course.name}
+        lessonName={lesson.title}
+        isLastLesson={isLastLesson}
+        nextLessonButtonClicked={() => {
+          const newStatus = lessonsActions.goToNextLesson(course);
+          if (newStatus.concluded) {
+            navigate('/my-courses');
+          } else {
+            navigate(0); // reload page
+          }
+        }}
+      />
       <div className={styles.body}>
         <Content
           title={mainContent.title}

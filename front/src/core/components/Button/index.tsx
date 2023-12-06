@@ -10,6 +10,7 @@ type ButtonProps = {
   buttonStyle?: ButtonStyle;
   icon?: ReactNode;
   disabled?: boolean;
+  rightIcon?: boolean;
 };
 
 // ${styles.disabled}
@@ -21,6 +22,7 @@ function PrimaryButton({
   type = 'button',
   buttonStyle = 'Primary',
   disabled = false,
+  rightIcon = false,
   ...rest
 }: ButtonProps) {
   return (
@@ -32,14 +34,16 @@ function PrimaryButton({
         `${styles.button} ` +
         `${styles[buttonStyle]} ` +
         `${disabled && styles.disabled} ` +
-        `${icon && styles.icon} `
+        `${icon && styles.icon} ` +
+        `${rightIcon && styles.rightIcon} `
       }
       type={type}
       {...rest}
     >
       <span className={styles.state}>
-        {icon}
+        {!rightIcon && <>{icon}</>}
         {label}
+        {rightIcon && <>{icon}</>}
       </span>
     </button>
   );
