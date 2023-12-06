@@ -18,3 +18,20 @@
   align-items: flex-start;
   flex: 1 0 0;
 }
+
+.courseProgress {
+  display: flex;
+
+  &.concluded {
+    color: var(--md-sys-color-on-primary-fixed-variant);
+
+    & .progressPercentage {
+      font-weight: bolder;
+    }
+  }
+
+  & .progressPercentage {
+    text-align: end;
+    width: 2em;
+  }
+}

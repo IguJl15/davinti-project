@@ -12,8 +12,9 @@ function MyCourseCard({ course, progression }: { course: Course; progression: nu
         <p className="title-medium">{course.name}</p>
         <p className="body-medium">{course.name}</p>
       </div>
-      <div className={styles.courseProgress}>
-        <span>Progresso: {progression * 100}%</span>
+      <div className={styles.courseProgress + ' ' + (progression == 1 ? styles.concluded : '')}>
+        <span>Progresso:</span>
+        <span className={styles.progressPercentage}> {progression * 100}%</span>
       </div>
       <div style={{ display: 'flex', gap: '8px' }}>
         <PrimaryButton label="Continuar" onClick={() => navigate('/my-courses/' + course.id)} />

@@ -17,7 +17,7 @@ function MyCourseList({ courses, coursesProgression }: MyCourseCardProps) {
         if (coursesProgression[course.id].concluded) {
           progress = 1;
         } else if (course.lessons.length != 0) {
-          progress = concludedLessons / course.lessons.length;
+          progress = concludedLessons - 1 / course.lessons.length;
         } else {
           progress = 0;
         }
