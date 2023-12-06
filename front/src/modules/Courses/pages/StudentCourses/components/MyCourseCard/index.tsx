@@ -15,9 +15,13 @@ function MyCourseCard({ course }: { course: Course }) {
       <div className={styles.courseProgress}>
         <span>Progresso: {32}%</span>
       </div>
-      <div className="buttonWrapper">
+      <div style={{ display: 'flex', gap: '8px' }}>
         <PrimaryButton label="Continuar" onClick={() => navigate('/my-courses/' + course.id)} />
-        <PrimaryButton label="Remover" buttonStyle="Text" />
+        <PrimaryButton
+          label="Remover"
+          buttonStyle="Text"
+          onClick={() => null /* unenrollCourse(course)*/}
+        />
       </div>
     </div>
   );

@@ -10,7 +10,7 @@ function MyCourseList({ courses }: MyCourseCardProps) {
   return (
     <ul className={styles.card}>
       {courses.map((course: Course) => (
-        <MyCourseCard courseName={course.name} progression={10} />
+        <MyCourseCard course={course} />
       ))}
     </ul>
   );

@@ -1,23 +1,20 @@
-import { PrimaryButton } from "../../../../../../core/components/Button"
-import styles from "./styles.module.css"
+import { PrimaryButton } from '../../../../../../core/components/Button';
+import styles from './styles.module.css';
 
 type LessonGreetingsprops = {
-  courseName: string,
-  lessonName: string
-}
+  courseName: string;
+  lessonName: string;
+};
 
-function LessonGreetings({ courseName, lessonName } : LessonGreetingsprops){
+function LessonGreetings({ courseName, lessonName }: LessonGreetingsprops) {
   return (
     <div className={styles.greetings_wrapper}>
       <div className={styles.text_wrapper}>
         <p>Curso {courseName}</p>
         <h2 className="headline-small">Atividade {lessonName}</h2>
       </div>
-      <div className="button_wrapper">
-        <PrimaryButton label="Iniciar Curso" />
-      </div>
     </div>
-  )
+  );
 }
 
-export { LessonGreetings }
+export { LessonGreetings };

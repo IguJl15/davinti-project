@@ -9,5 +9,5 @@
   gap: 8px;
 
   border-radius: 12px;
-  background: var(--m-3-sys-light-primary-container, #d8e2ff);
+  background: var(--md-sys-color-secondary-container);
 }

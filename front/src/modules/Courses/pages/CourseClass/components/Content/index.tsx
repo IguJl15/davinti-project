@@ -1,6 +1,8 @@
+import { PropsWithChildren, ReactNode } from 'react';
 import { ContentLink } from '../ContentLink';
 import { ContentText } from '../ContentText';
 import { ContentVideo } from '../ContentVideo';
+import styles from './style.module.css';
 
 export enum ContentType {
   VIDEO,
@@ -14,17 +16,29 @@ type ContentProps = {
   videoLink?: string;
   urlLink?: string;
   text?: string;
-};
+} & PropsWithChildren;
 
 function Content({ contentType, videoLink, text, urlLink, title }: ContentProps) {
+  var content: ReactNode;
   switch (contentType) {
     case ContentType.VIDEO:
-      return <ContentVideo videoLink={videoLink} title={title} />;
+      content = <ContentVideo videoLink={videoLink} />;
+      break;
     case ContentType.TEXT:
-      return <ContentText text={text} title={title} />;
+      content = <ContentText text={text} />;
+      break;
     case ContentType.LINK:
-      return <ContentLink urlLink={urlLink} title={title} />;
+      content = <ContentLink title={title} urlLink={urlLink!} />;
+      break;
   }
+
+  return (
+    <div className={styles.caixa}>
+      <h2 className="title-large">{title}</h2>
+
+      <div className={styles.content}>{content}</div>
+    </div>
+  );
 }
 
 export { Content };

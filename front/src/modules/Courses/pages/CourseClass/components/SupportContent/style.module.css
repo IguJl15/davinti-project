@@ -1,0 +1,28 @@
+.cardWrapper {
+  display: flex;
+  padding: 12px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  align-self: stretch;
+}
+
+.contents_list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 4px;
+  align-self: stretch;
+}
+
+.support_item {
+  display: flex;
+  padding: 8px;
+  align-items: flex-start;
+  gap: 4px;
+  align-self: stretch;
+
+  border-radius: 12px;
+  background-color: var(--md-sys-color-surface-container);
+}

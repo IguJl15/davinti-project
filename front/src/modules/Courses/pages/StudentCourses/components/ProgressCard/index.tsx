@@ -10,7 +10,7 @@ export function ProgresCard({ text, progressText }: ProgresCardProps): React.JSX
   return (
     <div className={styles.card}>
       <p className="body-large">Voce já {text}</p>
-      <p className="title-medium">{progressText}</p>
+      <p className="title-large">{progressText}</p>
     </div>
   );
 }
