@@ -8,7 +8,7 @@ import { CoursesPage, coursesPageLoader } from '../modules/Courses/pages/Courses
 import { CourseHomePage, coursePageLoader } from '../modules/Courses/pages/CoursesHomePage';
 import { StudentCourses } from '../modules/Courses/pages/StudentCourses';
 import { CoursesList } from '../modules/Instructor/pages/CoursesList';
-import { CourseClass } from '../modules/Courses/pages/CourseClass';
+import { CourseClass, courseClassLoader } from '../modules/Courses/pages/CourseClass';
 
 export const router = createBrowserRouter([
   {
@@ -52,6 +52,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/my-courses/:courseId',
+        loader: courseClassLoader,
         element: <CourseClass />,
       },
       {

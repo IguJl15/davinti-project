@@ -4,28 +4,55 @@ import { Content, ContentType } from './components/Content';
 import { LessonGreetings } from './components/LessonGreetings';
 import styles from './style.module.css';
 import SupportContentCard from './components/SupportContent';
+import { LoaderFunctionArgs, useLoaderData } from 'react-router-dom';
+import { CourseContextActions } from '../../../../modules/Courses/context/Provider';
+import { LessonContextActions } from '../../../../modules/Courses/context/LessonContextActions';
 
 type CourseClassLoaderData = {
   course: Course;
-  courseProgress: { currentLesson: number };
+  courseLessonIndex: number;
 };
 
+export async function courseClassLoader({
+  params,
+}: LoaderFunctionArgs): Promise<CourseClassLoaderData> {
+  const actions = new CourseContextActions();
+  const lessonsActions = new LessonContextActions();
+
+  const course = await actions.getCourseById(Number(params.courseId));
+  const progress = lessonsActions.getLastConcludedLesson(course);
+
+  return {
+    course,
+    courseLessonIndex: progress.lesson,
+  };
+}
+
 function CourseClass() {
+  const { course, courseLessonIndex } = useLoaderData() as CourseClassLoaderData;
+
+  const lesson = course.lessons[courseLessonIndex - 1];
+
+  var mainContentType: ContentType;
+  const mainContent = lesson.mainContent;
+
+  if (mainContent.url != null) mainContentType = ContentType.LINK;
+  else if (mainContent.videoUrl != null) mainContentType = ContentType.VIDEO;
+  else if (mainContent.text != null) mainContentType = ContentType.TEXT;
+
   return (
     <Body>
-      <LessonGreetings courseName="Vender Celta" lessonName="Celta rebaixado" />
+      <LessonGreetings courseName={course.name} lessonName={lesson.title} />
       <div className={styles.body}>
         <Content
-          title="Video bala pra voces verem"
-          contentType={ContentType.LINK}
-          urlLink='https://www.example.com'
-          // text={
-          //   'O que é Lorem Ipsum?\nLorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco séculos, como também ao salto para a editoração eletrônica, permanecendo essencialmente inalterado. Se popularizou na década de 60, quando a Letraset lançou decalques contendo passagens de Lorem Ipsum, e mais recentemente quando passou a ser integrado a softwares de editoração eletrônica como Aldus PageMaker.\n\nPorque nós o usamos?\nÉ um fato conhecido de todos que um leitor se distrairá com o conteúdo de texto legível de uma página quando estiver examinando sua diagramação. A vantagem de usar Lorem Ipsum é que ele tem uma distribuição normal de letras, ao contrário de "Conteúdo aqui, conteúdo aqui", fazendo com que ele tenha uma aparência similar a de um texto legível. Muitos softwares de publicação e editores de páginas na internet agora usam Lorem Ipsum como texto-modelo padrão, e uma rápida busca por \'lorem ipsum\' mostra vários websites ainda em sua fase de construção. Várias versões novas surgiram ao longo dos anos, eventualmente por acidente, e às vezes de propósito (injetando humor, e coisas do gênero).\n\n\nDe onde ele vem?\nAo contrário do que se acredita, Lorem Ipsum não é simplesmente um texto randômico.'
-          // }
-          videoLink="https://www.youtube.com/embed/tf6yhMynTRo"
+          title={mainContent.title}
+          contentType={mainContentType!}
+          urlLink={mainContent.url}
+          videoLink={mainContent.videoUrl}
+          text={mainContent.text}
         />
         <aside>
-          <SupportContentCard lesson={{} as Lessson} />
+          <SupportContentCard contents={lesson.supportContent} />
         </aside>
       </div>
     </Body>

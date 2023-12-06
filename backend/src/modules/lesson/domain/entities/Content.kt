@@ -12,6 +12,14 @@ sealed class Content(
     val title: String
 )
 
+
+@Entity
+@DiscriminatorValue("text")
+class TextContent(
+    title: String,
+    val text: String
+) : Content(title = title)
+
 @Entity
 @DiscriminatorValue("document")
 class DocumentContent(

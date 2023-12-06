@@ -14,8 +14,11 @@ export interface Lessson {
 }
 
 export interface Content {
-    title: string
-    url?: string
     id: number
+    title: string
+
+    url?: string
+    text?: string
+    videoUrl?: string
     filePath?: string
 }
