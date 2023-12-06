@@ -19,15 +19,16 @@ export class CourseContextActions {
     }
   }
 
-  enrollCurrentUserOnCourse(course: Course) {
+  async enrollCurrentUserOnCourse(course: Course): Promise<unknown | void> {
     const user = authRepository.getLocalAuthData()?.user;
 
     if (!user) return;
 
     return httpClient.post(`/students/${user.id}/courses/${course.id}`, {});
+    
   }
 
-  getUserCourses() {
+  async getUserCourses(): Promise<Course[]> {
     const user = authRepository.getLocalAuthData()?.user;
 
     if (!user) return [];

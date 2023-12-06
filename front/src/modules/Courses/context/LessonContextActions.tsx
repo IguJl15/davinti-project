@@ -1,8 +1,8 @@
 import { LocalStorage } from '../../../core/helpers/local_storage/localStorage';
 import Course from '../models/course';
 
-export type CourseProgressionStatus = { lesson: number; concluded?: boolean };
-export type LessonProgression = {
+export type CourseProgressionStatus = { lesson: number; concluded: boolean };
+export type CoursesProgression = {
   [key: number]: CourseProgressionStatus;
 };
 
@@ -13,22 +13,29 @@ export class LessonContextActions {
     const progressString = localStorage.getItem('lessons_progress');
 
     if (!progressString) {
-      return this.setProgressAt(course, { lesson: 1 });
+      return this.startProgress(course);
     }
 
-    const progress: LessonProgression = JSON.parse(progressString);
+    const progress: CoursesProgression = JSON.parse(progressString);
 
     if (!progress[course.id]) {
-      return this.setProgressAt(course, { lesson: 1 });
+      return this.startProgress(course);
     }
 
     return progress[course.id];
   }
 
+  private startProgress(course: Course) {
+    return this.setProgressAt(course, {
+      lesson: course.lessons.length >= 1 ? 1 : 0,
+      concluded: false,
+    });
+  }
+
   private setProgressAt(course: Course, status: CourseProgressionStatus) {
     const progressString = localStorage.getItem('lessons_progress') ?? '{}';
 
-    const progress: LessonProgression = JSON.parse(progressString);
+    const progress: CoursesProgression = JSON.parse(progressString);
 
     progress[course.id] = {
       lesson: status.lesson,
@@ -46,7 +53,7 @@ export class LessonContextActions {
     if (course.lessons.length <= currentLesson.lesson) {
       return this.setProgressAt(course, { lesson: course.lessons.length, concluded: true });
     } else {
-      return this.setProgressAt(course, { lesson: currentLesson.lesson + 1 });
+      return this.setProgressAt(course, { lesson: currentLesson.lesson + 1, concluded: false });
     }
   }
 }

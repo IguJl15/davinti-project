@@ -6,7 +6,7 @@ import { RegisterPage } from '../modules/Auth/pages/RegisterPage';
 import { AnonymusRoute } from './AnonymusRoute';
 import { CoursesPage, coursesPageLoader } from '../modules/Courses/pages/CoursesPage';
 import { CourseHomePage, coursePageLoader } from '../modules/Courses/pages/CoursesHomePage';
-import { StudentCourses } from '../modules/Courses/pages/StudentCourses';
+import { StudentCourses, enrolledCoursesLoader } from '../modules/Courses/pages/StudentCourses';
 import { CoursesList } from '../modules/Instructor/pages/CoursesList';
 import { CourseClass, courseClassLoader } from '../modules/Courses/pages/CourseClass';
 
@@ -47,7 +47,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/my-courses',
-        loader: coursesPageLoader,
+        loader: enrolledCoursesLoader,
         element: <StudentCourses />,
       },
       {
