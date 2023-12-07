@@ -6,7 +6,7 @@ WORKDIR /app
 
 COPY gradle gradle
 COPY build.gradle settings.gradle gradlew ./
-COPY backend backend
+COPY ./backend ./backend
 
 RUN --mount=type=cache,target=/root/.gradle gradle build -x test
 RUN mkdir -p ./build/libs/dependency
