@@ -49,14 +49,17 @@ function AuthProvider({ children }: PropsWithChildren) {
     const exisitingAuthData = authRepository.getLocalAuthData();
 
     if (exisitingAuthData != null) {
-      setChecking(false);
+      // setChecking(false);
       setAuthData(exisitingAuthData);
     }
   }, []);
 
   return (
     <AuthContext.Provider value={data}>
-      {checking ? <>Carregando</> : children}
+      {
+        // checking ? <>Carregando</> :
+        children
+      }
     </AuthContext.Provider>
   );
 }

@@ -69,3 +69,24 @@ table {
     padding-right: 24px;
   }
 }
+
+.lessons_list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background-color: var(--md-sys-color-surface-container-lowest);
+  padding: 4px;
+  border-radius: 4px;
+
+  & div {
+    margin: 4px 4px 0 4px;
+    padding: 0 4px;
+    border-radius: 4px;
+    background-color: var(--md-sys-color-surface-container);
+
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+  }
+}

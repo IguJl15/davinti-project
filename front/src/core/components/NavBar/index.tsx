@@ -3,9 +3,10 @@ import user_logo from '../../../assets/user_logo.png';
 import styles from './style.module.css';
 import { NavButton } from '../NavButton';
 import { useAuth } from '../../../core/hooks/useAuth';
+import { Role } from '../../../core/interfaces/Role';
 
 function NavBar() {
-  const { isSignedIn, logOut } = useAuth();
+  const { isSignedIn, authData, logOut } = useAuth();
   return (
     <div className={styles.navbar_wrapper}>
       <div className={styles.frame_1}>
@@ -23,12 +24,15 @@ function NavBar() {
         {isSignedIn && (
           <>
             <NavButton label="Cursos" redirectLink="/courses" />
-            <NavButton label="Meus Cursos" redirectLink="/mycourses" />
+            <NavButton
+              label="Meus Cursos"
+              redirectLink={
+                authData?.user?.role == Role.INSTRUCTOR ? '/instructor/mycourses' : '/mycourses'
+              }
+            />
             <NavButton label="Sair" redirectLink="/login" onClick={logOut} />
           </>
         )}
-
-        <NavButton label="Meus Cursos (instrutor)" redirectLink="/instructor" />
       </div>
       <div className={styles.frame_2}>
         <div className={styles.user_icon}>

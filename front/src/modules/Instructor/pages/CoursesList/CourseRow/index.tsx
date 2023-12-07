@@ -2,8 +2,11 @@ import Course from '../../../../Courses/models/course';
 import styles from './styles.module.css';
 import { IconButton } from '../../../../../core/components/IconButton';
 import { useState } from 'react';
+import { httpClient } from '../../../../../core/providers/AuthProvider/AuthProvider';
+import { useNavigate } from 'react-router-dom';
 
 export default function CourseRow({ course }: { course: Course }) {
+  const navigate = useNavigate();
   const [expanded, setExpanded] = useState(false);
   return (
     <tr>
@@ -20,9 +23,24 @@ export default function CourseRow({ course }: { course: Course }) {
                 </span>
               }
             />
-            <span className="body-medium">{course.lessons.length} aulas</span>
+            <span className={'body-medium'}>{course.lessons.length} aulas</span>
           </div>
-          {expanded && course.lessons.map((lesson) => <>{lesson.title}</>)}
+          {expanded && (
+            <div className={styles.lessons_list}>
+              {course.lessons.map((lesson) => (
+                <div>
+                  <span>{lesson.title}</span>
+                  <div>
+                    <IconButton
+                      buttonStyle="Text"
+                      icon={<span className="material-symbols-outlined">delete</span>}
+                    />
+                  </div>
+                </div>
+              ))}
+              <span></span>
+            </div>
+          )}
         </div>
       </td>
       <td className={styles.actionsTd}>
@@ -32,6 +50,11 @@ export default function CourseRow({ course }: { course: Course }) {
           <IconButton
             buttonStyle="Text"
             icon={<span className="material-symbols-outlined">delete</span>}
+            onClick={async () => {
+              await httpClient.delete(`/courses/${course.id}`);
+
+              navigate(0);
+            }}
           />
         </div>
       </td>

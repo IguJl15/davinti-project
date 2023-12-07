@@ -11,6 +11,7 @@ interface MyCourseCardProps {
 function MyCourseList({ courses, coursesProgression }: MyCourseCardProps) {
   return (
     <ul className={styles.card}>
+      {courses.length == 0 ? <>Você ainda não começou nenhum curso</> : <></>}
       {courses.map((course: Course) => {
         const concludedLessons = coursesProgression[course.id].lesson;
         var progress: number;
