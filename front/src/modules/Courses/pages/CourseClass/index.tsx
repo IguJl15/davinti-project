@@ -56,7 +56,7 @@ function CourseClass() {
         nextLessonButtonClicked={() => {
           const newStatus = lessonsActions.goToNextLesson(course);
           if (newStatus.concluded) {
-            navigate('/my-courses');
+            navigate('/mycourses');
           } else {
             navigate(0); // reload page
           }

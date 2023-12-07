@@ -1,5 +1,6 @@
 export enum Role {
   STUDENT,
+  INSTRUCTOR,
   ADMIN,
 }
 
@@ -11,9 +12,9 @@ export function parseRole(value: string) {
     case "role_student":
       return Role.STUDENT;
 
-    // case "instructor":
-    // case "role_instructor":
-    //   return Role.INSTRUCTOR;
+    case "instructor":
+    case "role_instructor":
+      return Role.INSTRUCTOR;
 
     case "admin":
     case "role_admin":

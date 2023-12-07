@@ -16,6 +16,7 @@ export const httpClient: HttpClient = new AxiosClient(API_URL);
 export const authRepository = new AuthRepository(httpClient, LocalStorage.instance);
 
 function AuthProvider({ children }: PropsWithChildren) {
+  const [checking, setChecking] = useState(true);
   const [authData, setAuthData] = useState<AuthData | null>(null);
 
   async function logIn(params: LoginParams) {
@@ -48,11 +49,16 @@ function AuthProvider({ children }: PropsWithChildren) {
     const exisitingAuthData = authRepository.getLocalAuthData();
 
     if (exisitingAuthData != null) {
+      setChecking(false);
       setAuthData(exisitingAuthData);
     }
   }, []);
 
-  return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={data}>
+      {checking ? <>Carregando</> : children}
+    </AuthContext.Provider>
+  );
 }
 
 export { AuthProvider };

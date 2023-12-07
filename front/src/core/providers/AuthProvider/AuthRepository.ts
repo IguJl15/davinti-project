@@ -1,3 +1,4 @@
+import Course from "../../../modules/Courses/models/course";
 import {
   AuthData,
   LoginParams,
@@ -5,13 +6,14 @@ import {
 } from "../../contexts/AuthContext/AuthContext";
 import HttpClient from "../../helpers/http/http_client";
 import { LocalStorage } from "../../helpers/local_storage/localStorage";
+import { parseRole } from "../../interfaces/Role";
 import { User } from "../../interfaces/User";
 
 export class AuthRepository {
   constructor(
     private httpClient: HttpClient,
     private localStorage: LocalStorage
-  ) {}
+  ) { }
 
   static localStorageKey = "auth_data";
 
@@ -59,9 +61,23 @@ export class AuthRepository {
       { Authorization: response.accessToken }
     );
 
+    user.role = parseRole(String(user.role))
+
     const authData = { user, ...response };
     this.saveLocalAuthData(authData);
 
     return authData;
+  }
+
+  async getAllDataFromCurrentUser(): Promise<User & { courses: Course[] } | null> {
+    const localData = this.getLocalAuthData();
+
+    if (!localData) return null;
+
+    return await this.httpClient.get(
+      "/me",
+      {},
+      { Authorization: localData.accessToken }
+    );
   }
 }

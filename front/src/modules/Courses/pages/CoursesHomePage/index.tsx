@@ -47,7 +47,7 @@ function CourseHomePage() {
             <PrimaryButton
               buttonStyle="Tonal"
               label="Continuar Curso"
-              onClick={() => navigate('/my-courses/' + course.id)}
+              onClick={() => navigate('/mycourses/' + course.id)}
             />
           ) : (
             <PrimaryButton

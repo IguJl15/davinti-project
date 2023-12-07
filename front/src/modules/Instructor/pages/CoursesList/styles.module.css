@@ -1,7 +1,5 @@
 .cardList {
-  width: clamp(300px, 100%, 1000px);
-  height: clamp(600px, 100%, 800px);
-  background: #F2F0F4;
+  background: #f2f0f4;
   padding: 20px 12px;
 }
 
@@ -21,9 +19,35 @@
   display: flex;
   justify-content: space-between;
 
-  & h2{
+  & h2 {
     height: 40px;
     display: flex;
     align-items: center;
+  }
+}
+
+table {
+  border: none;
+
+  & tbody {
+    border: none;
+
+    & tr:nth-child(odd) {
+      background-color: var(--md-sys-color-surface-container-low);
+    }
+
+    & td {
+      border: none;
+      padding: 8px;
+    }
+
+    & .actionsTd {
+      width: 10%
+    }
+  }
+
+  & .courseDetails {
+    display: flex;
+    flex-direction: column;
   }
 }

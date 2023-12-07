@@ -4,10 +4,10 @@ import style from "./style.module.css"
 
 function CourseListCard({ children }:PropsWithChildren){
   return (
-    <div className={style.card}>
+    <div className={style.card} style={{ width: '100%' }}>
       {children}
-    </div>  
-  )
+    </div>
+  );
 }
 
 export { CourseListCard  }

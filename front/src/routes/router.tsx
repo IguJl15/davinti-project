@@ -1,5 +1,5 @@
 import Root from '../App';
-import { createBrowserRouter } from 'react-router-dom';
+import { Navigate, createBrowserRouter } from 'react-router-dom';
 import { HomePage } from '../modules/Home/pages/HomePage';
 import { LoginPage } from '../modules/Auth/pages/LoginPage';
 import { RegisterPage } from '../modules/Auth/pages/RegisterPage';
@@ -7,8 +7,10 @@ import { AnonymusRoute } from './AnonymusRoute';
 import { CoursesPage, coursesPageLoader } from '../modules/Courses/pages/CoursesPage';
 import { CourseHomePage, coursePageLoader } from '../modules/Courses/pages/CoursesHomePage';
 import { StudentCourses, enrolledCoursesLoader } from '../modules/Courses/pages/StudentCourses';
-import { CoursesList } from '../modules/Instructor/pages/CoursesList';
+import { CoursesList, instructorCoursesLoader } from '../modules/Instructor/pages/CoursesList';
 import { CourseClass, courseClassLoader } from '../modules/Courses/pages/CourseClass';
+import { ProtectedRoute } from './PrivateRoute';
+import { Role } from '../core/interfaces/Role';
 
 export const router = createBrowserRouter([
   {
@@ -19,22 +21,7 @@ export const router = createBrowserRouter([
         path: 'home',
         element: <HomePage />,
       },
-      {
-        path: 'register',
-        element: (
-          <AnonymusRoute>
-            <RegisterPage />
-          </AnonymusRoute>
-        ),
-      },
-      {
-        path: 'login',
-        element: (
-          <AnonymusRoute>
-            <LoginPage />
-          </AnonymusRoute>
-        ),
-      },
+
       {
         path: 'courses',
         loader: coursesPageLoader,
@@ -46,17 +33,52 @@ export const router = createBrowserRouter([
         element: <CourseHomePage />,
       },
       {
-        path: '/my-courses',
+        path: 'mycourses',
         loader: enrolledCoursesLoader,
         element: <StudentCourses />,
       },
       {
-        path: '/my-courses/:courseId',
+        path: 'mycourses/:courseId',
         loader: courseClassLoader,
         element: <CourseClass />,
       },
+    ],
+  },
+  {
+    path: '/',
+    element: (
+      <AnonymusRoute>
+        <Root />
+      </AnonymusRoute>
+    ),
+    children: [
       {
-        path: 'instructor/:instructorId/courses',
+        path: 'register',
+        element: <RegisterPage />,
+      },
+      {
+        path: 'login',
+        element: <LoginPage />,
+      },
+    ],
+  },
+  {
+    path: '/instructor',
+    element: (
+      <ProtectedRoute role={Role.INSTRUCTOR}>
+        <Root />
+      </ProtectedRoute>
+    ),
+    children: [
+      {
+        path: '',
+        index: true,
+        element: <Navigate to="mycourses" />,
+      },
+
+      {
+        path: 'mycourses',
+        loader: instructorCoursesLoader,
         element: <CoursesList />,
       },
     ],

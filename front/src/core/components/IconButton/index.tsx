@@ -1,28 +1,23 @@
 import { ReactNode } from 'react';
+import { ButtonStyle } from '../Button/index.tsx';
 import styles from './style.module.css';
 
-export type ButtonStyle = 'Primary' | 'Text' | 'Tonal';
-
 type ButtonProps = {
-  label: string;
   onClick?: () => void;
   type?: 'button' | 'reset' | 'submit';
   buttonStyle?: ButtonStyle;
-  icon?: ReactNode;
+  icon: ReactNode;
   disabled?: boolean;
-  rightIcon?: boolean;
 };
 
 // ${styles.disabled}
 
-function PrimaryButton({
-  label,
+function IconButton({
   onClick,
-  icon = undefined,
+  icon,
   type = 'button',
   buttonStyle = 'Primary',
   disabled = false,
-  rightIcon = false,
   ...rest
 }: ButtonProps) {
   return (
@@ -34,19 +29,16 @@ function PrimaryButton({
         `${styles.button} ` +
         `${styles[buttonStyle]} ` +
         `${disabled && styles.disabled} ` +
-        `${icon && styles.icon} ` +
-        `${rightIcon && styles.rightIcon} `
+        `${icon && styles.icon} `
       }
       type={type}
       {...rest}
     >
       <span className={styles.state}>
-        {!rightIcon && <>{icon}</>}
-        {label}
-        {rightIcon && <>{icon}</>}
+        {icon}
       </span>
     </button>
   );
 }
 
-export { PrimaryButton };
+export { IconButton };

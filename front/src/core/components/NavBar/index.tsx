@@ -14,22 +14,22 @@ function NavBar() {
         </div>
       </div>
       <div className={styles.button_wrapper}>
-        <NavButton label="Início" redirectLink="home" />
+        <NavButton label="Início" redirectLink="/home" />
         {!isSignedIn && (
           <>
-            <NavButton label="Entrar" redirectLink="login" />
-            <NavButton label="Registrar" redirectLink="register" />
+            <NavButton label="Entrar" redirectLink="/login" />
+            <NavButton label="Registrar" redirectLink="/register" />
           </>
         )}
         {isSignedIn && (
           <>
-            <NavButton label="Cursos" redirectLink="courses" />
-            <NavButton label="Meus Cursos" redirectLink="my-courses" />
-            <NavButton label="Sair" redirectLink="home" onClick={logOut} />
+            <NavButton label="Cursos" redirectLink="/courses" />
+            <NavButton label="Meus Cursos" redirectLink="/mycourses" />
+            <NavButton label="Sair" redirectLink="/home" onClick={logOut} />
           </>
         )}
 
-        <NavButton label="Meus Cursos (instrutor)" redirectLink="instructor" />
+        <NavButton label="Meus Cursos (instrutor)" redirectLink="/instructor" />
       </div>
       <div className={styles.frame_2}>
         <div className={styles.user_icon}>
