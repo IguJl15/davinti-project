@@ -1,0 +1,24 @@
+
+spring:
+  jpa:
+    show-sql: true
+    database: postgresql
+    hibernate:
+      ddl-auto: update
+  flyway:
+    schemas: public
+    driver-class-name: org.postgresql.Driver
+    baseline-description: true
+    baseline-on-migrate: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/mydatabase
+    username: postgres
+    password: postgres
+
+application:
+  security:
+    jwt:
+      secret-key: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+      expiration: 7200000 # 2 hours
+      refresh-token:
+        expiration: 172800000 # 2 days

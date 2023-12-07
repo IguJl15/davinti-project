@@ -1,0 +1,6 @@
+.iframe {
+  width: 100%;
+  aspect-ratio: calc(16 / 9);
+
+  border-radius: 8px;
+}

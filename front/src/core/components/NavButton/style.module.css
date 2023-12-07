@@ -1,0 +1,24 @@
+.button_wrapper {
+  background: none;
+  border: 1px solid whitesmoke;
+
+  height: 48px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1 0 0;
+  align-self: stretch;
+}
+
+.nav_link {
+  color: white;
+  list-style: none;
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

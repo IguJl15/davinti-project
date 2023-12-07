@@ -1,0 +1,20 @@
+.main {
+  width: clamp(0px, 100%, 1128px);
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 0px 16px;
+
+  margin-top: 36px;
+
+  /* CENTER DIIVVVV */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media screen and (max-width: 768px) {
+  .main {
+    padding: 0px 8px;
+  }
+}

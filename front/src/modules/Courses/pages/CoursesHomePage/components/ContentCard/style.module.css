@@ -1,0 +1,36 @@
+.cardWrapper {
+  display: flex;
+  padding: 16px;
+
+  width: clamp(0px, 100%, 800px);
+  height: auto;
+
+  border-radius: 12px;
+  background: color-mix(
+    in srgb,
+    var(--md-sys-color-surface) 100%,
+    var(--md-sys-color-surface-tint) 8%
+  );
+
+  /* M3/Elevation Light/1 */
+  box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.3);
+}
+
+.contentWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.text {
+  width: 100%;
+}
+
+.contentCards {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}

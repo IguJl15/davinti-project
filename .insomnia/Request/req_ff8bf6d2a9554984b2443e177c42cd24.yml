@@ -1,0 +1,25 @@
+_id: req_ff8bf6d2a9554984b2443e177c42cd24
+type: Request
+parentId: fld_5fba4fe2f6f24a78981d9d8349164c9f
+modified: 1698211139006
+created: 1698211000372
+url: "{{ _.url }}/students"
+name: Get all
+description: ""
+method: GET
+body: {}
+parameters: []
+headers:
+  - name: User-Agent
+    value: insomnia/2023.5.8
+authentication:
+  type: bearer
+  token: "{{ _.accessToken }}"
+metaSortKey: -1698211000372
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

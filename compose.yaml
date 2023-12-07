@@ -1,9 +1,34 @@
 services:
   postgres:
-    image: 'postgres:latest'
+    container_name: psql_database
+    image: bitnami/postgresql:latest
     environment:
-      - 'POSTGRES_DB=mydatabase'
-      - 'POSTGRES_PASSWORD=secret'
-      - 'POSTGRES_USER=myuser'
+      - POSTGRESQL_DATABASE=mydatabase
+      - POSTGRESQL_PASSWORD=postgres
+      - POSTGRESQL_USERNAME=postgres
+    volumes:
+      - ./database_data:/bitnami/postgresql
     ports:
-      - '5432'
+      - 5432:5432
+    networks:
+      - app-tier
+  app:
+    container_name: backend
+    build:
+      context: .
+      target: release
+    restart: on-failure
+    # environment:
+    #   - 'SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/mydatabase'
+    ports:
+      - 8080:8080
+    depends_on:
+      - postgres
+    volumes:
+      - .:/app:rw
+    networks:
+      - app-tier
+
+networks:
+  app-tier:
+    driver: bridge

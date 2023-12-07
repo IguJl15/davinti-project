@@ -8,5 +8,5 @@ import org.springframework.boot.runApplication
 class DaVintiBackendApplication
 
 fun main(args: Array<String>) {
-	runApplication<DaVintiBackendApplication>(*args)
+    runApplication<DaVintiBackendApplication>(*args)
 }

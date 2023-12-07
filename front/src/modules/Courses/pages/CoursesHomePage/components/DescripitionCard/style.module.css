@@ -1,0 +1,12 @@
+.cardWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 20px;
+
+  background: var(--md-sys-color-surface);
+  height: auto;
+
+  border-radius: 12px;
+  box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.3);
+}

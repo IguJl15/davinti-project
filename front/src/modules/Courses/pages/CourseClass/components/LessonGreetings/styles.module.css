@@ -1,0 +1,12 @@
+.greetings_wrapper {
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  height: auto;
+}
+
+.text_wrapper {
+  display: flex;
+  flex-direction: column;
+}
