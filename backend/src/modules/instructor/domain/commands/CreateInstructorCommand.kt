@@ -20,22 +20,24 @@ data class CreateInstructorDto(
 @Component
 class CreateInstructorCommand(
     val instructorRepository: InstructorRepository
-) : Command<CreateInstructorDto, Int>{
+) : Command<CreateInstructorDto, Int> {
 
     @PreAuthorize("hasRole('ADMIN')")
     override fun execute(params: CreateInstructorDto): Int {
-        if(instructorRepository.findByEmail(params.email).getOrNull() != null) {
+        if (instructorRepository.findByEmail(params.email).getOrNull() != null) {
             throw ResponseStatusException(HttpStatus.BAD_REQUEST, "Email already in use")
         }
 
         val encryptedPassword = BCryptPasswordEncoder().encode(params.password)
 
-        val instructor = instructorRepository.save(Instructor(
-            completeName = params.name,
-            email = params.email,
-            siape = params.siape,
-            pass = encryptedPassword
-        ))
+        val instructor = instructorRepository.save(
+            Instructor(
+                completeName = params.name,
+                email = params.email,
+                siape = params.siape,
+                pass = encryptedPassword
+            )
+        )
 
         return instructor.id
     }

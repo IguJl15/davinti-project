@@ -11,8 +11,7 @@ import org.springframework.web.server.ResponseStatusException
 
 
 data class LoginDto(
-    val email: String,
-    val password: String
+    val email: String, val password: String
 )
 
 @Component

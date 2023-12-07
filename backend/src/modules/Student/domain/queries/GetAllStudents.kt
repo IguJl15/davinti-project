@@ -8,7 +8,7 @@ import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.stereotype.Component
 
 @Component
-class GetAllStudents (
+class GetAllStudents(
     val studentRepository: StudentRepository,
     val studentAuthorization: StudentAuthorizationService
 ) : Query<Unit, Collection<Student>> {

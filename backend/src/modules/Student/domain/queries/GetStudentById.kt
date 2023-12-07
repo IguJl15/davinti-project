@@ -6,17 +6,15 @@ import com.davintiproject.backend.modules.Student.domain.helpers.StudentAuthoriz
 import com.davintiproject.backend.modules.Student.domain.interfaces.StudentRepository
 import jakarta.persistence.EntityNotFoundException
 import org.springframework.security.access.AccessDeniedException
-import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.stereotype.Component
 
 @Component
 class GetStudentById(
     val studentRepository: StudentRepository,
     val studentAuthorization: StudentAuthorizationService
-) : Query<String, Student> {
+) : Query<Int, Student> {
 
-    @PreAuthorize("hasRole('ADMIN') or authentication.principal.id == #params")
-    override fun execute(params: String): Student {
+    override fun execute(params: Int): Student {
         val student = studentRepository.findById(params)
             .orElseThrow { EntityNotFoundException() }
 

@@ -2,20 +2,38 @@ package com.davintiproject.backend.modules.course.domain.entities
 
 import com.davintiproject.backend.modules.Student.domain.entities.Student
 import com.davintiproject.backend.modules.instructor.domain.entities.Instructor
+import com.davintiproject.backend.modules.lesson.domain.entities.Lesson
+import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.databind.BeanDescription
 import jakarta.persistence.*
 
 @Entity
-data class Course(
+class Course(
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     val id: Int = 0,
-    val name: String = "",
-    val isPublic: Boolean = false,
+    var name: String = "",
+    var isPublic: Boolean = false,
+
+    @Column(length = 1000)
+    val description: String? = "",
 
     @ManyToMany(mappedBy = "enrolledCourses")
-    val studentsEnrolled: List<Student> = emptyList(),
+    @JsonIgnore
+    val studentsEnrolled: MutableList<Student> = mutableListOf(),
 
-    @ManyToOne(cascade = [CascadeType.ALL])
-    @JoinColumn(name = "user_id")
-    val instructor: Instructor? = null,
-)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.PERSIST, CascadeType.MERGE], optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
+    @JsonIgnore
+    val instructor: Instructor,
+
+    @OneToMany(mappedBy = "course")
+    val lessons: List<Lesson> = emptyList(),
+
+    @OneToMany(mappedBy = "course")
+    @JsonIgnore
+    val announcements: List<Announcement> = emptyList()
+) {
+    val instructorId get() = instructor.id
+
+}

@@ -5,5 +5,5 @@ import org.springframework.data.repository.ListCrudRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface CourseRepository : ListCrudRepository<Course, String>
+interface CourseRepository : ListCrudRepository<Course, Int>
 

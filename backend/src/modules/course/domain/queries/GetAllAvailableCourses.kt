@@ -14,11 +14,10 @@ import org.springframework.stereotype.Component
 class GetAllAvailableCourses(
     val courseRepository: CourseRepository,
     val courseAuthorization: CourseAuthorizationService
-) : Query<Unit, Collection<Course>> {
-
-    override fun execute(params: Unit): List<Course> {
+) : Query<Unit, Collection<CourseView>> {
+    override fun execute(params: Unit): List<CourseView> {
         val list = courseRepository.findAll()
 
-        return list.filter(courseAuthorization::userCanViewCourse)
+        return list.filter(courseAuthorization::userCanViewCourse).map { CourseView.fromCourse(it) }
     }
 }

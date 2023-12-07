@@ -13,8 +13,8 @@ class StudentAuthorizationService {
 
         if (user.role == UserRole.admin) return true
 
-        if(user.role == UserRole.user) {
-            if(user.id == student.id) return true
+        if (user.role == UserRole.user) {
+            if (user.id == student.id) return true
         }
 
         return false

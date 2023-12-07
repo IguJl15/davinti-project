@@ -1,15 +1,13 @@
 package com.davintiproject.backend.modules.course.api
 
-import com.davintiproject.backend.modules.course.domain.commands.CreateCourseCommand
-import com.davintiproject.backend.modules.course.domain.commands.CreateCourseDto
+import com.davintiproject.backend.modules.course.domain.commands.*
 import com.davintiproject.backend.modules.course.domain.entities.Course
+import com.davintiproject.backend.modules.course.domain.queries.CourseView
 import com.davintiproject.backend.modules.course.domain.queries.GetAllAvailableCourses
 import com.davintiproject.backend.modules.course.domain.queries.GetCourseById
-import jakarta.persistence.EntityNotFoundException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
-import java.lang.Exception
 import java.net.URI
 
 
@@ -18,7 +16,8 @@ import java.net.URI
 class CourseController(
     val createCommand: CreateCourseCommand,
     val getAllQuery: GetAllAvailableCourses,
-    val getByIdQuery: GetCourseById
+    val getByIdQuery: GetCourseById,
+    val deleteCommand: DeleteCourseCommand
 ) {
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
@@ -29,22 +28,32 @@ class CourseController(
     }
 
     @GetMapping("")
-    fun getAll(): ResponseEntity<Collection<Course>> {
+    fun getAll(): ResponseEntity<Collection<CourseView>> {
         val courses = getAllQuery.execute(Unit)
 
         return ResponseEntity.ok(courses)
     }
 
     @GetMapping("{id}")
-    fun getById(@PathVariable id: String): ResponseEntity<Any> {
-        return try {
-            val course = getByIdQuery.execute(id)
+    fun getById(@PathVariable id: Int): ResponseEntity<CourseView> {
+        val courseView = getByIdQuery.execute(id)
 
-            ResponseEntity.ok(course)
-        } catch (e: EntityNotFoundException) {
-            ResponseEntity.notFound().build()
-        } catch (e: AccessDeniedException) {
-            ResponseEntity.status(HttpStatus.FORBIDDEN).body(e.message)
-        }
+        return ResponseEntity.ok(courseView)
     }
+
+    @DeleteMapping("/{id}")
+    fun deleteCourse(@PathVariable id: Int): ResponseEntity<Unit> {
+        deleteCommand.execute(id)
+
+        return ResponseEntity.noContent().build()
+    }
+
+//    @PatchMapping("/{courseId}/instructors/{instructorId}")
+//    fun updateInstructor(@PathVariable courseId: Int, @PathVariable instructorId: Int): ResponseEntity<CourseView> {
+//        val dto = ChangeInstructorOfCourseDto(courseId, instructorId)
+//
+//        val course = changeInstructorCommand.execute(dto)
+//
+//        return ResponseEntity.ok(course)
+//    }
 }

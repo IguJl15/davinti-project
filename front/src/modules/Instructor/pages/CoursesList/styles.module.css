@@ -1,0 +1,71 @@
+.cardList {
+  /* background-color: var(--md-sys-color-surface-container-lowest); */
+  padding: 20px 0;
+
+  border-radius: 12px;
+}
+
+.contentWrapper {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.frame1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+table {
+  border: none;
+  width: 100%;
+
+  & thead {
+    height: 2em;
+
+    & .courseTh {
+      padding-left: 8px;
+      text-align: start;
+    }
+  }
+
+  & tbody {
+    border: none;
+
+    & tr:nth-child(odd) {
+      background-color: var(--md-sys-color-surface-container-low);
+    }
+
+    & td {
+      border: none;
+      padding: 8px;
+    }
+
+    & .courseDetails {
+      display: flex;
+      flex-direction: column;
+    }
+
+    & .actionsTd {
+      width: 15%;
+
+      & .actions {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+      }
+    }
+  }
+
+  & tr > *:first-child {
+    padding-left: 24px;
+  }
+
+  & tr > *:last-child {
+    padding-right: 24px;
+  }
+}

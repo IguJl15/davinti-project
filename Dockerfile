@@ -6,12 +6,12 @@ WORKDIR /app
 
 COPY gradle gradle
 COPY build.gradle settings.gradle gradlew ./
-COPY backend backend
+COPY ./backend ./backend
 
-RUN --mount=type=cache,target=/root/.gradle ./gradlew build -x test
+RUN --mount=type=cache,target=/root/.gradle gradle build -x test
 RUN mkdir -p ./build/libs/dependency
 WORKDIR /app/backend/build/libs/dependency
-RUN jar -xf ../*.jar
+RUN jar -xf ../backend-0.0.1.jar
 
 
 FROM gradle:7.4.2-jdk17 AS development
@@ -27,15 +27,16 @@ RUN chmod +x ./live.sh
 ENTRYPOINT [ "./live.sh" ]
 
 
-FROM openjdk:8-jdk as release
+FROM openjdk:17-jdk as release
 
 VOLUME /tmp
 
 
 
-ARG DEPENDENCY=/workspace/app/backend/build/libs/dependency
-COPY --from=deps ${DEPENDENCY}/BOOT-INF/lib /app/lib
-COPY --from=deps ${DEPENDENCY}/META-INF /app/META-INF
-COPY --from=deps ${DEPENDENCY}/BOOT-INF/classes /app
+ARG DEPENDENCY=/app/backend/build/libs/dependency
+COPY --from=deps ${DEPENDENCY}/BOOT-INF/lib /davinti/lib
+COPY --from=deps ${DEPENDENCY}/META-INF /davinti/META-INF
+COPY --from=deps ${DEPENDENCY}/BOOT-INF/classes /davinti
 
-ENTRYPOINT ["java","-cp","app:app/lib/*","com.davintiproject.backend.DaVintiBackendApplication"]
+ENTRYPOINT ["java","-cp","/davinti:/davinti/lib/*","com.davintiproject.backend.DaVintiBackendApplicationKt"]
+# ENTRYPOINT [ "sleep", "infinity" ]

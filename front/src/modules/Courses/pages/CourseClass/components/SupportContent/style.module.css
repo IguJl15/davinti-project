@@ -1,0 +1,50 @@
+.cardWrapper {
+  display: flex;
+  padding: 12px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  align-self: stretch;
+}
+
+.contents_list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 4px;
+  align-self: stretch;
+}
+
+.support_item {
+  display: flex;
+  padding: 8px;
+  justify-content: start;
+  align-items: center;
+  gap: 4px;
+  align-self: stretch;
+
+  border-radius: 12px;
+  background-color: var(--md-sys-color-surface-container);
+}
+
+.support_title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  align-self: stretch;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1 0 0;
+
+  text-decoration: none;
+
+  color: var(--md-sys-color-on-primary-fixed-variant);
+}
