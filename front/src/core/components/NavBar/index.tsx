@@ -14,7 +14,6 @@ function NavBar() {
         </div>
       </div>
       <div className={styles.button_wrapper}>
-        <NavButton label="Início" redirectLink="/home" />
         {!isSignedIn && (
           <>
             <NavButton label="Entrar" redirectLink="/login" />
@@ -25,7 +24,7 @@ function NavBar() {
           <>
             <NavButton label="Cursos" redirectLink="/courses" />
             <NavButton label="Meus Cursos" redirectLink="/mycourses" />
-            <NavButton label="Sair" redirectLink="/home" onClick={logOut} />
+            <NavButton label="Sair" redirectLink="/login" onClick={logOut} />
           </>
         )}
 

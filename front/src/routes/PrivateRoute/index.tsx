@@ -11,7 +11,7 @@ function ProtectedRoute({ children, role }: { role?: Role } & PropsWithChildren)
   }
 
   if (role && authData?.user?.role != role) {
-    return <Navigate to="/home" />;
+    return <Navigate to="/mycourses" />;
   }
 
   return children;
