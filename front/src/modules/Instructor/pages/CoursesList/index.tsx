@@ -1,13 +1,15 @@
-import { PrimaryButton } from '../../../../core/components/Button';
-import { Body } from '../../../../core/components/Body';
-import style from './styles.module.css';
-import { CourseListCard } from '../../components/CourseListCard';
-import { Modal } from '../../../../core/components/Modal';
 import React from 'react';
+import { useLoaderData } from 'react-router-dom';
+import { Body } from '../../../../core/components/Body';
+import { PrimaryButton } from '../../../../core/components/Button';
+import { IconButton } from '../../../../core/components/IconButton';
+import { Modal } from '../../../../core/components/Modal';
 import { authRepository } from '../../../../core/providers/AuthProvider/AuthProvider';
 import Course from '../../../Courses/models/course';
-import { useLoaderData } from 'react-router-dom';
-import { IconButton } from '../../../../core/components/IconButton';
+import { CourseListCard } from '../../components/CourseListCard';
+import { CreateCourseFormData } from '../../context/InstructorActionsContext';
+import style from './styles.module.css';
+import { useInstructorActions } from '../../context/InstructorProvider';
 
 type InstructorCousesLoaderData = {
   courses: Course[];
@@ -22,6 +24,7 @@ export async function instructorCoursesLoader(): Promise<InstructorCousesLoaderD
 }
 
 function CoursesList() {
+  const { createCourse, instructor } = useInstructorActions();
   const { courses } = useLoaderData() as InstructorCousesLoaderData;
 
   const [state, setState] = React.useState(false);
@@ -30,23 +33,31 @@ function CoursesList() {
     setState(!state);
   }
 
+  function createCourseButtonClicked(data: CreateCourseFormData) {
+    try {
+      createCourse(data).then(() => setState(false));
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   return (
     <>
-      <Modal state={state} changeState={handleModal} />
+      <Modal state={state} onFormSubmit={createCourseButtonClicked} changeState={handleModal} />
       <Body>
-        <h1>Hello, Kelson</h1>
+        <h1 className="headline-small">Olá, {instructor.completeName}</h1>
         <div className={style.cardList}>
           <div className={style.contentWrapper}>
             <div className={style.frame1}>
-              <h2>Seus cursos</h2>
-              <PrimaryButton label="Adcionar novos cursos" onClick={handleModal} />
+              <h2 className="headline-medium">Seus cursos</h2>
+              <PrimaryButton label="Criar Novo Curso" onClick={handleModal} />
             </div>
             <div className="frame2">
               <CourseListCard>
-                <table style={{ width: '100%' }}>
+                <table cellSpacing={0}>
                   <thead>
-                    <tr>
-                      <th>Curso</th>
+                    <tr className="title-medium">
+                      <th className={style.courseTh}>Curso</th>
                       <th>Ações</th>
                     </tr>
                   </thead>
@@ -55,7 +66,7 @@ function CoursesList() {
                       <tr key={course.id}>
                         <td>
                           <div className={style.courseDetails}>
-                            <span className="title-medium">{course.name}</span>
+                            <span className="body-large">{course.name}</span>
                             <span className="body-medium">{course.lessons.length} aulas</span>
                           </div>
                         </td>

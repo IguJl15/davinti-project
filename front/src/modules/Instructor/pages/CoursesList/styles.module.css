@@ -1,6 +1,8 @@
 .cardList {
-  background: #f2f0f4;
-  padding: 20px 12px;
+  /* background-color: var(--md-sys-color-surface-container-lowest); */
+  padding: 20px 0;
+
+  border-radius: 12px;
 }
 
 .contentWrapper {
@@ -13,21 +15,23 @@
 }
 
 .frame1 {
-  width: 100%;
-  height: auto;
-
   display: flex;
   justify-content: space-between;
-
-  & h2 {
-    height: 40px;
-    display: flex;
-    align-items: center;
-  }
+  align-items: center;
 }
 
 table {
   border: none;
+  width: 100%;
+
+  & thead {
+    height: 2em;
+
+    & .courseTh {
+      padding-left: 8px;
+      text-align: start;
+    }
+  }
 
   & tbody {
     border: none;
@@ -41,13 +45,27 @@ table {
       padding: 8px;
     }
 
+    & .courseDetails {
+      display: flex;
+      flex-direction: column;
+    }
+
     & .actionsTd {
-      width: 10%
+      width: 15%;
+
+      & .actions {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+      }
     }
   }
 
-  & .courseDetails {
-    display: flex;
-    flex-direction: column;
+  & tr > *:first-child {
+    padding-left: 24px;
+  }
+
+  & tr > *:last-child {
+    padding-right: 24px;
   }
 }

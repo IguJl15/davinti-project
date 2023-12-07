@@ -11,6 +11,7 @@ import { CoursesList, instructorCoursesLoader } from '../modules/Instructor/page
 import { CourseClass, courseClassLoader } from '../modules/Courses/pages/CourseClass';
 import { ProtectedRoute } from './PrivateRoute';
 import { Role } from '../core/interfaces/Role';
+import InstructorProvider from '../modules/Instructor/context/InstructorProvider';
 
 export const router = createBrowserRouter([
   {
@@ -66,7 +67,9 @@ export const router = createBrowserRouter([
     path: '/instructor',
     element: (
       <ProtectedRoute role={Role.INSTRUCTOR}>
-        <Root />
+        <InstructorProvider>
+          <Root />
+        </InstructorProvider>
       </ProtectedRoute>
     ),
     children: [
