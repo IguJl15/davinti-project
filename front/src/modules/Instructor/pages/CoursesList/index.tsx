@@ -10,6 +10,7 @@ import { CourseListCard } from '../../components/CourseListCard';
 import { CreateCourseFormData } from '../../context/InstructorActionsContext';
 import style from './styles.module.css';
 import { useInstructorActions } from '../../context/InstructorProvider';
+import CourseRow from './CourseRow';
 
 type InstructorCousesLoaderData = {
   courses: Course[];
@@ -63,26 +64,7 @@ function CoursesList() {
                   </thead>
                   <tbody>
                     {courses.map((course) => (
-                      <tr key={course.id}>
-                        <td>
-                          <div className={style.courseDetails}>
-                            <span className="body-large">{course.name}</span>
-                            <span className="body-medium">{course.lessons.length} aulas</span>
-                          </div>
-                        </td>
-                        <td className={style.actionsTd}>
-                          <div className={style.actions}>
-                            <IconButton
-                              icon={<span className="material-symbols-outlined">edit</span>}
-                            />
-
-                            <IconButton
-                              buttonStyle="Text"
-                              icon={<span className="material-symbols-outlined">delete</span>}
-                            />
-                          </div>
-                        </td>
-                      </tr>
+                      <CourseRow key={course.id} course={course} />
                     ))}
                   </tbody>
                 </table>
