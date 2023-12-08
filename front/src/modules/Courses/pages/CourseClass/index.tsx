@@ -1,15 +1,15 @@
-import Course, { Lessson } from 'modules/Courses/models/course';
-import { Body } from '../../../../core/components/Body';
-import { Content, ContentType } from './components/Content';
-import { LessonGreetings } from './components/LessonGreetings';
-import styles from './style.module.css';
-import SupportContentCard from './components/SupportContent';
+import Course from 'modules/Courses/models/course';
 import { LoaderFunctionArgs, useLoaderData, useNavigate } from 'react-router-dom';
-import { CourseContextActions } from '../../../../modules/Courses/context/Provider';
+import { Body } from '../../../../core/components/Body';
 import {
   CourseProgressionStatus,
   LessonContextActions,
 } from '../../../../modules/Courses/context/LessonContextActions';
+import { CourseContextActions } from '../../../../modules/Courses/context/Provider';
+import { Content, ContentType } from './components/Content';
+import { LessonGreetings } from './components/LessonGreetings';
+import SupportContentCard from './components/SupportContent';
+import styles from './style.module.css';
 
 type CourseClassLoaderData = {
   course: Course;
