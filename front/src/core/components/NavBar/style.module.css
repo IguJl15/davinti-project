@@ -4,27 +4,27 @@
   justify-content: space-between;
   align-items: center;
   align-self: stretch;
+  gap: 8px;
 
-  height: auto;
+  height: 56px;
   width: 100%;
 
   background: #3274dc;
 }
 
-.frame_1 {
-  display: flex;
-}
-
 .frame_2 {
   display: none;
 }
-
 .image_holder {
-  display: flex;
-  width: 40px;
+  background-color: var(--md-sys-color-surface);
+  border-radius: 0.25em;
+}
+
+.image_holder,
+picture,
+source,
+img {
   height: 48px;
-  padding: 0.4px 0px;
-  justify-content: center;
 }
 
 .user_icon {
@@ -39,7 +39,7 @@
 }
 
 .button_wrapper {
-  width: 85%;
+  width: 100%;
   height: 100%;
   display: flex;
   gap: 10px;
@@ -47,15 +47,8 @@
   align-self: center;
 }
 
+/* On Desktop */
 @media (min-width: 1000px) {
-  .image_holder {
-    display: flex;
-    width: 150.545px;
-    height: 48px;
-    padding: 0.4px 0px;
-    justify-content: center;
-  }
-
   .frame_2 {
     display: flex;
     padding: 0px 12px;

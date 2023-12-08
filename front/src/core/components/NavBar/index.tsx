@@ -1,4 +1,5 @@
-import IfipLogo from '../../../assets/baixados.png';
+import IfpiLogoFull from '../../../assets/baixados-desktop.png';
+import IfpiLogoMobile from '../../../assets/baixados-mobile.png';
 import user_logo from '../../../assets/user_logo.png';
 import styles from './style.module.css';
 import { NavButton } from '../NavButton';
@@ -9,10 +10,11 @@ function NavBar() {
   const { isSignedIn, authData, logOut } = useAuth();
   return (
     <div className={styles.navbar_wrapper}>
-      <div className={styles.frame_1}>
-        <div className={styles.image_holder}>
-          <img src={IfipLogo} alt="ifpi-logo" />
-        </div>
+      <div className={styles.image_holder}>
+        <picture>
+          <source media="(min-width: 1000px)" srcSet={IfpiLogoFull} />
+          <img src={IfpiLogoMobile} alt="ifpi-logo" />
+        </picture>
       </div>
       <div className={styles.button_wrapper}>
         {!isSignedIn && (
