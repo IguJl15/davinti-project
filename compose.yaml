@@ -18,8 +18,8 @@ services:
       context: .
       target: release
     restart: on-failure
-    # environment:
-    #   - 'SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/mydatabase'
+    environment:
+      - 'SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/mydatabase'
     ports:
       - 8080:8080
     depends_on:
