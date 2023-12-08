@@ -25,7 +25,6 @@ export class CourseContextActions {
     if (!user) return;
 
     return httpClient.post(`/students/${user.id}/courses/${course.id}`, {});
-    
   }
 
   async getUserCourses(): Promise<Course[]> {
@@ -36,9 +35,9 @@ export class CourseContextActions {
     return httpClient.get<Course[]>(`/students/${user.id}/courses`);
   }
 
-  public unenrollCourse(course: Course) {
-    // return httpClient.delete()
-  }
+  // public unenrollCourse(course: Course) {
+  // return httpClient.delete()
+  // }
 }
 
 const CourseActionsContext = createContext<CourseContextActions>({} as CourseContextActions);

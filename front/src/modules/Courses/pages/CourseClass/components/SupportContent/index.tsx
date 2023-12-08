@@ -1,7 +1,6 @@
-import { Content, Lessson } from 'modules/Courses/models/course';
-import styles from './style.module.css';
-import { ContentType } from '../Content';
+import { Content } from 'modules/Courses/models/course';
 import { assureHttpPrefix } from '../ContentLink';
+import styles from './style.module.css';
 
 export default function SupportContentCard({ contents }: { contents: Content[] }) {
   return (

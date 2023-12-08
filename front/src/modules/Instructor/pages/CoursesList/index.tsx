@@ -2,7 +2,6 @@ import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { Body } from '../../../../core/components/Body';
 import { PrimaryButton } from '../../../../core/components/Button';
-import { IconButton } from '../../../../core/components/IconButton';
 import { Modal } from '../../../../core/components/Modal';
 import { authRepository } from '../../../../core/providers/AuthProvider/AuthProvider';
 import Course from '../../../Courses/models/course';
