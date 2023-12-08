@@ -23,11 +23,7 @@
 }
 
 .image_holder {
-  display: flex;
-  width: 150.545px;
-  height: 48px;
-  padding: 0.4px 0px;
-  justify-content: center;
+  display: none;
 }
 
 .user_icon {
@@ -42,16 +38,20 @@
 }
 
 .button_wrapper {
-  display: none;
-}
-
-@media (min-width: 1000px) {
-  .button_wrapper {
-    width: 50%;
+  width: 50%;
     height: 100%;
     display: flex;
     gap: 10px;
 
     align-self: center;
+}
+
+@media (min-width: 1000px) {
+  .image_holder {
+    display: flex;
+    width: 150.545px;
+    height: 48px;
+    padding: 0.4px 0px;
+    justify-content: center;
   }
 }
